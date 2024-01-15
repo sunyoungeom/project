@@ -1,7 +1,7 @@
 package team;
 /**
  * 
- * @author 정일웅
+ * @author 정일웅.
  *
  */
 public class Main {
