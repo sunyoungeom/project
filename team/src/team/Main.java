@@ -1,5 +1,9 @@
 package team;
-
+/**
+ * 
+ * @author 이기표
+ *
+ */
 public class Main {
 
 	public static void main(String[] args) {
