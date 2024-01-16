@@ -2,12 +2,15 @@ package team;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JToggleButton;
 import javax.swing.border.EmptyBorder;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -19,9 +22,9 @@ import javax.swing.SpringLayout;
 import javax.swing.JCheckBox;
 
 public class Lotto extends JFrame {
-
+	
 	private JPanel contentPane;
-
+	private ArrayList<JToggleButton> numberToggleButtons;
 	/**
 	 * Launch the application.
 	 */
@@ -112,8 +115,25 @@ public class Lotto extends JFrame {
 		panel.add(buy, "구매화면");
 		buy.setLayout(new BorderLayout(0, 0));
 		
+		
+		numberToggleButtons = new ArrayList<>();
+		
 		JPanel toggleButtonPanel = new JPanel(); // 6개의 번호 고르는 화면
 		buy.add(toggleButtonPanel, BorderLayout.WEST);
+		toggleButtonPanel.setLayout(new GridLayout(9, 5));
+		
+		for (int i = 1; i <= 45; i++) {
+			JToggleButton toggleButton = new JToggleButton();
+			numberToggleButtons.add(toggleButton);
+			toggleButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					
+				}
+			});
+			toggleButtonPanel.add(toggleButton);
+		}
+		
 		
 		JPanel panel_2 = new JPanel(); // 고른번호를 출력화면
 		buy.add(panel_2, BorderLayout.EAST);
