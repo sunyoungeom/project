@@ -106,6 +106,8 @@ public class Lotto extends JFrame {
 		main.add(btn4);
 
 		
+		
+		
 		panel.add(main, "초기화면");
 		panel.add(buy, "구매화면");
 		buy.setLayout(new BorderLayout(0, 0));
