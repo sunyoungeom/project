@@ -20,6 +20,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.SpringLayout;
 import javax.swing.JCheckBox;
+import javax.swing.SwingConstants;
+import java.awt.Rectangle;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
+import net.miginfocom.swing.MigLayout;
 
 public class Lotto extends JFrame {
 	
@@ -124,11 +130,12 @@ public class Lotto extends JFrame {
 		
 		for (int i = 1; i <= 45; i++) {
 			JToggleButton toggleButton = new JToggleButton();
+			toggleButton.setText(String.valueOf(i)); // 
 			numberToggleButtons.add(toggleButton);
 			toggleButton.addActionListener(new ActionListener() {
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					
+					//
 				}
 			});
 			toggleButtonPanel.add(toggleButton);
@@ -140,6 +147,21 @@ public class Lotto extends JFrame {
 		
 		JPanel panel_3 = new JPanel(); // 위에세팅 
 		buy.add(panel_3, BorderLayout.NORTH);
+		
+		JPanel panel_1 = new JPanel();
+		buy.add(panel_1, SpringLayout.SOUTH);
+		panel_1.setLayout(new MigLayout("", "[69px][81px][81px]", "[23px]"));
+		
+		JButton btnNewButton_2 = new JButton("초기화");
+		btnNewButton_2.setBounds(new Rectangle(100, 10, 0, 0));
+		panel_1.add(btnNewButton_2, "cell 0 0,alignx left,aligny top");
+		
+		JButton btnNewButton_1 = new JButton("자동선택");
+		btnNewButton_1.setToolTipText("");
+		panel_1.add(btnNewButton_1, "cell 1 0,alignx left,aligny top");
+		
+		JButton btnNewButton = new JButton("구매하기");
+		panel_1.add(btnNewButton, "cell 2 0,alignx left,aligny top");
 		panel.add(result, "결과화면");
 		panel.add(before, "이전회차");
 		panel.add(help, "도움말");
