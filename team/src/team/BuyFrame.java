@@ -71,6 +71,7 @@ public class BuyFrame extends JFrame {
 		
 		numberToggleButtons = new ArrayList<>();
 		
+		
 		for (int i = 1; i <= 45; i++) {
 			JToggleButton toggleButton = new JToggleButton();
 			toggleButton.setText(String.valueOf(i));
