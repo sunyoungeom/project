@@ -1,11 +1,30 @@
-package team;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class HelpFrame extends JFrame {
-	public HelpFrame() {
-		add(new JLabel("1121"));
+	private LottoProgram lotto;
+	public HelpFrame(LottoProgram lottoProgram) {
+		this.lotto = lottoProgram;
+
+		JPanel pnl = new JPanel();
+		JButton btnreturn = new JButton("돌아가기");
+		pnl.add(btnreturn);
+		add(pnl);
+		btnreturn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				lotto.setVisible(true);
+
+			}
+		});
+		setSize(800,600);
+		setVisible(false);
 	}
 }

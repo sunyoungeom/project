@@ -1,4 +1,4 @@
-package team;
+
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,7 +25,7 @@ public class BeforeFrame extends JFrame { // 이전회차
 				
 			}
 		});
-		setSize(500,500);
+		setSize(800,600);
 		setVisible(false);
 		
 	}

@@ -1,4 +1,3 @@
-package team;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,10 +11,10 @@ import sun.net.www.content.image.jpeg;
 import javax.swing.SpringLayout;
 
 public class LottoProgram extends JFrame {
-	private BuyFrame buyFrame = new BuyFrame();
-	private ResultFrame resultFrame = new ResultFrame();
-	private BeforeFrame beforeFrame = new BeforeFrame();
-	private HelpFrame helpFrame = new HelpFrame();
+	private BuyFrame buyFrame = new BuyFrame(this);
+	private ResultFrame resultFrame = new ResultFrame(this);
+	private BeforeFrame beforeFrame = new BeforeFrame(this);
+	private HelpFrame helpFrame = new HelpFrame(this);
 
 	public LottoProgram() {
 		setTitle("메인 창");
@@ -67,4 +66,6 @@ public class LottoProgram extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
+	
+	
 }
