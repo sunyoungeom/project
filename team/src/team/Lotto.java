@@ -166,6 +166,8 @@ public class Lotto extends JFrame {
 		panel.add(before, "이전회차");
 		panel.add(help, "도움말");
 
+		
+		
 		showGUI();
 	}
 
