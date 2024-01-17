@@ -26,12 +26,13 @@ public class BeforeFrame extends JFrame {
             new ImageTextPair("images/basicCircle.png", "4"),
             new ImageTextPair("images/basicCircle.png", "5"),
             new ImageTextPair("images/basicCircle.png", "6"),
+            new ImageTextPair("", "+"),
             new ImageTextPair("images/basicCircle.png", "7"),
             // 추가적인 이미지와 텍스트를 원하는 만큼 추가
         };
 
-        int horizontalGap = -21; // 이미지 사이의 가로 간격 조정
-        int xPosition = horizontalGap + 145; // 이미지의 초기 x 좌표
+        int horizontalGap = -15; // 이미지 사이의 가로 간격 조정
+        int xPosition = horizontalGap + 80; // 이미지의 초기 x 좌표
 
         for (ImageTextPair pair : imageTextPairs) {
             CircleImagePanel circleImagePanel = new CircleImagePanel(pair);
@@ -107,7 +108,7 @@ public class BeforeFrame extends JFrame {
             imageIcon.paintIcon(this, g, getWidth() / 2 - imageWidth / 2, getHeight() / 2 - imageHeight / 2);
 
             // 텍스트 그리기
-            g.setColor(Color.WHITE);
+            g.setColor(Color.black);
             g.setFont(new Font("Arial", Font.BOLD, 25));
             FontMetrics fontMetrics = g.getFontMetrics();
             int textWidth = fontMetrics.stringWidth(imageTextPair.getText());
