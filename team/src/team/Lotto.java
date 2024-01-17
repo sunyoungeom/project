@@ -67,6 +67,7 @@ public class Lotto extends JFrame {
 		main.setLayout(sl_main);
 		
 		JPanel buy = new JPanel();
+		buy.setBackground(Color.WHITE);
 		
 		JPanel result = new JPanel();
 		
@@ -116,16 +117,24 @@ public class Lotto extends JFrame {
 
 		
 		
-		
 		panel.add(main, "초기화면");
 		panel.add(buy, "구매화면");
-		buy.setLayout(new BorderLayout(0, 0));
+		
+		
+		
 		
 		
 		numberToggleButtons = new ArrayList<>();
+		SpringLayout sl_buy = new SpringLayout();
+		buy.setLayout(sl_buy);
 		
 		JPanel toggleButtonPanel = new JPanel(); // 6개의 번호 고르는 화면
-		buy.add(toggleButtonPanel, BorderLayout.WEST);
+		toggleButtonPanel.setBackground(Color.WHITE);
+		sl_buy.putConstraint(SpringLayout.NORTH, toggleButtonPanel, 130, SpringLayout.NORTH, buy);
+		sl_buy.putConstraint(SpringLayout.WEST, toggleButtonPanel, 0, SpringLayout.WEST, buy);
+		sl_buy.putConstraint(SpringLayout.SOUTH, toggleButtonPanel, 519, SpringLayout.NORTH, buy);
+		sl_buy.putConstraint(SpringLayout.EAST, toggleButtonPanel, 248, SpringLayout.WEST, buy);
+		buy.add(toggleButtonPanel);
 		toggleButtonPanel.setLayout(new GridLayout(9, 5));
 		
 		for (int i = 1; i <= 45; i++) {
@@ -143,36 +152,50 @@ public class Lotto extends JFrame {
 		
 		
 		JPanel panel_2 = new JPanel(); // 고른번호를 출력화면
-		buy.add(panel_2, BorderLayout.EAST);
+		panel_2.setBackground(Color.WHITE);
+		sl_buy.putConstraint(SpringLayout.NORTH, panel_2, 63, SpringLayout.NORTH, buy);
+		sl_buy.putConstraint(SpringLayout.WEST, panel_2, 774, SpringLayout.WEST, buy);
+		sl_buy.putConstraint(SpringLayout.SOUTH, panel_2, 519, SpringLayout.NORTH, buy);
+		buy.add(panel_2);
 		
 		JPanel panel_3 = new JPanel(); // 위에세팅 
-		buy.add(panel_3, BorderLayout.NORTH);
+		panel_3.setBackground(Color.WHITE);
+		sl_buy.putConstraint(SpringLayout.NORTH, panel_3, 0, SpringLayout.NORTH, buy);
+		sl_buy.putConstraint(SpringLayout.WEST, panel_3, 0, SpringLayout.WEST, buy);
+		sl_buy.putConstraint(SpringLayout.EAST, panel_3, 784, SpringLayout.WEST, buy);
+		buy.add(panel_3);
 		
 		JPanel panel_1 = new JPanel();
-		buy.add(panel_1, SpringLayout.SOUTH);
+		panel_1.setBackground(Color.WHITE);
+		sl_buy.putConstraint(SpringLayout.NORTH, panel_1, 519, SpringLayout.NORTH, buy);
+		sl_buy.putConstraint(SpringLayout.WEST, panel_1, 0, SpringLayout.WEST, buy);
+		sl_buy.putConstraint(SpringLayout.EAST, panel_1, 784, SpringLayout.WEST, buy);
+		buy.add(panel_1);
 		panel_1.setLayout(new MigLayout("", "[69px][81px][81px]", "[23px]"));
+		panel_1.setLayout(new MigLayout("", "[1px][1px]", "[1px][1px]"));
 		
 		JButton btnNewButton_2 = new JButton("초기화");
 		btnNewButton_2.setBounds(new Rectangle(100, 10, 0, 0));
-		panel_1.add(btnNewButton_2, "cell 0 0,alignx left,aligny top");
+		panel_1.add(btnNewButton_2, "flowx,cell 0 0,grow");
 		
 		JButton btnNewButton_1 = new JButton("자동선택");
 		btnNewButton_1.setToolTipText("");
-		panel_1.add(btnNewButton_1, "cell 1 0,alignx left,aligny top");
+		panel_1.add(btnNewButton_1, "cell 0 0,grow");
 		
 		JButton btnNewButton = new JButton("구매하기");
-		panel_1.add(btnNewButton, "cell 2 0,alignx left,aligny top");
+		panel_1.add(btnNewButton, "cell 0 0,grow");
 		panel.add(result, "결과화면");
 		panel.add(before, "이전회차");
 		panel.add(help, "도움말");
 
-		
+		JLabel lbl = new JLabel(new ImageIcon(Lotto.class.getResource("/images/lotto.jpg")));
+		panel_3.add(lbl, BorderLayout.NORTH);
 		
 		showGUI();
 	}
 
 	private void showGUI() {
-		setSize(734, 505);
+		setSize(800, 600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
