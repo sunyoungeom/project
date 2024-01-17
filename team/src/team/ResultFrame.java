@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
+import java.awt.Canvas;
+import java.awt.Font;
 
 // 기표
 public class ResultFrame extends JFrame {
@@ -15,25 +17,27 @@ public class ResultFrame extends JFrame {
 
 	public ResultFrame(LottoProgram lottoProgram) {
 		this.lotto = lottoProgram;
-
+		setTitle("로또 결과 확인");
 		JPanel pnl = new JPanel();
 		pnl.setLayout(null);
 		JButton btnreturn = new JButton("돌아가기");
-		btnreturn.setBounds(12, 10, 81, 23);
+		btnreturn.setBounds(12, 10, 90, 25);
 		pnl.add(btnreturn);
 		getContentPane().add(pnl);
 
 		JPanel panel = new JPanel();
-		panel.setBounds(68, 55, 556, 77);
-		panel.setBorder(new LineBorder(new Color(0, 0, 0), 3));
+		panel.setBounds(70, 80, 550, 80); // 결과 창이 나오는 패널
+		panel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
 		pnl.add(panel);
 
 		JLabel A = new JLabel("A");
-		A.setBounds(70, 240, 16, 15);
+		A.setFont(new Font("SansSerif", Font.BOLD, 20));
+		A.setBounds(70, 240, 20, 20);
 		pnl.add(A);
 
 		JLabel AText = new JLabel("");
-		AText.setBounds(100, 240, 57, 15);
+		AText.setFont(new Font("휴먼모음T", Font.BOLD, 20));
+		AText.setBounds(100, 240, 60, 20);
 		pnl.add(AText);
 
 		JLabel AResult = new JLabel("");
@@ -41,11 +45,13 @@ public class ResultFrame extends JFrame {
 		pnl.add(AResult);
 
 		JLabel B = new JLabel("B");
-		B.setBounds(70, 300, 16, 15);
+		B.setFont(new Font("SansSerif", Font.BOLD, 20));
+		B.setBounds(70, 300, 20, 20);
 		pnl.add(B);
 
 		JLabel BText = new JLabel("");
-		BText.setBounds(100, 300, 57, 15);
+		BText.setFont(new Font("휴먼모음T", Font.BOLD, 20));
+		BText.setBounds(100, 300, 60, 20);
 		pnl.add(BText);
 
 		JLabel BResult = new JLabel("");
@@ -53,11 +59,13 @@ public class ResultFrame extends JFrame {
 		pnl.add(BResult);
 
 		JLabel C = new JLabel("C");
-		C.setBounds(70, 360, 16, 15);
+		C.setFont(new Font("SansSerif", Font.BOLD, 20));
+		C.setBounds(70, 360, 20, 20);
 		pnl.add(C);
 
 		JLabel CText = new JLabel("");
-		CText.setBounds(100, 360, 57, 15);
+		CText.setFont(new Font("휴먼모음T", Font.BOLD, 20));
+		CText.setBounds(100, 360, 60, 20);
 		pnl.add(CText);
 
 		JLabel CResult = new JLabel("");
@@ -65,11 +73,13 @@ public class ResultFrame extends JFrame {
 		pnl.add(CResult);
 
 		JLabel D = new JLabel("D");
-		D.setBounds(70, 420, 16, 15);
+		D.setFont(new Font("SansSerif", Font.BOLD, 20));
+		D.setBounds(70, 420, 20, 20);
 		pnl.add(D);
 
 		JLabel DText = new JLabel("");
-		DText.setBounds(100, 420, 57, 15);
+		DText.setFont(new Font("휴먼모음T", Font.BOLD, 20));
+		DText.setBounds(100, 420, 60, 20);
 		pnl.add(DText);
 
 		JLabel DResult = new JLabel("");
@@ -77,11 +87,13 @@ public class ResultFrame extends JFrame {
 		pnl.add(DResult);
 
 		JLabel E = new JLabel("E");
-		E.setBounds(70, 480, 16, 15);
+		E.setFont(new Font("SansSerif", Font.BOLD, 20));
+		E.setBounds(70, 480, 20, 20);
 		pnl.add(E);
 
 		JLabel EText = new JLabel("");
-		EText.setBounds(100, 480, 57, 15);
+		EText.setFont(new Font("휴먼모음T", Font.BOLD, 20));
+		EText.setBounds(100, 480, 60, 20);
 		pnl.add(EText);
 
 		JLabel EResult = new JLabel("");
