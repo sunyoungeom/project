@@ -37,6 +37,7 @@ public class BuyFrame extends JFrame {
 			}
 		});
 		
+		
 		JButton btnReset = new JButton("초기화");
 		sl_pnl.putConstraint(SpringLayout.WEST, btnReset, 0, SpringLayout.WEST, btnreturn);
 		sl_pnl.putConstraint(SpringLayout.EAST, btnReset, 0, SpringLayout.EAST, btnreturn);
