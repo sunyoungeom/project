@@ -45,14 +45,16 @@ public class ResultFrame extends JFrame {
 		pnl.add(AText);
 
 		aResult = new JLabel("");
-		if (lotto.resultBuy != null && lotto.resultBuy.size() >= 5) {
-		aResult.setText(lotto.resultBuy.get(0).toString());
-		}
-//		if (lotto.resultBuy != null) {
-//			AResult.setText(lotto.resultBuy.get(0).toString());
-//		}
 		aResult.setBounds(560, 240, 57, 15);
 		pnl.add(aResult);
+
+		JLabel aNumber = new JLabel("New label");
+		aNumber.setBounds(291, 240, 57, 15);
+		pnl.add(aNumber);
+		if (lotto.resultBuy != null && lotto.resultBuy.size() >= 5) {
+			StringBuilder indexNumber = new StringBuilder();
+			aNumber.setText(lotto.resultBuy.get(0).toString());
+		}
 
 		JLabel B = new JLabel("B");
 		B.setFont(new Font("SansSerif", Font.BOLD, 20));
@@ -133,17 +135,14 @@ public class ResultFrame extends JFrame {
 		setVisible(false);
 
 	}
-	
-	
-	
-	 public void updateResultLabels() {
-	        if (lotto.resultBuy != null && lotto.resultBuy.size() <= 5) {
-	            aResult.setText(lotto.resultBuy.get(0).toString());
-	            bResult.setText(lotto.resultBuy.get(1).toString());
-	            cResult.setText(lotto.resultBuy.get(2).toString());
-	            dResult.setText(lotto.resultBuy.get(3).toString());
-	            eResult.setText(lotto.resultBuy.get(4).toString());
-	        }
-	    }
-	
+
+	public void updateResultLabels() {
+		if (lotto.resultBuy != null && lotto.resultBuy.size() <= 5) {
+			aResult.setText(lotto.resultBuy.get(0).toString());
+			bResult.setText(lotto.resultBuy.get(1).toString());
+			cResult.setText(lotto.resultBuy.get(2).toString());
+			dResult.setText(lotto.resultBuy.get(3).toString());
+			eResult.setText(lotto.resultBuy.get(4).toString());
+		}
+	}
 }
