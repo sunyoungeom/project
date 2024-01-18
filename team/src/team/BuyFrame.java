@@ -348,9 +348,12 @@ public class BuyFrame extends JFrame {
 					StringBuilder result = new StringBuilder();
 					for (String number : selectedNumbers) {
 						result.append(number).append(" ");
-					}
-					if (lblCheckA.getText().equals("") || lblCheckA.getText().equals("6개를 선택해야 합니다.")) {
-						lblCheckA.setText(result.toString());
+					}	
+					System.out.println(lotto.resultBuy.get(0));
+					System.out.println(lotto.resultBuy.get(0));
+//					if (lblCheckA.getText().equals("") || lblCheckA.getText().equals("6개를 선택해야 합니다.")) {
+						if (lotto.resultBuy.get(0) == null || lblCheckA.getText().equals("6개를 선택해야 합니다.")) {
+//						lblCheckA.setText(result.toString());
 						lotto.showBuyBall(pnl, sl_pnl, -100, selectedNumbers);
 						lotto.resultBuy.set(0, selectedNumbers);
 						System.out.println(lotto.resultBuy);
@@ -363,8 +366,9 @@ public class BuyFrame extends JFrame {
 						} else {
 							lblStateA.setText("반자동");
 						}
+//					} else if (lblCheckB.getText().equals("") || lblCheckB.getText().equals("6개를 선택해야 합니다.")) {
 					} else if (lblCheckB.getText().equals("") || lblCheckB.getText().equals("6개를 선택해야 합니다.")) {
-						lblCheckB.setText(result.toString());
+//						lblCheckB.setText(result.toString());
 						lotto.showBuyBall(pnl, sl_pnl, -30, selectedNumbers);
 						lotto.resultBuy.set(1, selectedNumbers);
 						System.out.println(lotto.resultBuy);
@@ -378,7 +382,7 @@ public class BuyFrame extends JFrame {
 							lblStateB.setText("반자동");
 						}
 					} else if (lblCheckC.getText().equals("") || lblCheckC.getText().equals("6개를 선택해야 합니다.")) {
-						lblCheckC.setText(result.toString());
+//						lblCheckC.setText(result.toString());
 						lotto.showBuyBall(pnl, sl_pnl, 40, selectedNumbers);
 						lotto.resultBuy.set(2, selectedNumbers);
 						System.out.println(lotto.resultBuy);
@@ -392,7 +396,7 @@ public class BuyFrame extends JFrame {
 							lblStateC.setText("반자동");
 						}
 					} else if (lblCheckD.getText().equals("") || lblCheckD.getText().equals("6개를 선택해야 합니다.")) {
-						lblCheckD.setText(result.toString());
+//						lblCheckD.setText(result.toString());
 						lotto.showBuyBall(pnl, sl_pnl, 110, selectedNumbers);
 						lotto.resultBuy.set(3, selectedNumbers);
 						System.out.println(lotto.resultBuy);
