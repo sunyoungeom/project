@@ -18,11 +18,11 @@ public class LottoProgram extends JFrame {
 	private BeforeFrame beforeFrame = new BeforeFrame(this);
 	private HelpFrame helpFrame = new HelpFrame(this);
 	public ArrayList<ArrayList<String>> resultBuy = new ArrayList<>();
-	
+
 	public LottoProgram() {
 		for (int i = 0; i < 5; i++) {
-            resultBuy.add(new ArrayList<>());
-        }
+			resultBuy.add(new ArrayList<>());
+		}
 		setTitle("메인 창");
 		JPanel main = new JPanel();
 
@@ -80,8 +80,8 @@ public class LottoProgram extends JFrame {
 			for (int j = 0; j < selectedNumbers.size(); j++) {
 				if (Integer.valueOf(selectedNumbers.get(i)) >= j * 10 + 1
 						&& Integer.valueOf(selectedNumbers.get(i)) <= (j + 1) * 10) {
-					String imagePath = "images/ball_" + (j + 1) + ".png";
-//					String imagePath = "";
+//					String imagePath = "images/ball_" + (j + 1) + ".png";
+					String imagePath = "";
 					imageTextPairs[i] = new ImageTextPair(imagePath, selectedNumbers.get(i));
 				}
 
@@ -103,5 +103,4 @@ public class LottoProgram extends JFrame {
 			xPosition += 75 + horizontalGap; // 이미지와 간격만큼 x 좌표 이동
 		}
 	}
-
 }
