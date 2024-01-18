@@ -58,8 +58,6 @@ public class BuyFrame extends JFrame {
 	private JButton btnNumReset;
 
 	public BuyFrame(LottoProgram lottoProgram) {
-		
-		
 		this.lotto = lottoProgram;
 
 		JPanel pnl = new JPanel();
@@ -233,6 +231,12 @@ public class BuyFrame extends JFrame {
 		btnRetouchA = new JButton("수정");
 		sl_pnl.putConstraint(SpringLayout.NORTH, btnRetouchA, -4, SpringLayout.NORTH, lblA);
 		pnl.add(btnRetouchA);
+		btnRetouchA.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
 
 		btnRetouchB = new JButton("수정");
 		sl_pnl.putConstraint(SpringLayout.WEST, btnRetouchA, 0, SpringLayout.WEST, btnRetouchB);
@@ -376,7 +380,6 @@ public class BuyFrame extends JFrame {
 					for (String number : selectedNumbers) {
 						result.append(number).append(" ");
 					}	
-					
 					if (lblStateA.getText().equals("") || lblCheckA.getText().equals("6개를 선택해야 합니다.")) {
 //						if (lotto.resultBuy.get(0) == null || lblCheckA.getText().equals("6개를 선택해야 합니다.")) {
 						lblCheckA.setText(result.toString());
@@ -384,7 +387,6 @@ public class BuyFrame extends JFrame {
 						lotto.showBuyBall(pnl, sl_pnl, -100, selectedNumbers);
 						lotto.resultBuy.set(0, selectedNumbers);
 						System.out.println(lotto.resultBuy);
-						
 						
 						if (autoSelected && lblStateA.getText().equals("")) {
 							lblStateA.setText("자동");
