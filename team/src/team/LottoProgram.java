@@ -13,16 +13,17 @@ import sun.net.www.content.image.jpeg;
 import javax.swing.SpringLayout;
 
 public class LottoProgram extends JFrame {
-	private BuyFrame buyFrame = new BuyFrame(this);
-	private ResultFrame resultFrame = new ResultFrame(this);
+//	private BuyFrame buyFrame = new BuyFrame(this);
+//	private ResultFrame resultFrame = new ResultFrame(this);
 	private BeforeFrame beforeFrame = new BeforeFrame(this);
 	private HelpFrame helpFrame = new HelpFrame(this);
-	public ArrayList<ArrayList<String>> resultBuy = new ArrayList<>();
+	public ArrayList<ArrayList<String>> resultBuy = new ArrayList<>(5);
 
 	public LottoProgram() {
 		for (int i = 0; i < 5; i++) {
 			resultBuy.add(new ArrayList<>());
 		}
+		
 		setTitle("메인 창");
 		JPanel main = new JPanel();
 
@@ -40,6 +41,7 @@ public class LottoProgram extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
+				BuyFrame buyFrame = new BuyFrame(LottoProgram.this);
 				buyFrame.setVisible(true);
 			}
 		});
@@ -48,6 +50,7 @@ public class LottoProgram extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
+				ResultFrame resultFrame = new ResultFrame(LottoProgram.this);
 				resultFrame.setVisible(true);
 			}
 		});
@@ -73,20 +76,34 @@ public class LottoProgram extends JFrame {
 		setVisible(true);
 	}
 
-	public void showBuyBall(JPanel pnl, SpringLayout sl_pnl, int y, ArrayList<String> selectedNumbers) {
+//	public void showBuyBall(JPanel pnl, SpringLayout sl_pnl, int y, ArrayList<String> selectedNumbers, Boolean b) {
+		public void showBuyBall(JPanel pnl, SpringLayout sl_pnl, int y, ArrayList<String> selectedNumbers) {
 
 		ImageTextPair[] imageTextPairs = new ImageTextPair[6];
-		for (int i = 0; i < selectedNumbers.size(); i++) {
-			for (int j = 0; j < selectedNumbers.size(); j++) {
-				if (Integer.valueOf(selectedNumbers.get(i)) >= j * 10 + 1
-						&& Integer.valueOf(selectedNumbers.get(i)) <= (j + 1) * 10) {
+//		if (b) {
+			for (int i = 0; i < selectedNumbers.size(); i++) {
+				for (int j = 0; j < selectedNumbers.size(); j++) {
+					if (Integer.valueOf(selectedNumbers.get(i)) >= j * 10 + 1
+							&& Integer.valueOf(selectedNumbers.get(i)) <= (j + 1) * 10) {
 //					String imagePath = "images/ball_" + (j + 1) + ".png";
-					String imagePath = "";
-					imageTextPairs[i] = new ImageTextPair(imagePath, selectedNumbers.get(i));
-				}
+						String imagePath = "";
+						imageTextPairs[i] = new ImageTextPair(imagePath, selectedNumbers.get(i));
+					}
 
+//				}
 			}
-		}
+		} 
+//		else { for (int i = 0; i < selectedNumbers.size(); i++) {
+//			for (int j = 0; j < selectedNumbers.size(); j++) {
+//				if (Integer.valueOf(selectedNumbers.get(i)) >= j * 10 + 1
+//						&& Integer.valueOf(selectedNumbers.get(i)) <= (j + 1) * 10) {
+////				String imagePath = "images/ball_" + (j + 1) + ".png";
+//					String imagePath = "";
+//					imageTextPairs[i] = new ImageTextPair(imagePath, selectedNumbers.get(i));
+//				}
+//
+//			}
+//		}
 
 		int horizontalGap = -25; // 이미지 사이의 가로 간격 조정
 		int xPosition = horizontalGap + 490; // 이미지의 초기 x 좌표
