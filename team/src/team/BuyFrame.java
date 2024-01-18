@@ -307,14 +307,19 @@ public class BuyFrame extends JFrame {
 		                result.append(number).append(" ");
 		            } if (lblCheckA.getText().equals("")) {
 		            	lblCheckA.setText(result.toString());
+		            	lotto.showBuyBall(pnl, sl_pnl, -100, selectedNumbers);
 		            } else if (lblCheckB.getText().equals("")) {
 		            	lblCheckB.setText(result.toString());
+		            	lotto.showBuyBall(pnl, sl_pnl, -30, selectedNumbers);
 		            } else if (lblCheckC.getText().equals("")) {
 		            	lblCheckC.setText(result.toString());
+		            	lotto.showBuyBall(pnl, sl_pnl, 40, selectedNumbers);
 		            } else if (lblCheckD.getText().equals("")) {
 		            	lblCheckD.setText(result.toString());
+		            	lotto.showBuyBall(pnl, sl_pnl, 110, selectedNumbers);
 		            } else if (lblCheckE.getText().equals("")) {
 		            	lblCheckE.setText(result.toString());
+		            	lotto.showBuyBall(pnl, sl_pnl, 180, selectedNumbers);
 		            }
 		        } else {
 		            // 6개가 선택되지 않은 경우

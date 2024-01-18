@@ -2,7 +2,9 @@
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,17 +21,17 @@ public class LottoProgram extends JFrame {
 	public LottoProgram() {
 		setTitle("메인 창");
 		JPanel main = new JPanel();
-		
+
 		JButton btnBuy = new JButton("구매하기");
 		JButton btnResult = new JButton("결과확인");
 		JButton btnBefore = new JButton("이전회차");
 		JButton btnHelp = new JButton("도움말");
-		
+
 		main.add(btnBuy);
 		main.add(btnResult);
 		main.add(btnBefore);
 		main.add(btnHelp);
-		
+
 		btnBuy.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -37,7 +39,7 @@ public class LottoProgram extends JFrame {
 				buyFrame.setVisible(true);
 			}
 		});
-		
+
 		btnResult.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -45,7 +47,7 @@ public class LottoProgram extends JFrame {
 				resultFrame.setVisible(true);
 			}
 		});
-		
+
 		btnBefore.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -53,7 +55,7 @@ public class LottoProgram extends JFrame {
 				beforeFrame.setVisible(true);
 			}
 		});
-		
+
 		btnHelp.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -62,10 +64,39 @@ public class LottoProgram extends JFrame {
 			}
 		});
 		add(main);
-		setSize(800,600);
+		setSize(800, 600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
-	
-	
+
+	public void showBuyBall(JPanel pnl, SpringLayout sl_pnl, int y, ArrayList<String> selectedNumbers) {
+
+		ImageTextPair[] imageTextPairs = new ImageTextPair[6];
+		for (int i = 0; i < selectedNumbers.size(); i++) {
+			for (int j = 0; j < selectedNumbers.size(); j++) {
+				if (Integer.valueOf(selectedNumbers.get(i)) >= j * 10 + 1
+						&& Integer.valueOf(selectedNumbers.get(i)) <= (j + 1) * 10) {
+					String imagePath = "images/ball_" + (j + 1) + ".png";
+					imageTextPairs[i] = new ImageTextPair(imagePath, selectedNumbers.get(i));
+				}
+
+			}
+		}
+
+		int horizontalGap = -25; // 이미지 사이의 가로 간격 조정
+		int xPosition = horizontalGap + 490; // 이미지의 초기 x 좌표
+		int yPosition = horizontalGap + 215 + y; // 이미지의 초기 x 좌표
+
+		for (ImageTextPair pair : imageTextPairs) {
+			CircleImagePanel circleImagePanel = new CircleImagePanel(pair);
+			sl_pnl.putConstraint(SpringLayout.NORTH, circleImagePanel, yPosition, SpringLayout.NORTH, pnl);
+			sl_pnl.putConstraint(SpringLayout.WEST, circleImagePanel, xPosition, SpringLayout.WEST, pnl);
+			sl_pnl.putConstraint(SpringLayout.SOUTH, circleImagePanel, yPosition + 50, SpringLayout.NORTH, pnl);
+			sl_pnl.putConstraint(SpringLayout.EAST, circleImagePanel, xPosition + 50, SpringLayout.WEST, pnl);
+			pnl.add(circleImagePanel);
+//			circleImagePanel.setBackground(Color.WHITE);
+			xPosition += 75 + horizontalGap; // 이미지와 간격만큼 x 좌표 이동
+		}
+	}
+
 }

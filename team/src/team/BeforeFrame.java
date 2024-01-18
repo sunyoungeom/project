@@ -18,10 +18,13 @@ public class BeforeFrame extends JFrame {
         sl_pnl.putConstraint(SpringLayout.WEST, btnreturn, 10, SpringLayout.WEST, pnl);
         pnl.add(btnreturn);
 
+        
         // 여러 개의 이미지와 텍스트를 가지는 데이터
         ImageTextPair[] imageTextPairs = {
-            new ImageTextPair("images/basicCircle.png", "1"),
-            new ImageTextPair("images/basicCircle.png", "2"),
+        		
+// ImageTextPair[i]
+            new ImageTextPair("images/ball_1.png", "1"),
+            new ImageTextPair("images/ball_2.png", "2"),
             new ImageTextPair("images/basicCircle.png", "3"),
             new ImageTextPair("images/basicCircle.png", "4"),
             new ImageTextPair("images/basicCircle.png", "5"),
@@ -30,6 +33,7 @@ public class BeforeFrame extends JFrame {
             new ImageTextPair("images/basicCircle.png", "7"),
             // 추가적인 이미지와 텍스트를 원하는 만큼 추가
         };
+      
 
         int horizontalGap = -15; // 이미지 사이의 가로 간격 조정
         int xPosition = horizontalGap + 80; // 이미지의 초기 x 좌표
@@ -72,48 +76,5 @@ public class BeforeFrame extends JFrame {
         setVisible(false);
     }
 
-    class ImageTextPair {
-        private String imagePath;
-        private String text;
-
-        public ImageTextPair(String imagePath, String text) {
-            this.imagePath = imagePath;
-            this.text = text;
-        }
-
-        public String getImagePath() {
-            return imagePath;
-        }
-
-        public String getText() {
-            return text;
-        }
-    }
-
-    class CircleImagePanel extends JPanel {
-        private ImageTextPair imageTextPair;
-
-        public CircleImagePanel(ImageTextPair imageTextPair) {
-            this.imageTextPair = imageTextPair;
-        }
-
-        @Override
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-
-            // 이미지 그리기
-            ImageIcon imageIcon = new ImageIcon(imageTextPair.getImagePath());
-            int imageWidth = imageIcon.getIconWidth();
-            int imageHeight = imageIcon.getIconHeight();
-            imageIcon.paintIcon(this, g, getWidth() / 2 - imageWidth / 2, getHeight() / 2 - imageHeight / 2);
-
-            // 텍스트 그리기
-            g.setColor(Color.black);
-            g.setFont(new Font("Arial", Font.BOLD, 25));
-            FontMetrics fontMetrics = g.getFontMetrics();
-            int textWidth = fontMetrics.stringWidth(imageTextPair.getText());
-            int textHeight = fontMetrics.getHeight();
-            g.drawString(imageTextPair.getText(), getWidth() / 2 - textWidth / 2, getHeight() / 2 + textHeight / 4);
-        }
-    }
+   
 }
