@@ -22,6 +22,11 @@ public class BuyFrame extends JFrame {
 	private LottoProgram lotto;
 	private ArrayList<JToggleButton> numberToggleButtons;
 	public static ArrayList<String> selectedNumbers;
+	
+//	private ResultFrame resultFrame = new ResultFrame(lotto);
+	
+	
+	
 	private int SELECTED_NUMBER = 6;
 	private JLabel lblCheckA;
 	private JLabel lblCheckB;
@@ -224,9 +229,147 @@ public class BuyFrame extends JFrame {
 		btnPurchase.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				selectedNumbers = new ArrayList<>();
+				for (JToggleButton toggleButton : numberToggleButtons) {
+					if (toggleButton.isSelected()) {
+						selectedNumbers.add(toggleButton.getText());
+					}
+				}
+				if (selectedNumbers.size() == SELECTED_NUMBER) {
+					// 6개가 선택된 경우
+					StringBuilder result = new StringBuilder();
+					for (String number : selectedNumbers) {
+						result.append(number).append(" ");
+					}	
+					
+					if (lblStateA.getText().equals("") || lblCheckA.getText().equals("6개를 선택해야 합니다.")) {
+//						if (lotto.resultBuy.get(0) == null || lblCheckA.getText().equals("6개를 선택해야 합니다.")) {
+						lblCheckA.setText(result.toString());
+						lblCheckA.setVisible(false);
+//						lotto.resultBuy.add(new ArrayList<>());
+						
+						
+						
+						lotto.showBuyBall(pnl, sl_pnl, -100, selectedNumbers);
+						lotto.resultBuy.set(0, selectedNumbers);
+						System.out.println(lotto.resultBuy);
+						
+						
+						if (autoSelected && lblStateA.getText().equals("")) {
+							lblStateA.setText("자동");
+							autoSelected = false;
+						} else if (!autoSelected) { // () = true
+							lblStateA.setText("수동");
+						} else {
+							lblStateA.setText("반자동");
+						}
+						
+						
+						
+					} else if (lblStateB.getText().equals("") || lblCheckB.getText().equals("6개를 선택해야 합니다.")) {
+						lblCheckB.setText(result.toString());
+						lblCheckB.setVisible(false);
+//						lotto.resultBuy.add(new ArrayList<>());
+						
+						
+						
+						lotto.showBuyBall(pnl, sl_pnl, -30, selectedNumbers);
+						lotto.resultBuy.set(1, selectedNumbers);
+						System.out.println(lotto.resultBuy);
+						
+						if (autoSelected && lblStateB.getText().equals("")) {
+							lblStateB.setText("자동");
+							autoSelected = false;
+						} else if (!autoSelected) { // () = true
+							lblStateB.setText("수동");
+						} else {
+							lblStateB.setText("반자동");
+						}
+						
+						
+						
+						
+						
+					} else if (lblStateC.getText().equals("") || lblCheckC.getText().equals("6개를 선택해야 합니다.")) {
+						lblCheckC.setText(result.toString());
+						lblCheckC.setVisible(false);
+//						lotto.resultBuy.add(new ArrayList<>());
+						
+						
+						
+						lotto.showBuyBall(pnl, sl_pnl, 40, selectedNumbers);
+						lotto.resultBuy.set(2, selectedNumbers);
+						System.out.println(lotto.resultBuy);
+						
+						
+						if (autoSelected && lblStateC.getText().equals("")) {
+							lblStateC.setText("자동");
+							autoSelected = false;
+						} else if (!autoSelected) { // () = true
+							lblStateC.setText("수동");
+						} else {
+							lblStateC.setText("반자동");
+						}
+						
+						
+					} else if (lblStateD.getText().equals("") || lblCheckD.getText().equals("6개를 선택해야 합니다.")) {
+						lblCheckD.setText(result.toString());
+						lblCheckD.setVisible(false);
+//						lotto.resultBuy.add(ArrayList<>());
+						
+						
+						
+						lotto.showBuyBall(pnl, sl_pnl, 110, selectedNumbers);
+						lotto.resultBuy.set(3, selectedNumbers);
+						System.out.println(lotto.resultBuy);
+						
+						if (autoSelected && lblStateD.getText().equals("")) {
+							lblStateD.setText("자동");
+							autoSelected = false;
+						} else if (!autoSelected) { // () = true
+							lblStateD.setText("수동");
+						} else {
+							lblStateD.setText("반자동");
+						}
+						
+						
+					} else if (lblStateE.getText().equals("") || lblCheckE.getText().equals("6개를 선택해야 합니다.")) {
+						lblCheckE.setText(result.toString());
+						lblCheckE.setVisible(false);
+//						lotto.resultBuy.add(new ArrayList<>());
+						
+						
+						
+						lotto.showBuyBall(pnl, sl_pnl, 180, selectedNumbers);
+						lotto.resultBuy.set(4, selectedNumbers);
+						System.out.println(lotto.resultBuy);
+						
+						if (autoSelected && lblStateE.getText().equals("")) {
+							lblStateE.setText("자동");
+							autoSelected = false;
+						} else if (!autoSelected) { // () = true
+							lblStateE.setText("수동");
+						} else {
+							lblStateE.setText("반자동");
+						}
+						
+					}
+					
+					
+					
+					
+					
+				} else {
+					// 6개가 선택되지 않은 경우
+					lblCheckA.setText("6개를 선택해야 합니다.");
+//		            lblCheckB.setText("6개를 선택해야 합니다.");
+//		            lblCheckC.setText("6개를 선택해야 합니다.");
+//		            lblCheckD.setText("6개를 선택해야 합니다.");
+//		            lblCheckE.setText("6개를 선택해야 합니다.");
+				}
 			}
 		});
+	
 
 		btnRetouchA = new JButton("수정");
 		sl_pnl.putConstraint(SpringLayout.NORTH, btnRetouchA, -4, SpringLayout.NORTH, lblA);
@@ -381,9 +524,9 @@ public class BuyFrame extends JFrame {
 						result.append(number).append(" ");
 					}	
 					if (lblStateA.getText().equals("") || lblCheckA.getText().equals("6개를 선택해야 합니다.")) {
-//						if (lotto.resultBuy.get(0) == null || lblCheckA.getText().equals("6개를 선택해야 합니다.")) {
 						lblCheckA.setText(result.toString());
 						lblCheckA.setVisible(false);
+//						lotto.resultBuy.add(new ArrayList<>());
 						lotto.showBuyBall(pnl, sl_pnl, -100, selectedNumbers);
 						lotto.resultBuy.set(0, selectedNumbers);
 						System.out.println(lotto.resultBuy);
@@ -399,6 +542,7 @@ public class BuyFrame extends JFrame {
 					} else if (lblStateB.getText().equals("") || lblCheckB.getText().equals("6개를 선택해야 합니다.")) {
 						lblCheckB.setText(result.toString());
 						lblCheckB.setVisible(false);
+//						lotto.resultBuy.add(new ArrayList<>());
 						lotto.showBuyBall(pnl, sl_pnl, -30, selectedNumbers);
 						lotto.resultBuy.set(1, selectedNumbers);
 						System.out.println(lotto.resultBuy);
@@ -414,10 +558,10 @@ public class BuyFrame extends JFrame {
 					} else if (lblStateC.getText().equals("") || lblCheckC.getText().equals("6개를 선택해야 합니다.")) {
 						lblCheckC.setText(result.toString());
 						lblCheckC.setVisible(false);
+//						lotto.resultBuy.add(new ArrayList<>());
 						lotto.showBuyBall(pnl, sl_pnl, 40, selectedNumbers);
 						lotto.resultBuy.set(2, selectedNumbers);
 						System.out.println(lotto.resultBuy);
-						
 						
 						if (autoSelected && lblStateC.getText().equals("")) {
 							lblStateC.setText("자동");
@@ -430,6 +574,7 @@ public class BuyFrame extends JFrame {
 					} else if (lblStateD.getText().equals("") || lblCheckD.getText().equals("6개를 선택해야 합니다.")) {
 						lblCheckD.setText(result.toString());
 						lblCheckD.setVisible(false);
+//						lotto.resultBuy.add(ArrayList<>());
 						lotto.showBuyBall(pnl, sl_pnl, 110, selectedNumbers);
 						lotto.resultBuy.set(3, selectedNumbers);
 						System.out.println(lotto.resultBuy);
@@ -445,6 +590,10 @@ public class BuyFrame extends JFrame {
 					} else if (lblStateE.getText().equals("") || lblCheckE.getText().equals("6개를 선택해야 합니다.")) {
 						lblCheckE.setText(result.toString());
 						lblCheckE.setVisible(false);
+//						lotto.resultBuy.add(new ArrayList<>());
+						
+						
+						
 						lotto.showBuyBall(pnl, sl_pnl, 180, selectedNumbers);
 						lotto.resultBuy.set(4, selectedNumbers);
 						System.out.println(lotto.resultBuy);

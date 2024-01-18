@@ -8,12 +8,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
-import java.awt.Canvas;
 import java.awt.Font;
 
 // 기표
 public class ResultFrame extends JFrame {
 	private LottoProgram lotto;
+	private JLabel aResult;
+	private JLabel bResult;
+	private JLabel cResult;
+	private JLabel dResult;
+	private JLabel eResult;
 
 	public ResultFrame(LottoProgram lottoProgram) {
 		this.lotto = lottoProgram;
@@ -40,9 +44,15 @@ public class ResultFrame extends JFrame {
 		AText.setBounds(100, 240, 60, 20);
 		pnl.add(AText);
 
-		JLabel AResult = new JLabel("");
-		AResult.setBounds(560, 240, 57, 15);
-		pnl.add(AResult);
+		aResult = new JLabel("");
+		if (lotto.resultBuy != null && lotto.resultBuy.size() >= 5) {
+			aResult.setText(lotto.resultBuy.get(0).toString());
+		}
+//		if (lotto.resultBuy != null) {
+//			AResult.setText(lotto.resultBuy.get(0).toString());
+//		}
+		aResult.setBounds(560, 240, 57, 15);
+		pnl.add(aResult);
 
 		JLabel B = new JLabel("B");
 		B.setFont(new Font("SansSerif", Font.BOLD, 20));
@@ -54,9 +64,9 @@ public class ResultFrame extends JFrame {
 		BText.setBounds(100, 300, 60, 20);
 		pnl.add(BText);
 
-		JLabel BResult = new JLabel("");
-		BResult.setBounds(560, 300, 57, 15);
-		pnl.add(BResult);
+		bResult = new JLabel("");
+		bResult.setBounds(560, 300, 57, 15);
+		pnl.add(bResult);
 
 		JLabel C = new JLabel("C");
 		C.setFont(new Font("SansSerif", Font.BOLD, 20));
@@ -68,9 +78,9 @@ public class ResultFrame extends JFrame {
 		CText.setBounds(100, 360, 60, 20);
 		pnl.add(CText);
 
-		JLabel CResult = new JLabel("");
-		CResult.setBounds(560, 360, 57, 15);
-		pnl.add(CResult);
+		cResult = new JLabel("");
+		cResult.setBounds(560, 360, 57, 15);
+		pnl.add(cResult);
 
 		JLabel D = new JLabel("D");
 		D.setFont(new Font("SansSerif", Font.BOLD, 20));
@@ -82,9 +92,9 @@ public class ResultFrame extends JFrame {
 		DText.setBounds(100, 420, 60, 20);
 		pnl.add(DText);
 
-		JLabel DResult = new JLabel("");
-		DResult.setBounds(560, 420, 57, 15);
-		pnl.add(DResult);
+		dResult = new JLabel("");
+		dResult.setBounds(560, 420, 57, 15);
+		pnl.add(dResult);
 
 		JLabel E = new JLabel("E");
 		E.setFont(new Font("SansSerif", Font.BOLD, 20));
@@ -96,9 +106,9 @@ public class ResultFrame extends JFrame {
 		EText.setBounds(100, 480, 60, 20);
 		pnl.add(EText);
 
-		JLabel EResult = new JLabel("");
-		EResult.setBounds(560, 480, 57, 15);
-		pnl.add(EResult);
+		eResult = new JLabel("");
+		eResult.setBounds(560, 480, 57, 15);
+		pnl.add(eResult);
 
 		btnreturn.addActionListener(new ActionListener() {
 			@Override
@@ -123,4 +133,15 @@ public class ResultFrame extends JFrame {
 		setVisible(false);
 
 	}
+
+	public void updateResultLabels() {
+		if (lotto.resultBuy != null && lotto.resultBuy.size() <= 5) {
+			aResult.setText(lotto.resultBuy.get(0).toString());
+			bResult.setText(lotto.resultBuy.get(1).toString());
+			cResult.setText(lotto.resultBuy.get(2).toString());
+			dResult.setText(lotto.resultBuy.get(3).toString());
+			eResult.setText(lotto.resultBuy.get(4).toString());
+		}
+	}
+
 }
