@@ -8,7 +8,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
-import java.awt.Canvas;
 import java.awt.Font;
 
 // 기표

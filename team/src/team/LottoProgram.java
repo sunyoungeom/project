@@ -19,6 +19,14 @@ public class LottoProgram extends JFrame {
 	private HelpFrame helpFrame = new HelpFrame(this);
 	public ArrayList<ArrayList<String>> resultBuy = new ArrayList<>(5);
 
+	public ArrayList<ArrayList<String>> getResultBuy() {
+		return resultBuy;
+	}
+
+	public void setResultBuy(ArrayList<ArrayList<String>> resultBuy) {
+		this.resultBuy = resultBuy;
+	}
+
 	public LottoProgram() {
 		for (int i = 0; i < 5; i++) {
 			resultBuy.add(new ArrayList<>());
