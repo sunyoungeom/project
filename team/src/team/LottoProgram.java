@@ -17,8 +17,12 @@ public class LottoProgram extends JFrame {
 	private ResultFrame resultFrame = new ResultFrame(this);
 	private BeforeFrame beforeFrame = new BeforeFrame(this);
 	private HelpFrame helpFrame = new HelpFrame(this);
-
+	public ArrayList<ArrayList<String>> resultBuy = new ArrayList<>();
+	
 	public LottoProgram() {
+		for (int i = 0; i < 5; i++) {
+            resultBuy.add(new ArrayList<>());
+        }
 		setTitle("메인 창");
 		JPanel main = new JPanel();
 

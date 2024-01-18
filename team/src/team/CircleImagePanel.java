@@ -25,7 +25,7 @@ public class CircleImagePanel extends JPanel {
 
         // 텍스트 그리기
         g.setColor(Color.black);
-        g.setFont(new Font("Arial", Font.BOLD, 22));
+        g.setFont(new Font("Arial", Font.BOLD, 20));
         FontMetrics fontMetrics = g.getFontMetrics();
         int textWidth = fontMetrics.stringWidth(imageTextPair.getText());
         int textHeight = fontMetrics.getHeight();
