@@ -35,7 +35,7 @@ public class BuyFrame extends JFrame {
 	private JLabel lblStateC;
 	private JLabel lblStateD;
 	private JLabel lblStateE;
-	private JToggleButton btnAuto;
+	private JButton btnAuto;
 	private JButton btnReset;
 	private JButton btnreturn;
 	private JButton btnDeleteA;
@@ -51,6 +51,7 @@ public class BuyFrame extends JFrame {
 	private JButton btnDeleteE;
 	private JButton btnCheck;
 	private JPanel toggleButtonPanel;
+    private boolean autoSelected = false;
 	public BuyFrame(LottoProgram lottoProgram) {
 		this.lotto = lottoProgram;
 
@@ -84,36 +85,36 @@ public class BuyFrame extends JFrame {
 		});
 		
 
-		btnAuto = new JToggleButton("자동선택");
+		btnAuto = new JButton("자동선택");
 		sl_pnl.putConstraint(SpringLayout.NORTH, btnAuto, 0, SpringLayout.NORTH, btnReset);
 		sl_pnl.putConstraint(SpringLayout.WEST, btnAuto, 6, SpringLayout.EAST, btnReset);
 		pnl.add(btnAuto);
 		// "자동선택" 버튼에 대한 ActionListener를 추가
-		btnAuto.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		        // 자동으로 선택할 번호 개수
-		        int autoSelectCount = SELECTED_NUMBER;
-		        // 선택된 번호 초기화
-		        for (JToggleButton toggleButton : numberToggleButtons) {
-		            toggleButton.setSelected(false);
-		        }
-		        // Random 객체 생성
-		        Random random = new Random();
-		        // 중복을 피하기 위해 HashSet을 사용하여 선택된 번호를 저장
-		        Set<Integer> selectedNumbers = new HashSet<>();
-		        // 자동으로 선택할 번호를 무작위로 선택
-		        while (selectedNumbers.size() < autoSelectCount) {
-		            int randomNumber = random.nextInt(45) + 1;
-		            selectedNumbers.add(randomNumber);
-		        }
-		        // 선택된 번호를 토글 버튼에 반영
-		        for (Integer number : selectedNumbers) {
-		            numberToggleButtons.get(number - 1).setSelected(true);
-		        }
-		        }
-		    
-		});
+		 btnAuto.addActionListener(new ActionListener() {
+				@Override
+	            public void actionPerformed(ActionEvent e) {
+	            	autoSelected = true;
+	                // 자동으로 선택할 번호 개수
+	                int autoSelectCount = SELECTED_NUMBER;
+	                // 선택된 번호 초기화
+	                for (JToggleButton toggleButton : numberToggleButtons) {
+	                    toggleButton.setSelected(false);
+	                }
+	                // Random 객체 생성
+	                Random random = new Random();
+	                // 중복을 피하기 위해 HashSet을 사용하여 선택된 번호를 저장
+	                Set<Integer> selectedNumbers = new HashSet<>();
+	                // 자동으로 선택할 번호를 무작위로 선택
+	                while (selectedNumbers.size() < autoSelectCount) {
+	                    int randomNumber = random.nextInt(45) + 1;
+	                    selectedNumbers.add(randomNumber);
+	                }
+	                // 선택된 번호를 토글 버튼에 반영
+	                for (Integer number : selectedNumbers) {
+	                    numberToggleButtons.get(number - 1).setSelected(true);
+	                }
+	            }
+	        });
 
 		btnCheck = new JButton("번호확인");
 		sl_pnl.putConstraint(SpringLayout.NORTH, btnCheck, 0, SpringLayout.NORTH, btnReset);
@@ -249,6 +250,7 @@ public class BuyFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				lblCheckA.setText("");
+				lblStateA.setText("");
 			}
 		});
 		
@@ -322,49 +324,77 @@ public class BuyFrame extends JFrame {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
 		        ArrayList<String> selectedNumbers = new ArrayList<>();
-		        boolean isAutoSelected = false;
-
 		        for (JToggleButton toggleButton : numberToggleButtons) {
 		            if (toggleButton.isSelected()) {
 		                selectedNumbers.add(toggleButton.getText());
 		            }
 		        }
-
-		        // Check if numbers were selected automatically
-		        for (JToggleButton toggleButton : numberToggleButtons) {
-		            if (toggleButton.isSelected() && toggleButton.getBackground() != Color.WHITE) {
-		                isAutoSelected = true;
-		                break;
-		            }
-		        }
-
 		        if (selectedNumbers.size() == SELECTED_NUMBER) {
 		            // 6개가 선택된 경우
 		            StringBuilder result = new StringBuilder();
 		            for (String number : selectedNumbers) {
 		                result.append(number).append(" ");
-		            }
-		            if (isAutoSelected) {
-		                lblStateA.setText("자동");
-		            }
-		            if (lblCheckA.getText().equals("")) {
-		                lblCheckA.setText(result.toString());
-		            } else if (lblCheckB.getText().equals("")) {
-		                lblCheckB.setText(result.toString());
-		            } else if (lblCheckC.getText().equals("")) {
-		                lblCheckC.setText(result.toString());
-		            } else if (lblCheckD.getText().equals("")) {
-		                lblCheckD.setText(result.toString());
-		            } else if (lblCheckE.getText().equals("")) {
-		                lblCheckE.setText(result.toString());
-		            }
+		            } if (lblCheckA.getText().equals("") || lblCheckA.getText().equals("6개를 선택해야 합니다.")) {
+		            	lblCheckA.setText(result.toString());
+		            	if (autoSelected && lblStateA.getText().equals("")) {
+		            		lblStateA.setText("자동");
+		            		autoSelected = false;
+		            	} else if(!autoSelected)  { // () = true
+		            		lblStateA.setText("수동");
+		            	} else  {
+		            		lblStateA.setText("반자동");
+		            	}
+		            } else if (lblCheckB.getText().equals("") || lblCheckB.getText().equals("6개를 선택해야 합니다.")) {
+		            	lblCheckB.setText(result.toString());
+		            	if (autoSelected && lblStateB.getText().equals("")) {
+		            		lblStateB.setText("자동");
+		            		autoSelected = false;
+		            	} else if(!autoSelected)  { // () = true
+		            		lblStateB.setText("수동");
+		            	} else  {
+		            		lblStateB.setText("반자동");
+		            	}
+		            } else if (lblCheckC.getText().equals("") || lblCheckC.getText().equals("6개를 선택해야 합니다.")) {
+		            	lblCheckC.setText(result.toString());
+		            	if (autoSelected && lblStateC.getText().equals("")) {
+		            		lblStateC.setText("자동");
+		            		autoSelected = false;
+		            	} else if(!autoSelected)  { // () = true
+		            		lblStateC.setText("수동");
+		            	} else  {
+		            		lblStateC.setText("반자동");
+		            	}
+		            } else if (lblCheckD.getText().equals("") || lblCheckD.getText().equals("6개를 선택해야 합니다.")) {
+		            	lblCheckD.setText(result.toString());
+		            	if (autoSelected && lblStateD.getText().equals("")) {
+		            		lblStateD.setText("자동");
+		            		autoSelected = false;
+		            	} else if(!autoSelected)  { // () = true
+		            		lblStateD.setText("수동");
+		            	} else  {
+		            		lblStateD.setText("반자동");
+		            	}
+		            } else if (lblCheckE.getText().equals("") || lblCheckE.getText().equals("6개를 선택해야 합니다.")) {
+		            	lblCheckE.setText(result.toString());
+		            	if (autoSelected && lblStateE.getText().equals("")) {
+		            		lblStateE.setText("자동");
+		            		autoSelected = false;
+		            	} else if(!autoSelected)  { // () = true
+		            		lblStateE.setText("수동");
+		            	} else  {
+		            		lblStateE.setText("반자동");
+		            	}
+		            } 
 		        } else {
 		            // 6개가 선택되지 않은 경우
 		            lblCheckA.setText("6개를 선택해야 합니다.");
+		            lblCheckB.setText("6개를 선택해야 합니다.");
+		            lblCheckC.setText("6개를 선택해야 합니다.");
+		            lblCheckD.setText("6개를 선택해야 합니다.");
+		            lblCheckE.setText("6개를 선택해야 합니다.");
 		        }
 		    }
 		});
-
 
 		
 
