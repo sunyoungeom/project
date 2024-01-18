@@ -173,12 +173,10 @@ public class ResultFrame extends JFrame {
 
 //		pnl2.setBounds(0, 0, 684, 561);
 		if (lotto.resultBuy != null) {
-			for (int i = 0; i < lotto.resultBuy.size(); i++) {
 				
-				System.out.println(lotto.resultBuy.get(i));
-				lotto.showBuyBall(pnl, sl_pnl, -200, lotto.resultBuy.get(i));
+				System.out.println(lotto.resultBuy.get(0));
+				lotto.showBuyBall(pnl, sl_pnl, -200, lotto.resultBuy.get(0));
 				
-			}
 		}
 
 		

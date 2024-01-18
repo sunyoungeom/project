@@ -81,6 +81,7 @@ public class LottoProgram extends JFrame {
 				if (Integer.valueOf(selectedNumbers.get(i)) >= j * 10 + 1
 						&& Integer.valueOf(selectedNumbers.get(i)) <= (j + 1) * 10) {
 					String imagePath = "images/ball_" + (j + 1) + ".png";
+//					String imagePath = "";
 					imageTextPairs[i] = new ImageTextPair(imagePath, selectedNumbers.get(i));
 				}
 
