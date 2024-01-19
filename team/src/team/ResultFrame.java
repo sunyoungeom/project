@@ -176,14 +176,22 @@ public class ResultFrame extends JFrame {
 		}
 		int index = random.nextInt(5);
 		JLabel winningNumber = new JLabel();
-		winningNumber.setText(lotto.resultBuy.get(index).toString()); // 당첨 번호 출력하는 라벨
+		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton, 100, SpringLayout.SOUTH, thirdLine);
+		springLayout.putConstraint(SpringLayout.WEST, btnNewButton, 60, SpringLayout.WEST, getContentPane());
+		winningNumber.setText("당첨 번호 : " + lotto.resultBuy.get(index).toString()); // 당첨 번호 출력하는 라벨
+		backgroundImage.add(winningNumber);
 
 		Map<Integer, String> winningNumberCollection = new TreeMap<>();
-		for (int i = 1; i < 10; i++) {
+		// 회차가 늘어나면 카운트를 올리는 씩으 조건이 필요함
+		for (int i = 0; i < winningNumberCollection.size(); i++) {
 			winningNumberCollection.put(i, winningNumber.getText());
+			System.out.println(i);
+			String round = String.valueOf(i + 1);
+
+			lblNewLabel_1.setText(round);// 해당 회차로 숫자 변경
 		}
-		JLabel round = new JLabel();
-//		winningNumberCollection.round.setText(text);
+//		winningNumberCollection.
+//		round.setText(text);
 //		btnreturn.addActionListener(new ActionListener() {
 //			@Override
 //			public void actionPerformed(ActionEvent e) {
