@@ -203,6 +203,7 @@ public class ResultFrame extends JFrame {
 //		});
 		getContentPane().add(backgroundImage);
 		pack();
+		setResizable(false);
 		setVisible(false);
 
 	}

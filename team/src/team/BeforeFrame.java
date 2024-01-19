@@ -17,7 +17,7 @@ public class BeforeFrame extends JFrame {
         sl_pnl.putConstraint(SpringLayout.NORTH, btnreturn, 1, SpringLayout.NORTH, pnl);
         sl_pnl.putConstraint(SpringLayout.WEST, btnreturn, 10, SpringLayout.WEST, pnl);
         pnl.add(btnreturn);
-
+//        ResultFrame.winningNumberCollection.get(1); 
         
         // 여러 개의 이미지와 텍스트를 가지는 데이터
         ImageTextPair[] imageTextPairs = {
