@@ -145,4 +145,5 @@ public class ResultFrame extends JFrame {
 			eResult.setText(lotto.resultBuy.get(4).toString());
 		}
 	}
+
 }

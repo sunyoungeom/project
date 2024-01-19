@@ -16,6 +16,8 @@ import javax.swing.JToggleButton;
 import javax.swing.SpringLayout;
 import javax.swing.border.LineBorder;
 
+import javafx.scene.control.ToggleButton;
+
 import java.awt.Color;
 import java.awt.Component;
 
