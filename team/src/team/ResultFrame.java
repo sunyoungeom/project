@@ -22,6 +22,7 @@ import java.awt.Font;
 // 기표
 public class ResultFrame extends JFrame {
 	private LottoProgram lotto;
+	public static Map<Integer, String> winningNumberCollection;
 
 	public ResultFrame(LottoProgram lottoProgram) {
 		this.lotto = lottoProgram;
@@ -181,7 +182,7 @@ public class ResultFrame extends JFrame {
 		winningNumber.setText("당첨 번호 : " + lotto.resultBuy.get(index).toString()); // 당첨 번호 출력하는 라벨
 		backgroundImage.add(winningNumber);
 
-		Map<Integer, String> winningNumberCollection = new TreeMap<>();
+		winningNumberCollection = new TreeMap<>();
 		// 회차가 늘어나면 카운트를 올리는 씩으 조건이 필요함
 		for (int i = 0; i < winningNumberCollection.size(); i++) {
 			winningNumberCollection.put(i, winningNumber.getText());
