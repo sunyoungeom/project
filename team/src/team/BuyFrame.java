@@ -8,6 +8,7 @@ import java.util.Random;
 import java.util.Set;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -22,7 +23,7 @@ import java.awt.Component;
 
 public class BuyFrame extends JFrame {
 	private LottoProgram lotto;
-	public static ArrayList<JToggleButton> numberToggleButtons;
+	private ArrayList<JToggleButton> numberToggleButtons;
 	public static ArrayList<String> selectedNumbers;
 	private int SELECTED_NUMBER = 6;
 	private JLabel lblCheckA;
@@ -226,7 +227,11 @@ public class BuyFrame extends JFrame {
 		btnPurchase.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				System.out.println("대화 상자를 생성합니다.");
+				JDialog dialog = new ResultDialog(lottoProgram);
+				dialog.setVisible(true);
+				
+				System.out.println("출력 확인!!");
 			}
 		});
 
@@ -294,6 +299,8 @@ public class BuyFrame extends JFrame {
 				lblCheckB.setText("");
 				lblStateB.setText("");
 
+				
+				
 			}
 		});
 
@@ -505,5 +512,20 @@ public class BuyFrame extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(false);
 
+	}
+	
+	
+	
+	class MyDialog extends JDialog {
+		public MyDialog(JFrame parent) {
+			super(parent);
+			setTitle("대화 상자");
+			setModal(true);
+			
+			setSize(300, 300);
+			setLocation(parent.getX() + parent.getWidth(), parent.getY());
+//			setLocationRelativeTo(parent);
+			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		}
 	}
 }
