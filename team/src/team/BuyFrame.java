@@ -8,6 +8,7 @@ import java.util.Random;
 import java.util.Set;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -225,7 +226,11 @@ public class BuyFrame extends JFrame {
 		btnPurchase.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-
+				System.out.println("대화 상자를 생성합니다.");
+				JDialog dialog = new ResultDialog(lottoProgram);
+				dialog.setVisible(true);
+				
+				System.out.println("출력 확인!!");
 			}
 		});
 
@@ -265,7 +270,7 @@ public class BuyFrame extends JFrame {
 				lblCheckA.setText("");
 				lblStateA.setText("");
 
-				lotto.resultBuy.set(0, new ArrayList<>());
+//				lotto.resultBuy.set(0, new ArrayList<>());
 			}
 		});
 
@@ -279,7 +284,7 @@ public class BuyFrame extends JFrame {
 				lblCheckB.setText("");
 				lblStateB.setText("");
 
-				lotto.resultBuy.set(1, new ArrayList<>());
+//				lotto.resultBuy.set(1, new ArrayList<>());
 			}
 		});
 
@@ -293,7 +298,7 @@ public class BuyFrame extends JFrame {
 				lblCheckC.setText("");
 				lblStateC.setText("");
 
-				lotto.resultBuy.set(2, new ArrayList<>());
+//				lotto.resultBuy.set(2, new ArrayList<>());
 			}
 		});
 		btnDeleteD = new JButton("삭제");
@@ -306,7 +311,7 @@ public class BuyFrame extends JFrame {
 				lblCheckD.setText("");
 				lblStateD.setText("");
 
-				lotto.resultBuy.set(3, new ArrayList<>());
+//				lotto.resultBuy.set(3, new ArrayList<>());
 			}
 		});
 		btnDeleteE = new JButton("삭제");
@@ -319,7 +324,7 @@ public class BuyFrame extends JFrame {
 				lblCheckE.setText("");
 				lblStateE.setText("");
 
-				lotto.resultBuy.set(4, new ArrayList<>());
+//				lotto.resultBuy.set(4, new ArrayList<>());
 //				lotto.showBuyBall(pnl, sl_pnl, -100, selectedNumbers);
 			}
 		});
@@ -468,5 +473,20 @@ public class BuyFrame extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(false);
 
+	}
+	
+	
+	
+	class MyDialog extends JDialog {
+		public MyDialog(JFrame parent) {
+			super(parent);
+			setTitle("대화 상자");
+			setModal(true);
+			
+			setSize(300, 300);
+			setLocation(parent.getX() + parent.getWidth(), parent.getY());
+//			setLocationRelativeTo(parent);
+			setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		}
 	}
 }
