@@ -15,18 +15,15 @@ import javax.swing.JToggleButton;
 import javax.swing.SpringLayout;
 import javax.swing.border.LineBorder;
 
+import javafx.scene.control.ToggleButton;
+
 import java.awt.Color;
 import java.awt.Component;
 
 public class BuyFrame extends JFrame {
 	private LottoProgram lotto;
-	private ArrayList<JToggleButton> numberToggleButtons;
+	public static ArrayList<JToggleButton> numberToggleButtons;
 	public static ArrayList<String> selectedNumbers;
-	
-//	private ResultFrame resultFrame = new ResultFrame(lotto);
-	
-	
-	
 	private int SELECTED_NUMBER = 6;
 	private JLabel lblCheckA;
 	private JLabel lblCheckB;
@@ -88,11 +85,11 @@ public class BuyFrame extends JFrame {
 		pnl.add(btnReset);
 		btnReset.addActionListener(new ActionListener() {
 			@Override
-			 public void actionPerformed(ActionEvent e) {
-		        // 선택한 번호 초기화
-		        for (JToggleButton toggleButton : numberToggleButtons) {
-		            toggleButton.setSelected(false);
-		        }
+			public void actionPerformed(ActionEvent e) {
+				// 선택한 번호 초기화
+				for (JToggleButton toggleButton : numberToggleButtons) {
+					toggleButton.setSelected(false);
+				}
 			}
 		});
 
@@ -211,7 +208,7 @@ public class BuyFrame extends JFrame {
 
 		lblStateD = new JLabel("");
 		sl_pnl.putConstraint(SpringLayout.NORTH, lblStateD, 0, SpringLayout.NORTH, lblD);
-		sl_pnl.putConstraint(SpringLayout.EAST, lblStateD, 0, SpringLayout.EAST, lblStateA);
+		sl_pnl.putConstraint(SpringLayout.WEST, lblStateD, 0, SpringLayout.WEST, lblStateA);
 		pnl.add(lblStateD);
 
 		lblStateE = new JLabel("");
@@ -229,147 +226,9 @@ public class BuyFrame extends JFrame {
 		btnPurchase.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				selectedNumbers = new ArrayList<>();
-				for (JToggleButton toggleButton : numberToggleButtons) {
-					if (toggleButton.isSelected()) {
-						selectedNumbers.add(toggleButton.getText());
-					}
-				}
-				if (selectedNumbers.size() == SELECTED_NUMBER) {
-					// 6개가 선택된 경우
-					StringBuilder result = new StringBuilder();
-					for (String number : selectedNumbers) {
-						result.append(number).append(" ");
-					}	
-					
-					if (lblStateA.getText().equals("") || lblCheckA.getText().equals("6개를 선택해야 합니다.")) {
-//						if (lotto.resultBuy.get(0) == null || lblCheckA.getText().equals("6개를 선택해야 합니다.")) {
-						lblCheckA.setText(result.toString());
-						lblCheckA.setVisible(false);
-//						lotto.resultBuy.add(new ArrayList<>());
-						
-						
-						
-						lotto.showBuyBall(pnl, sl_pnl, -100, selectedNumbers);
-						lotto.resultBuy.set(0, selectedNumbers);
-						System.out.println(lotto.resultBuy);
-						
-						
-						if (autoSelected && lblStateA.getText().equals("")) {
-							lblStateA.setText("자동");
-							autoSelected = false;
-						} else if (!autoSelected) { // () = true
-							lblStateA.setText("수동");
-						} else {
-							lblStateA.setText("반자동");
-						}
-						
-						
-						
-					} else if (lblStateB.getText().equals("") || lblCheckB.getText().equals("6개를 선택해야 합니다.")) {
-						lblCheckB.setText(result.toString());
-						lblCheckB.setVisible(false);
-//						lotto.resultBuy.add(new ArrayList<>());
-						
-						
-						
-						lotto.showBuyBall(pnl, sl_pnl, -30, selectedNumbers);
-						lotto.resultBuy.set(1, selectedNumbers);
-						System.out.println(lotto.resultBuy);
-						
-						if (autoSelected && lblStateB.getText().equals("")) {
-							lblStateB.setText("자동");
-							autoSelected = false;
-						} else if (!autoSelected) { // () = true
-							lblStateB.setText("수동");
-						} else {
-							lblStateB.setText("반자동");
-						}
-						
-						
-						
-						
-						
-					} else if (lblStateC.getText().equals("") || lblCheckC.getText().equals("6개를 선택해야 합니다.")) {
-						lblCheckC.setText(result.toString());
-						lblCheckC.setVisible(false);
-//						lotto.resultBuy.add(new ArrayList<>());
-						
-						
-						
-						lotto.showBuyBall(pnl, sl_pnl, 40, selectedNumbers);
-						lotto.resultBuy.set(2, selectedNumbers);
-						System.out.println(lotto.resultBuy);
-						
-						
-						if (autoSelected && lblStateC.getText().equals("")) {
-							lblStateC.setText("자동");
-							autoSelected = false;
-						} else if (!autoSelected) { // () = true
-							lblStateC.setText("수동");
-						} else {
-							lblStateC.setText("반자동");
-						}
-						
-						
-					} else if (lblStateD.getText().equals("") || lblCheckD.getText().equals("6개를 선택해야 합니다.")) {
-						lblCheckD.setText(result.toString());
-						lblCheckD.setVisible(false);
-//						lotto.resultBuy.add(ArrayList<>());
-						
-						
-						
-						lotto.showBuyBall(pnl, sl_pnl, 110, selectedNumbers);
-						lotto.resultBuy.set(3, selectedNumbers);
-						System.out.println(lotto.resultBuy);
-						
-						if (autoSelected && lblStateD.getText().equals("")) {
-							lblStateD.setText("자동");
-							autoSelected = false;
-						} else if (!autoSelected) { // () = true
-							lblStateD.setText("수동");
-						} else {
-							lblStateD.setText("반자동");
-						}
-						
-						
-					} else if (lblStateE.getText().equals("") || lblCheckE.getText().equals("6개를 선택해야 합니다.")) {
-						lblCheckE.setText(result.toString());
-						lblCheckE.setVisible(false);
-//						lotto.resultBuy.add(new ArrayList<>());
-						
-						
-						
-						lotto.showBuyBall(pnl, sl_pnl, 180, selectedNumbers);
-						lotto.resultBuy.set(4, selectedNumbers);
-						System.out.println(lotto.resultBuy);
-						
-						if (autoSelected && lblStateE.getText().equals("")) {
-							lblStateE.setText("자동");
-							autoSelected = false;
-						} else if (!autoSelected) { // () = true
-							lblStateE.setText("수동");
-						} else {
-							lblStateE.setText("반자동");
-						}
-						
-					}
-					
-					
-					
-					
-					
-				} else {
-					// 6개가 선택되지 않은 경우
-					lblCheckA.setText("6개를 선택해야 합니다.");
-//		            lblCheckB.setText("6개를 선택해야 합니다.");
-//		            lblCheckC.setText("6개를 선택해야 합니다.");
-//		            lblCheckD.setText("6개를 선택해야 합니다.");
-//		            lblCheckE.setText("6개를 선택해야 합니다.");
-				}
+
 			}
 		});
-	
 
 		btnRetouchA = new JButton("수정");
 		sl_pnl.putConstraint(SpringLayout.NORTH, btnRetouchA, -4, SpringLayout.NORTH, lblA);
@@ -377,8 +236,15 @@ public class BuyFrame extends JFrame {
 		btnRetouchA.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-			}
+		        // 선택된 숫자들을 0번 인덱스의 resultBuy에 설정
+		        lotto.resultBuy.set(0, selectedNumbers);
+		        // 선택된 숫자에 해당하는 토글 버튼을 선택 상태로 설정
+		        for (String number : selectedNumbers) {
+		            int index = Integer.parseInt(number) - 1; // 토글 버튼은 0부터 시작하므로 1을 빼줍니다.
+		            JToggleButton toggleButton = numberToggleButtons.get(index);
+		            toggleButton.setSelected(true);
+		        }
+		    }
 		});
 
 		btnRetouchB = new JButton("수정");
@@ -412,8 +278,9 @@ public class BuyFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				lblCheckA.setText("");
 				lblStateA.setText("");
+
+//				lotto.resultBuy.set(0, new ArrayList<>());
 				
-				lotto.resultBuy.set(0, new ArrayList<>());
 			}
 		});
 
@@ -426,8 +293,7 @@ public class BuyFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				lblCheckB.setText("");
 				lblStateB.setText("");
-				
-				lotto.resultBuy.set(1, new ArrayList<>());
+
 			}
 		});
 
@@ -440,8 +306,7 @@ public class BuyFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				lblCheckC.setText("");
 				lblStateC.setText("");
-				
-				lotto.resultBuy.set(2, new ArrayList<>());
+
 			}
 		});
 		btnDeleteD = new JButton("삭제");
@@ -454,7 +319,6 @@ public class BuyFrame extends JFrame {
 				lblCheckD.setText("");
 				lblStateD.setText("");
 				
-				lotto.resultBuy.set(3, new ArrayList<>());
 			}
 		});
 		btnDeleteE = new JButton("삭제");
@@ -466,9 +330,7 @@ public class BuyFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				lblCheckE.setText("");
 				lblStateE.setText("");
-				
-				lotto.resultBuy.set(4, new ArrayList<>());
-//				lotto.showBuyBall(pnl, sl_pnl, -100, selectedNumbers);
+
 			}
 		});
 		lblCheckA = new JLabel("");
@@ -495,7 +357,7 @@ public class BuyFrame extends JFrame {
 		sl_pnl.putConstraint(SpringLayout.NORTH, lblCheckE, 0, SpringLayout.NORTH, lblE);
 		sl_pnl.putConstraint(SpringLayout.WEST, lblCheckE, 0, SpringLayout.WEST, lblCheckA);
 		pnl.add(lblCheckE);
-		
+
 		btnNumReset = new JButton("초기화");
 		sl_pnl.putConstraint(SpringLayout.NORTH, btnNumReset, 0, SpringLayout.NORTH, btnreturn);
 		sl_pnl.putConstraint(SpringLayout.WEST, btnNumReset, -168, SpringLayout.EAST, pnl);
@@ -504,10 +366,20 @@ public class BuyFrame extends JFrame {
 		btnNumReset.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
+				lblCheckA.setText("");
+				lblStateA.setText("");
+				lblCheckB.setText("");
+				lblStateB.setText("");
+				lblCheckC.setText("");
+				lblStateC.setText("");
+				lblCheckD.setText("");
+				lblStateD.setText("");
+				lblCheckE.setText("");
+				lblStateE.setText("");
 			}
 		});
-
+		
+		// 번호확인 버튼
 		btnCheck.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -529,8 +401,10 @@ public class BuyFrame extends JFrame {
 //						lotto.resultBuy.add(new ArrayList<>());
 						lotto.showBuyBall(pnl, sl_pnl, -100, selectedNumbers);
 						lotto.resultBuy.set(0, selectedNumbers);
-						System.out.println(lotto.resultBuy);
-						
+						System.out.println(lotto.resultBuy); // 콘솔확인용
+						for (JToggleButton toggleButton : numberToggleButtons) {
+			                toggleButton.setSelected(false);
+			            }
 						if (autoSelected && lblStateA.getText().equals("")) {
 							lblStateA.setText("자동");
 							autoSelected = false;
@@ -539,6 +413,7 @@ public class BuyFrame extends JFrame {
 						} else {
 							lblStateA.setText("반자동");
 						}
+						
 					} else if (lblStateB.getText().equals("") || lblCheckB.getText().equals("6개를 선택해야 합니다.")) {
 						lblCheckB.setText(result.toString());
 						lblCheckB.setVisible(false);
@@ -546,7 +421,9 @@ public class BuyFrame extends JFrame {
 						lotto.showBuyBall(pnl, sl_pnl, -30, selectedNumbers);
 						lotto.resultBuy.set(1, selectedNumbers);
 						System.out.println(lotto.resultBuy);
-						
+						for (JToggleButton toggleButton : numberToggleButtons) {
+			                toggleButton.setSelected(false);
+			            }
 						if (autoSelected && lblStateB.getText().equals("")) {
 							lblStateB.setText("자동");
 							autoSelected = false;
@@ -562,6 +439,10 @@ public class BuyFrame extends JFrame {
 						lotto.showBuyBall(pnl, sl_pnl, 40, selectedNumbers);
 						lotto.resultBuy.set(2, selectedNumbers);
 						System.out.println(lotto.resultBuy);
+						for (JToggleButton toggleButton : numberToggleButtons) {
+			                toggleButton.setSelected(false);
+						}
+						
 						
 						if (autoSelected && lblStateC.getText().equals("")) {
 							lblStateC.setText("자동");
@@ -578,7 +459,9 @@ public class BuyFrame extends JFrame {
 						lotto.showBuyBall(pnl, sl_pnl, 110, selectedNumbers);
 						lotto.resultBuy.set(3, selectedNumbers);
 						System.out.println(lotto.resultBuy);
-						
+						for (JToggleButton toggleButton : numberToggleButtons) {
+			                toggleButton.setSelected(false);
+						}
 						if (autoSelected && lblStateD.getText().equals("")) {
 							lblStateD.setText("자동");
 							autoSelected = false;
@@ -587,17 +470,16 @@ public class BuyFrame extends JFrame {
 						} else {
 							lblStateD.setText("반자동");
 						}
+						
 					} else if (lblStateE.getText().equals("") || lblCheckE.getText().equals("6개를 선택해야 합니다.")) {
 						lblCheckE.setText(result.toString());
 						lblCheckE.setVisible(false);
-//						lotto.resultBuy.add(new ArrayList<>());
-						
-						
-						
 						lotto.showBuyBall(pnl, sl_pnl, 180, selectedNumbers);
 						lotto.resultBuy.set(4, selectedNumbers);
 						System.out.println(lotto.resultBuy);
-						
+						for (JToggleButton toggleButton : numberToggleButtons) {
+			                toggleButton.setSelected(false);
+						}
 						if (autoSelected && lblStateE.getText().equals("")) {
 							lblStateE.setText("자동");
 							autoSelected = false;
@@ -606,6 +488,7 @@ public class BuyFrame extends JFrame {
 						} else {
 							lblStateE.setText("반자동");
 						}
+						
 					}
 				} else {
 					// 6개가 선택되지 않은 경우
@@ -623,4 +506,4 @@ public class BuyFrame extends JFrame {
 		setVisible(false);
 
 	}
-} 
+}
