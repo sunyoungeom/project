@@ -397,6 +397,9 @@ public class BuyFrame extends JFrame {
 						} else {
 							lblStateA.setText("반자동");
 						}
+						
+						lotto.resultBuyTitle.set(0, lblStateA.getText());
+						
 					} else if (lblStateB.getText().equals("") || lblCheckB.getText().equals("6개를 선택해야 합니다.")) {
 						lblCheckB.setText(result.toString());
 						lblCheckB.setVisible(false);
@@ -412,6 +415,9 @@ public class BuyFrame extends JFrame {
 						} else {
 							lblStateB.setText("반자동");
 						}
+						
+						lotto.resultBuyTitle.set(1, lblStateB.getText());
+						
 					} else if (lblStateC.getText().equals("") || lblCheckC.getText().equals("6개를 선택해야 합니다.")) {
 						lblCheckC.setText(result.toString());
 						lblCheckC.setVisible(false);
@@ -427,6 +433,9 @@ public class BuyFrame extends JFrame {
 						} else {
 							lblStateC.setText("반자동");
 						}
+						
+						lotto.resultBuyTitle.set(2, lblStateC.getText());
+						
 					} else if (lblStateD.getText().equals("") || lblCheckD.getText().equals("6개를 선택해야 합니다.")) {
 						lblCheckD.setText(result.toString());
 						lblCheckD.setVisible(false);
@@ -442,6 +451,9 @@ public class BuyFrame extends JFrame {
 						} else {
 							lblStateD.setText("반자동");
 						}
+						
+						lotto.resultBuyTitle.set(3, lblStateD.getText());
+						
 					} else if (lblStateE.getText().equals("") || lblCheckE.getText().equals("6개를 선택해야 합니다.")) {
 						lblCheckE.setText(result.toString());
 						lblCheckE.setVisible(false);
@@ -457,6 +469,9 @@ public class BuyFrame extends JFrame {
 						} else {
 							lblStateE.setText("반자동");
 						}
+						
+						lotto.resultBuyTitle.set(4, lblStateE.getText());
+						
 					}
 				} else {
 					// 6개가 선택되지 않은 경우
