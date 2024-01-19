@@ -1,6 +1,9 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Map;
+import java.util.Random;
+import java.util.TreeMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -9,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.border.LineBorder;
+
+import javafx.beans.binding.StringBinding;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -20,11 +25,13 @@ public class ResultFrame extends JFrame {
 
 	public ResultFrame(LottoProgram lottoProgram) {
 		this.lotto = lottoProgram;
+		Random random = new Random();
+
 		setTitle("로또 결과 확인");
 		JLabel backgroundImage = new JLabel(new ImageIcon("images/lottoResult.png"));
 		SpringLayout springLayout = new SpringLayout();
 		backgroundImage.setLayout(springLayout);
-		
+
 		JLabel lblTitle = new JLabel("구매내역/결과확인");
 		springLayout.putConstraint(SpringLayout.WEST, lblTitle, 33, SpringLayout.WEST, getContentPane());
 		lblTitle.setBackground(Color.WHITE);
@@ -138,7 +145,8 @@ public class ResultFrame extends JFrame {
 //		
 		JLabel[] resultTitleLabels = { titleA, titleB, titleC, titleD, titleE };
 		for (int j = 0; j < resultTitleLabels.length; j++) {
-			if (!lotto.resultBuyTitle.get(j).isEmpty() && j < lotto.resultBuyTitle.size() && lotto.resultBuyTitle.size() > 0) {
+			if (!lotto.resultBuyTitle.get(j).isEmpty() && j < lotto.resultBuyTitle.size()
+					&& lotto.resultBuyTitle.size() > 0) {
 				StringBuilder resultTitleText = new StringBuilder();
 				System.out.println((char) (ch + j));
 				resultTitleText.append(ch).append(" ").append(lotto.resultBuyTitle.get(j));
@@ -166,7 +174,16 @@ public class ResultFrame extends JFrame {
 				resultLabels[j].setText("");
 			}
 		}
-		
+		int index = random.nextInt(5);
+		JLabel winningNumber = new JLabel();
+		winningNumber.setText(lotto.resultBuy.get(index).toString()); // 당첨 번호 출력하는 라벨
+
+		Map<Integer, String> winningNumberCollection = new TreeMap<>();
+		for (int i = 1; i < 10; i++) {
+			winningNumberCollection.put(i, winningNumber.getText());
+		}
+		JLabel round = new JLabel();
+//		winningNumberCollection.round.setText(text);
 //		btnreturn.addActionListener(new ActionListener() {
 //			@Override
 //			public void actionPerformed(ActionEvent e) {
