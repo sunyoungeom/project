@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,8 +22,19 @@ public class LottoProgram extends JFrame {
     public ArrayList<ArrayList<String>> resultBuy = new ArrayList<>(5);
 //    public ArrayList<ArrayList<String>> resultBuyTitles = new ArrayList<>();
     public ArrayList<String> resultBuyTitle = new ArrayList<>(5);
+    public int roundNum = 0;
+    public static Map<Integer, ArrayList<String>> winningNumberCollection = new TreeMap<>();
 
-//    public ArrayList<ArrayList<String>> getResultBuy() {
+    public static CircleImagePanel circleImagePanel;
+public static ImageTextPair[] imageTextPairs = new ImageTextPair[6];
+    public int getRoundNum() {
+        return roundNum;
+    }
+
+    public void setRoundNum(int roundNum) {
+        this.roundNum = roundNum;
+    }
+    //    public ArrayList<ArrayList<String>> getResultBuy() {
 //        return resultBuy;
 //    }
 //
@@ -81,9 +94,14 @@ public class LottoProgram extends JFrame {
         btnResult.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                ResultFrame resultFrame = new ResultFrame(LottoProgram.this);
-                resultFrame.setVisible(true);
+                if (resultBuy.get(0).size() != 0) {
+                    setVisible(false);
+                    ResultFrame resultFrame = new ResultFrame(LottoProgram.this);
+                    resultFrame.setVisible(true);
+                } else {
+                    System.out.println("구매하기 먼저");
+                }
+
             }
         });
 
@@ -92,6 +110,9 @@ public class LottoProgram extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
                 beforeFrame.setVisible(true);
+                if (winningNumberCollection.get(roundNum) != null) {
+                    System.out.println(winningNumberCollection.get(roundNum));
+                }
             }
         });
 
@@ -119,7 +140,12 @@ public class LottoProgram extends JFrame {
     }
 
     public void showBuyBall(JPanel pnl, SpringLayout sl_pnl, int y, ArrayList<String> selectedNumbers) {
+//        ImageTextPair[] imageTextPairs = new ImageTextPair[6];
         ImageTextPair[] imageTextPairs = new ImageTextPair[6];
+
+        int horizontalGap = -25;
+        int xPosition = horizontalGap + 490;
+        int yPosition = horizontalGap + 215 + y;
 
         for (int i = 0; i < selectedNumbers.size(); i++) {
             for (int j = 0; j < selectedNumbers.size(); j++) {
@@ -129,14 +155,9 @@ public class LottoProgram extends JFrame {
                     imageTextPairs[i] = new ImageTextPair(imagePath, selectedNumbers.get(i));
                 }
             }
-        }
 
-        int horizontalGap = -25;
-        int xPosition = horizontalGap + 490;
-        int yPosition = horizontalGap + 215 + y;
-
-        for (ImageTextPair pair : imageTextPairs) {
-            CircleImagePanel circleImagePanel = new CircleImagePanel(pair);
+//            CircleImagePanel
+                    circleImagePanel = new CircleImagePanel(imageTextPairs[i]);
             sl_pnl.putConstraint(SpringLayout.NORTH, circleImagePanel, yPosition, SpringLayout.NORTH, pnl);
             sl_pnl.putConstraint(SpringLayout.WEST, circleImagePanel, xPosition, SpringLayout.WEST, pnl);
             sl_pnl.putConstraint(SpringLayout.SOUTH, circleImagePanel, yPosition + 50, SpringLayout.NORTH, pnl);

@@ -16,7 +16,7 @@ import javax.swing.JToggleButton;
 import javax.swing.SpringLayout;
 import javax.swing.border.LineBorder;
 
-import javafx.scene.control.ToggleButton;
+//import javafx.scene.control.ToggleButton;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -62,9 +62,13 @@ public class BuyFrame extends JFrame {
 	private JToggleButton toggleButton;
 	public int countNum = 0;
 
+
 	public BuyFrame(LottoProgram lottoProgram) {
 		this.lotto = lottoProgram;
 
+if (lotto.resultBuy.get(0).size() != 0) {
+	System.out.println("이미 구매한회차");
+}
 		JPanel pnl = new JPanel();
 		SpringLayout sl_pnl = new SpringLayout();
 		pnl.setLayout(sl_pnl);
@@ -79,6 +83,7 @@ public class BuyFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				lotto.setVisible(true);
+				lotto.setRoundNum(lotto.getRoundNum() + 1);
 			}
 		});
 
@@ -168,6 +173,7 @@ public class BuyFrame extends JFrame {
 			});
 			toggleButtonPanel.add(toggleButton);
 		}
+		
 
 		lblA = new JLabel("A");
 		sl_pnl.putConstraint(SpringLayout.NORTH, lblA, 107, SpringLayout.NORTH, pnl);
@@ -382,6 +388,14 @@ public class BuyFrame extends JFrame {
 				countNum = 0;
 //				lotto.resultBuy.set(0, new ArrayList<>());
 
+pnl.remove(LottoProgram.circleImagePanel);
+
+					lotto.circleImagePanel.removeAll();
+				lotto.circleImagePanel.revalidate();
+				lotto.circleImagePanel.repaint();
+
+				lotto.imageTextPairs[0] = new ImageTextPair(null, null);
+
 			}
 		});
 
@@ -440,7 +454,7 @@ public class BuyFrame extends JFrame {
 				countNum = 4;
 			}
 		});
-		lblCheckA = new JLabel("");
+		lblCheckA = new JLabel("ㅣㅏㅓㅣㅏ");
 		sl_pnl.putConstraint(SpringLayout.NORTH, lblCheckA, 0, SpringLayout.NORTH, lblA);
 		sl_pnl.putConstraint(SpringLayout.WEST, lblCheckA, 137, SpringLayout.EAST, lblStateA);
 		pnl.add(lblCheckA);

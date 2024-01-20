@@ -1,6 +1,7 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
@@ -13,7 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.SpringLayout;
 import javax.swing.border.LineBorder;
 
-import javafx.beans.binding.StringBinding;
+//import javafx.beans.binding.StringBinding;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -22,7 +23,7 @@ import java.awt.Font;
 // 기표
 public class ResultFrame extends JFrame {
 	private LottoProgram lotto;
-	public static Map<Integer, String> winningNumberCollection;
+//	public static Map<Integer, ArrayList<String>> winningNumberCollection = new TreeMap<>();
 
 	public ResultFrame(LottoProgram lottoProgram) {
 		this.lotto = lottoProgram;
@@ -62,6 +63,7 @@ public class ResultFrame extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("제 1회");
 		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 19, SpringLayout.SOUTH, firstLine);
 		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_1, 67, SpringLayout.EAST, lottoIcon);
+		lblNewLabel_1.setText("제 " + lotto.roundNum + "회");
 		lblNewLabel_1.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		backgroundImage.add(lblNewLabel_1);
 
@@ -136,6 +138,16 @@ public class ResultFrame extends JFrame {
 		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton, 35, SpringLayout.SOUTH, thirdLine);
 		springLayout.putConstraint(SpringLayout.WEST, btnNewButton, 158, SpringLayout.WEST, getContentPane());
 		backgroundImage.add(btnNewButton);
+		btnNewButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				lotto.setVisible(true);
+				for (int i = 0; i < 5; i++) {
+					lotto.resultBuy.set(i, new ArrayList<>());
+				}
+			}
+		});
 		System.out.println(lotto.resultBuy.get(0));
 
 		char ch = 'A';
@@ -144,7 +156,7 @@ public class ResultFrame extends JFrame {
 //			lotto.resultBuyTitle.
 //		}
 //		
-		JLabel[] resultTitleLabels = { titleA, titleB, titleC, titleD, titleE };
+		JLabel[] resultTitleLabels = {titleA, titleB, titleC, titleD, titleE};
 		for (int j = 0; j < resultTitleLabels.length; j++) {
 			if (!lotto.resultBuyTitle.get(j).isEmpty() && j < lotto.resultBuyTitle.size()
 					&& lotto.resultBuyTitle.size() > 0) {
@@ -161,7 +173,7 @@ public class ResultFrame extends JFrame {
 			}
 		}
 
-		JLabel[] resultLabels = { resultA, resultB, resultC, resultD, resultE };
+		JLabel[] resultLabels = {resultA, resultB, resultC, resultD, resultE};
 		for (int j = 0; j < resultLabels.length; j++) {
 			if (!lotto.resultBuy.isEmpty() && j < lotto.resultBuy.size() && lotto.resultBuy.get(j).size() > 0) {
 				StringBuilder resultText = new StringBuilder();
@@ -175,32 +187,61 @@ public class ResultFrame extends JFrame {
 				resultLabels[j].setText("");
 			}
 		}
-		int index = random.nextInt(5);
+//		int resultNum = 0;
+//		for (int i = 0; i < 5; i++) {
+//			if (lotto.resultBuy.get(i).size() != 0) {
+//				resultNum++;
+//			}
+//		}
+		int resultNum = 0;
+		for (int i = 0; i < lotto.resultBuy.size(); i++) {
+			if (!lotto.resultBuy.get(i).isEmpty()) {
+				resultNum++;
+			}
+		}
+
+		System.out.println(lotto.roundNum);
+		System.out.println("ghkr");
+
+
 		JLabel winningNumber = new JLabel();
 		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton, 100, SpringLayout.SOUTH, thirdLine);
 		springLayout.putConstraint(SpringLayout.WEST, btnNewButton, 60, SpringLayout.WEST, getContentPane());
-		winningNumber.setText("당첨 번호 : " + lotto.resultBuy.get(index).toString()); // 당첨 번호 출력하는 라벨
+
+		if (resultNum != 0) {
+			int index = random.nextInt(resultNum);
+			winningNumber.setText("당첨 번호 : " + lotto.resultBuy.get(index)); // 당첨 번호 출력하는 라벨
+
+
+//		winningNumberCollection = new TreeMap<>();
+			lotto.winningNumberCollection.put(lotto.roundNum, lotto.resultBuy.get(index));
+			ArrayList<String> ll = new ArrayList<>();
+			ll = lotto.winningNumberCollection.get(lotto.roundNum);
+			System.out.println("dd" + ll);
+
+
+			for (Integer numKey : lotto.winningNumberCollection.keySet()) {
+				System.out.println("제" + (numKey) + "회" + ": " + lotto.winningNumberCollection.get(numKey));
+			}
+
+
+			// 회차가 늘어나면 카운트를 올리는 씩으 조건이 필요함
+
+//			String round = String.valueOf(i + 1);
+
+//			lblNewLabel_1.setText(""+lotto.getRoundNum());// 해당 회차로 숫자 변경
+
+//		for (int i = 0; i < winningNumberCollection.size(); i++) {
+//			winningNumberCollection.put(i, lotto.resultBuy.get(index).toString());
+//			System.out.println(i);
+////			String round = String.valueOf(i + 1);
+//
+//			lblNewLabel_1.setText(""+lotto.getRoundNum());// 해당 회차로 숫자 변경
+//		}
+
+		}
 		backgroundImage.add(winningNumber);
 
-		winningNumberCollection = new TreeMap<>();
-		// 회차가 늘어나면 카운트를 올리는 씩으 조건이 필요함
-		for (int i = 0; i < winningNumberCollection.size(); i++) {
-			winningNumberCollection.put(i, winningNumber.getText());
-			System.out.println(i);
-			String round = String.valueOf(i + 1);
-
-			lblNewLabel_1.setText(round);// 해당 회차로 숫자 변경
-		}
-//		winningNumberCollection.
-//		round.setText(text);
-//		btnreturn.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				setVisible(false);
-//				lotto.setVisible(true);
-//
-//			}
-//		});
 		getContentPane().add(backgroundImage);
 		pack();
 		setResizable(false);
@@ -208,162 +249,4 @@ public class ResultFrame extends JFrame {
 
 	}
 
-//	public void updateResultLabels() {
-//		if (lotto.resultBuy != null && lotto.resultBuy.size() <= 5) {
-//			aResult.setText(lotto.resultBuy.get(0).toString());
-//			bResult.setText(lotto.resultBuy.get(1).toString());
-//			cResult.setText(lotto.resultBuy.get(2).toString());
-//			dResult.setText(lotto.resultBuy.get(3).toString());
-//			eResult.setText(lotto.resultBuy.get(4).toString());
-//		}
-//	}
 }
-//
-//import java.awt.event.ActionEvent;
-//import java.awt.event.ActionListener;
-//
-//import javax.swing.JButton;
-//import javax.swing.JFrame;
-//import javax.swing.JLabel;
-//import javax.swing.JPanel;
-//import javax.swing.border.LineBorder;
-//import java.awt.Color;
-//import java.awt.Font;
-//
-//// 기표
-//public class ResultFrame extends JFrame {
-//	private LottoProgram lotto;
-//	private JLabel aResult;
-//	private JLabel bResult;
-//	private JLabel cResult;
-//	private JLabel dResult;
-//	private JLabel eResult;
-//
-//	public ResultFrame(LottoProgram lottoProgram) {
-//		this.lotto = lottoProgram;
-//		setTitle("로또 결과 확인");
-//		JPanel pnl = new JPanel();
-//		pnl.setLayout(null);
-//		JButton btnreturn = new JButton("돌아가기");
-//		btnreturn.setBounds(12, 10, 90, 25);
-//		pnl.add(btnreturn);
-//		getContentPane().add(pnl);
-//
-//		JPanel panel = new JPanel();
-//		panel.setBounds(70, 80, 550, 80); // 결과 창이 나오는 패널
-//		panel.setBorder(new LineBorder(new Color(0, 0, 0), 2));
-//		pnl.add(panel);
-//
-//		JLabel A = new JLabel("A");
-//		A.setFont(new Font("SansSerif", Font.BOLD, 20));
-//		A.setBounds(70, 240, 20, 20);
-//		pnl.add(A);
-//
-//		JLabel AText = new JLabel("");
-//		AText.setFont(new Font("휴먼모음T", Font.BOLD, 20));
-//		AText.setBounds(100, 240, 60, 20);
-//		pnl.add(AText);
-//
-//		aResult = new JLabel("");
-//		aResult.setBounds(560, 240, 57, 15);
-//		pnl.add(aResult);
-//
-//		JLabel aNumber = new JLabel("New label");
-//		aNumber.setBounds(291, 240, 57, 15);
-//		pnl.add(aNumber);
-//		if (lotto.resultBuy != null && lotto.resultBuy.size() >= 5) {
-//			StringBuilder indexNumber = new StringBuilder();
-//			aNumber.setText(lotto.resultBuy.get(0).toString());
-//		}
-//
-//		JLabel B = new JLabel("B");
-//		B.setFont(new Font("SansSerif", Font.BOLD, 20));
-//		B.setBounds(70, 300, 20, 20);
-//		pnl.add(B);
-//
-//		JLabel BText = new JLabel("");
-//		BText.setFont(new Font("휴먼모음T", Font.BOLD, 20));
-//		BText.setBounds(100, 300, 60, 20);
-//		pnl.add(BText);
-//
-//		bResult = new JLabel("");
-//		bResult.setBounds(560, 300, 57, 15);
-//		pnl.add(bResult);
-//
-//		JLabel C = new JLabel("C");
-//		C.setFont(new Font("SansSerif", Font.BOLD, 20));
-//		C.setBounds(70, 360, 20, 20);
-//		pnl.add(C);
-//
-//		JLabel CText = new JLabel("");
-//		CText.setFont(new Font("휴먼모음T", Font.BOLD, 20));
-//		CText.setBounds(100, 360, 60, 20);
-//		pnl.add(CText);
-//
-//		cResult = new JLabel("");
-//		cResult.setBounds(560, 360, 57, 15);
-//		pnl.add(cResult);
-//
-//		JLabel D = new JLabel("D");
-//		D.setFont(new Font("SansSerif", Font.BOLD, 20));
-//		D.setBounds(70, 420, 20, 20);
-//		pnl.add(D);
-//
-//		JLabel DText = new JLabel("");
-//		DText.setFont(new Font("휴먼모음T", Font.BOLD, 20));
-//		DText.setBounds(100, 420, 60, 20);
-//		pnl.add(DText);
-//
-//		dResult = new JLabel("");
-//		dResult.setBounds(560, 420, 57, 15);
-//		pnl.add(dResult);
-//
-//		JLabel E = new JLabel("E");
-//		E.setFont(new Font("SansSerif", Font.BOLD, 20));
-//		E.setBounds(70, 480, 20, 20);
-//		pnl.add(E);
-//
-//		JLabel EText = new JLabel("");
-//		EText.setFont(new Font("휴먼모음T", Font.BOLD, 20));
-//		EText.setBounds(100, 480, 60, 20);
-//		pnl.add(EText);
-//
-//		eResult = new JLabel("");
-//		eResult.setBounds(560, 480, 57, 15);
-//		pnl.add(eResult);
-//
-//		btnreturn.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				setVisible(false);
-//				lotto.setVisible(true);
-//
-//			}
-//		});
-//
-//////		pnl2.setBounds(0, 0, 684, 561);
-////		if (lotto.resultBuy != null) {
-////				
-////				System.out.println(lotto.resultBuy.get(0));
-////				lotto.showBuyBall(pnl, sl_pnl, -200, lotto.resultBuy.get(0));
-////				
-////		}
-////
-////		
-//
-//		setSize(700, 600);
-//		setVisible(false);
-//
-//	}
-//
-//	public void updateResultLabels() {
-//		if (lotto.resultBuy != null && lotto.resultBuy.size() <= 5) {
-//			aResult.setText(lotto.resultBuy.get(0).toString());
-//			bResult.setText(lotto.resultBuy.get(1).toString());
-//			cResult.setText(lotto.resultBuy.get(2).toString());
-//			dResult.setText(lotto.resultBuy.get(3).toString());
-//			eResult.setText(lotto.resultBuy.get(4).toString());
-//		}
-//	}
-//
-//}
