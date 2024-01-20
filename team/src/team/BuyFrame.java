@@ -661,6 +661,9 @@ public class BuyFrame extends JFrame {
 							break;
 						}
 					}
+					if (autoSelected && lblStateA.getText().equals("미지정") && countNum == 0) {
+			            lblCheckA.setText("반자동");
+					}
 				}
 			}
 		});
