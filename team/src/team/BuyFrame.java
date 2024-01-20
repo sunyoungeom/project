@@ -318,8 +318,9 @@ public class BuyFrame extends JFrame {
 		pnl.add(btnRetouchC);
 
 		btnRetouchD = new JButton("수정");
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnRetouchD, -4, SpringLayout.NORTH, lblD);
+		sl_pnl.putConstraint(SpringLayout.WEST, btnRetouchD, 0, SpringLayout.WEST, btnRetouchA);
 		btnRetouchD.addActionListener(new ActionListener() {
-
 			public void actionPerformed(ActionEvent e) {
 				countNum = 3;
 				for (JToggleButton toggleButton : numberToggleButtons) {
@@ -337,12 +338,15 @@ public class BuyFrame extends JFrame {
 //		        lblStateA.getText().equals("");
 //		        lotto.resultBuy.set(3, new ArrayList<>());
 			}
+			
 		});
-		sl_pnl.putConstraint(SpringLayout.SOUTH, btnRetouchD, 0, SpringLayout.SOUTH, lblE);
-		sl_pnl.putConstraint(SpringLayout.EAST, btnRetouchD, -132, SpringLayout.EAST, pnl);
+
+			
 		pnl.add(btnRetouchD);
 
 		btnRetouchE = new JButton("수정");
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnRetouchE, -4, SpringLayout.NORTH, lblE);
+		sl_pnl.putConstraint(SpringLayout.EAST, btnRetouchE, 0, SpringLayout.EAST, btnRetouchA);
 		btnRetouchE.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				countNum = 4;
@@ -361,9 +365,7 @@ public class BuyFrame extends JFrame {
 //		        lblStateA.getText().equals("");
 //		        lotto.resultBuy.set(4, new ArrayList<>());
 			}
-		});
-		sl_pnl.putConstraint(SpringLayout.SOUTH, btnRetouchE, 0, SpringLayout.SOUTH, lblD);
-		sl_pnl.putConstraint(SpringLayout.EAST, btnRetouchE, -132, SpringLayout.EAST, pnl);
+	});
 		pnl.add(btnRetouchE);
 
 		btnDeleteA = new JButton("삭제");
@@ -413,8 +415,8 @@ public class BuyFrame extends JFrame {
 			}
 		});
 		btnDeleteD = new JButton("삭제");
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnDeleteD, 0, SpringLayout.NORTH, btnRetouchE);
-		sl_pnl.putConstraint(SpringLayout.WEST, btnDeleteD, 6, SpringLayout.EAST, btnRetouchE);
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnDeleteD, -4, SpringLayout.NORTH, lblD);
+		sl_pnl.putConstraint(SpringLayout.EAST, btnDeleteD, 0, SpringLayout.EAST, btnDeleteA);
 		pnl.add(btnDeleteD);
 		btnDeleteD.addActionListener(new ActionListener() {
 			@Override
@@ -426,7 +428,7 @@ public class BuyFrame extends JFrame {
 			}
 		});
 		btnDeleteE = new JButton("삭제");
-		sl_pnl.putConstraint(SpringLayout.SOUTH, btnDeleteE, 0, SpringLayout.SOUTH, lblE);
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnDeleteE, -4, SpringLayout.NORTH, lblE);
 		sl_pnl.putConstraint(SpringLayout.EAST, btnDeleteE, 0, SpringLayout.EAST, btnDeleteA);
 		pnl.add(btnDeleteE);
 		btnDeleteE.addActionListener(new ActionListener() {
@@ -469,19 +471,31 @@ public class BuyFrame extends JFrame {
 		sl_pnl.putConstraint(SpringLayout.EAST, btnNumReset, 0, SpringLayout.EAST, btnDeleteA);
 		pnl.add(btnNumReset);
 		btnNumReset.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				lblCheckA.setText("");
-				lblStateA.setText("");
-				lblCheckB.setText("");
-				lblStateB.setText("");
-				lblCheckC.setText("");
-				lblStateC.setText("");
-				lblCheckD.setText("");
-				lblStateD.setText("");
-				lblCheckE.setText("");
-				lblStateE.setText("");
-			}
+		    @Override
+		    public void actionPerformed(ActionEvent e) {
+		        lblCheckA.setText("");
+		        lblStateA.setText("미지정");
+		        lotto.resultBuy.set(0, new ArrayList<>());
+
+		        lblCheckB.setText("");
+		        lblStateB.setText("미지정");
+		        lotto.resultBuy.set(1, new ArrayList<>());
+
+		        lblCheckC.setText("");
+		        lblStateC.setText("미지정");
+		        lotto.resultBuy.set(2, new ArrayList<>());
+
+		        lblCheckD.setText("");
+		        lblStateD.setText("미지정");
+		        lotto.resultBuy.set(3, new ArrayList<>());
+
+		        lblCheckE.setText("");
+		        lblStateE.setText("미지정");
+		        lotto.resultBuy.set(4, new ArrayList<>());
+
+		        // countNum을 -1로 재설정
+		        countNum = 0;
+		    }
 		});
 
 		btnCheck.addActionListener(new ActionListener() {
@@ -609,41 +623,43 @@ public class BuyFrame extends JFrame {
 						lotto.resultBuyTitle.set(3, lblStateD.getText());
 //						countNum++;
 					} else if (countNum == 4 || lblCheckE.getText().equals("6개를 선택해야 합니다.")) {
-						lblCheckE.setText(result.toString());
-						lblCheckE.setVisible(false);
-						lotto.showBuyBall(pnl, sl_pnl, 180, selectedNumbers);
-						lotto.resultBuy.set(4, selectedNumbers);
-						System.out.println(lotto.resultBuy);
+						if (lotto.resultBuy.get(4).size() == 0) {
+							lblCheckE.setText(result.toString());
+							lblCheckE.setVisible(false);
+							lotto.showBuyBall(pnl, sl_pnl, 180, selectedNumbers);
+							lotto.resultBuy.set(4, selectedNumbers);
+							System.out.println(lotto.resultBuy);
 
-						for (JToggleButton toggleButton : numberToggleButtons) {
-							toggleButton.setSelected(false);
+							for (JToggleButton toggleButton : numberToggleButtons) {
+								toggleButton.setSelected(false);
+							}
+
+							if (autoSelected && lblStateE.getText().equals("미지정")) {
+								lblStateE.setText("자동");
+								autoSelected = false;
+							} else if (!autoSelected) { // () = true
+								lblStateE.setText("수동");
+							} else {
+								lblStateE.setText("반자동");
+							}
+
+							lotto.resultBuyTitle.set(4, lblStateE.getText());
+
 						}
-
-						if (autoSelected && lblStateE.getText().equals("미지정")) {
-							lblStateE.setText("자동");
-							autoSelected = false;
-						} else if (!autoSelected) { // () = true
-							lblStateE.setText("수동");
-						} else {
-							lblStateE.setText("반자동");
-						}
-
-						lotto.resultBuyTitle.set(4, lblStateE.getText());
-
-					}
-				} else {
-					// 6개가 선택되지 않은 경우
-					lblCheckA.setText("6개를 선택해야 합니다.");
+					} else {
+						// 6개가 선택되지 않은 경우
+						lblCheckA.setText("6개를 선택해야 합니다.");
 //		            lblCheckB.setText("6개를 선택해야 합니다.");
 //		            lblCheckC.setText("6개를 선택해야 합니다.");
 //		            lblCheckD.setText("6개를 선택해야 합니다.");
 //		            lblCheckE.setText("6개를 선택해야 합니다.");
-				}
+					}
 
-				for (int j = 0; j < 4; j++) {
-					if (lotto.resultBuy.get(j + 1).size() == 0) {
-						countNum = j + 1;
-						break;
+					for (int j = 0; j < 4; j++) {
+						if (lotto.resultBuy.get(j + 1).size() == 0) {
+							countNum = j + 1;
+							break;
+						}
 					}
 				}
 			}
