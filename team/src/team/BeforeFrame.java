@@ -7,6 +7,7 @@ public class BeforeFrame extends JFrame {
 	private LottoProgram lotto;
 	private JTextField textField;
 
+
 	public BeforeFrame(LottoProgram lottoProgram) {
 		this.lotto = lottoProgram;
 
@@ -19,6 +20,10 @@ public class BeforeFrame extends JFrame {
 		sl_pnl.putConstraint(SpringLayout.WEST, btnreturn, 10, SpringLayout.WEST, pnl);
 		pnl.add(btnreturn);
 //       
+
+		System.out.println(lotto.winningNumberCollection.get(0));
+
+
 
 		// 여러 개의 이미지와 텍스트를 가지는 데이터
 		ImageTextPair[] imageTextPairs = {
@@ -83,9 +88,10 @@ public class BeforeFrame extends JFrame {
 		JButton btnNewButton_2 = new JButton("확인");
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String roundInfo = textField.getText();
-				int round = Integer.parseInt(roundInfo);
-				System.out.println(ResultFrame.winningNumberCollection.get(round));
+				System.out.println(lotto.winningNumberCollection.get(lotto.roundNum));
+//				String roundInfo = textField.getText();
+//				int round = Integer.parseInt(roundInfo);
+//				System.out.println(lotto.winningNumberCollection.get(round));
 			}
 		});
 		sl_pnl.putConstraint(SpringLayout.NORTH, btnNewButton_2, 0, SpringLayout.NORTH, textField);
