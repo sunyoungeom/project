@@ -2,6 +2,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.TreeMap;
@@ -19,10 +20,12 @@ import javax.swing.border.LineBorder;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
 
 // 기표
 public class ResultFrame extends JFrame {
 	private LottoProgram lotto;
+	private BuyFrame buy;
 //	public static Map<Integer, ArrayList<String>> winningNumberCollection = new TreeMap<>();
 
 	public ResultFrame(LottoProgram lottoProgram) {
@@ -30,6 +33,7 @@ public class ResultFrame extends JFrame {
 		Random random = new Random();
 
 		setTitle("로또 결과 확인");
+
 		JLabel backgroundImage = new JLabel(new ImageIcon("images/lottoResult.png"));
 		SpringLayout springLayout = new SpringLayout();
 		backgroundImage.setLayout(springLayout);
@@ -39,6 +43,12 @@ public class ResultFrame extends JFrame {
 		lblTitle.setBackground(Color.WHITE);
 		lblTitle.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		backgroundImage.add(lblTitle);
+
+//		// 결과 공 표시  
+//		JPanel pnlResultBall = new JPanel();
+//		springLayout.putConstraint(SpringLayout.NORTH, pnlResultBall, 90, SpringLayout.NORTH, backgroundImage);
+//		springLayout.putConstraint(SpringLayout.WEST, pnlResultBall, 440, SpringLayout.WEST, backgroundImage);
+//		backgroundImage.add(pnlResultBall);
 
 		JLabel firstLine = new JLabel("");
 		springLayout.putConstraint(SpringLayout.SOUTH, lblTitle, -6, SpringLayout.NORTH, firstLine);
@@ -156,7 +166,7 @@ public class ResultFrame extends JFrame {
 //			lotto.resultBuyTitle.
 //		}
 //		
-		JLabel[] resultTitleLabels = {titleA, titleB, titleC, titleD, titleE};
+		JLabel[] resultTitleLabels = { titleA, titleB, titleC, titleD, titleE };
 		for (int j = 0; j < resultTitleLabels.length; j++) {
 			if (!lotto.resultBuyTitle.get(j).isEmpty() && j < lotto.resultBuyTitle.size()
 					&& lotto.resultBuyTitle.size() > 0) {
@@ -173,7 +183,7 @@ public class ResultFrame extends JFrame {
 			}
 		}
 
-		JLabel[] resultLabels = {resultA, resultB, resultC, resultD, resultE};
+		JLabel[] resultLabels = { resultA, resultB, resultC, resultD, resultE };
 		for (int j = 0; j < resultLabels.length; j++) {
 			if (!lotto.resultBuy.isEmpty() && j < lotto.resultBuy.size() && lotto.resultBuy.get(j).size() > 0) {
 				StringBuilder resultText = new StringBuilder();
@@ -203,15 +213,14 @@ public class ResultFrame extends JFrame {
 		System.out.println(lotto.roundNum);
 		System.out.println("ghkr");
 
-
 		JLabel winningNumber = new JLabel();
 		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton, 100, SpringLayout.SOUTH, thirdLine);
 		springLayout.putConstraint(SpringLayout.WEST, btnNewButton, 60, SpringLayout.WEST, getContentPane());
 
+		int index = 0;
 		if (resultNum != 0) {
-			int index = random.nextInt(resultNum);
+			index = random.nextInt(resultNum);
 			winningNumber.setText("당첨 번호 : " + lotto.resultBuy.get(index)); // 당첨 번호 출력하는 라벨
-
 
 //		winningNumberCollection = new TreeMap<>();
 			lotto.winningNumberCollection.put(lotto.roundNum, lotto.resultBuy.get(index));
@@ -219,25 +228,10 @@ public class ResultFrame extends JFrame {
 			ll = lotto.winningNumberCollection.get(lotto.roundNum);
 			System.out.println("dd" + ll);
 
-
 			for (Integer numKey : lotto.winningNumberCollection.keySet()) {
 				System.out.println("제" + (numKey) + "회" + ": " + lotto.winningNumberCollection.get(numKey));
 			}
-
-
-			// 회차가 늘어나면 카운트를 올리는 씩으 조건이 필요함
-
-//			String round = String.valueOf(i + 1);
-
-//			lblNewLabel_1.setText(""+lotto.getRoundNum());// 해당 회차로 숫자 변경
-
-//		for (int i = 0; i < winningNumberCollection.size(); i++) {
-//			winningNumberCollection.put(i, lotto.resultBuy.get(index).toString());
-//			System.out.println(i);
-////			String round = String.valueOf(i + 1);
-//
-//			lblNewLabel_1.setText(""+lotto.getRoundNum());// 해당 회차로 숫자 변경
-//		}
+			showResultBall(lotto.resultBuy.get(index), springLayout, backgroundImage);
 
 		}
 		backgroundImage.add(winningNumber);
@@ -249,4 +243,21 @@ public class ResultFrame extends JFrame {
 
 	}
 
+	public void showResultBall(ArrayList<String> selectedNumbers, SpringLayout springLayout, JLabel backgroundImage) {
+		for (int i = 0; i < selectedNumbers.size(); i++) {
+			String num = selectedNumbers.get(i);
+			String path = "images/ball/ball_";
+			String imagePath = "images/ball/ball_" + num + ".PNG";
+
+			ImageIcon icon = new ImageIcon(imagePath);
+			Image image = icon.getImage(); // Image 객체로 변환
+			Image resizedImage = image.getScaledInstance(54, 40, Image.SCALE_SMOOTH); // 크기 조정
+			ImageIcon resizedIcon = new ImageIcon(resizedImage); // 조정된 이미지로 새로운 아이콘 생성
+
+			JLabel label = new JLabel(resizedIcon);
+			springLayout.putConstraint(SpringLayout.NORTH, label, 0, SpringLayout.NORTH, backgroundImage);
+			springLayout.putConstraint(SpringLayout.WEST, label, 0 + (i * 50), SpringLayout.EAST, backgroundImage);
+			backgroundImage.add(label);
+		}
+	}
 }
