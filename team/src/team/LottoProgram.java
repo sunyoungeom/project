@@ -22,7 +22,7 @@ import com.sun.xml.internal.messaging.saaj.soap.JpegDataContentHandler;
 
 public class LottoProgram extends JFrame {
 	private BeforeFrame beforeFrame = new BeforeFrame(this);
-	private HelpFrame helpFrame = new HelpFrame(this);
+//	private HelpFrame helpFrame = new HelpFrame(this);
 	public ArrayList<ArrayList<String>> resultBuy = new ArrayList<>(5);
 //    public ArrayList<ArrayList<String>> resultBuyTitles = new ArrayList<>();
 	public ArrayList<String> resultBuyTitle = new ArrayList<>(5);
@@ -123,8 +123,11 @@ public class LottoProgram extends JFrame {
 		btnHelp.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if (resultBuy.get(0).size() != 0) {
 				setVisible(false);
+				HelpFrame helpFrame = new HelpFrame(LottoProgram.this);
 				helpFrame.setVisible(true);
+				}
 			}
 		});
 

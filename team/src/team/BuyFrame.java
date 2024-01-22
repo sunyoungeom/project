@@ -172,12 +172,17 @@ public class BuyFrame extends JFrame {
 				} // 자동
 				else if (selectedCount == 0 || autoSelectCount == 6) {
 					random = new Random();
+					for (JToggleButton toggleButton : numberToggleButtons) {
+						toggleButton.setSelected(false);
+					}
+					selectedCount = 0; // 버튼 초기화
 					while (selectedCount < autoSelectCount) {
-						for (JToggleButton toggleButton : numberToggleButtons) {
-							toggleButton.setSelected(false);
+						int randomNumber = random.nextInt(45) + 1;
+						if (!numberToggleButtons.get(randomNumber - 1).isSelected()) {
+							numberToggleButtons.get(randomNumber - 1).setSelected(true);
+							selectedCount++;
 						}
 					}
-
 				}
 			}
 		});
@@ -577,17 +582,24 @@ public class BuyFrame extends JFrame {
 
 					if (btnDeleteA.isSelected() || btnDeleteB.isSelected() || btnDeleteC.isSelected()
 							|| btnDeleteD.isSelected() || btnDeleteE.isSelected()) {
+					}
+						if (lotto.resultBuy.get(4).size() == 0) {
+							countNum = 4;
+						} 
+						if (lotto.resultBuy.get(3).size() == 0) {
+							countNum = 3;
+						}
+						if (lotto.resultBuy.get(2).size() == 0) {
+							countNum = 2;
+						}
+						if (lotto.resultBuy.get(1).size() == 0) {
+							countNum = 1;
+						}
 						if (lotto.resultBuy.get(0).size() == 0) {
 							countNum = 0;
-						} else if (lotto.resultBuy.get(1).size() == 0) {
-							countNum = 1;
-						} else if (lotto.resultBuy.get(2).size() == 0) {
-							countNum = 2;
-						} else if (lotto.resultBuy.get(3).size() == 0) {
-							countNum = 3;
-						} else if (lotto.resultBuy.get(4).size() == 0) {
-							countNum = 4;
-						}
+						
+						} if (countNum == 5) {
+						JOptionPane.showMessageDialog(BuyFrame.this, "구매횟수를 초과했습니다", "구매횟수 초과", JOptionPane.WARNING_MESSAGE);
 					}
 
 //               if (lblStateA.getText().equals("미지정") || lblCheckA.getText().equals("6개를 선택해야 합니다.")) {
@@ -701,18 +713,17 @@ public class BuyFrame extends JFrame {
 							} else {
 								lblStateE.setText("반자동");
 							}
-
 							lotto.resultBuyTitle.set(4, lblStateE.getText());
-
+							countNum = 5;
 						}
+				
 					} else {
 						// 6개가 선택되지 않은 경우
 						lblCheckA.setText("6개를 선택해야 합니다.");
 					}
-
-					for (int j = 0; j < 4; j++) {
-						if (lotto.resultBuy.get(j + 1).size() == 0) {
-							countNum = j + 1;
+					for (int j = 0; j < 5; j++) {
+						if (lotto.resultBuy.get(j).size() == 0) {
+							countNum = j;
 							break;
 						}
 					}
