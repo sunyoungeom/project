@@ -69,7 +69,7 @@ public class BuyFrame extends JFrame {
 	private JButton btnNumReset;
 	private JToggleButton toggleButton;
 	private int autoSelectCount;
-	public int countNum = 0; // 배열의 대한 숫자 0~4까지 
+	public int countNum = 0; // 배열의 대한 숫자 0~4까지
 	public int numSelect = 0; // 직접 내가 누르는 번호의 개수
 	private JComboBox comboBox;
 	private JLabel lblBuyCount;
@@ -80,7 +80,7 @@ public class BuyFrame extends JFrame {
 
 		if (lotto.resultBuy.get(0).size() != 0) {
 			System.out.println("이미 구매한회차");
-			 JOptionPane.showMessageDialog(null, "이미 구매한 회차 입니다.", "해당 회차 종료", JOptionPane.WARNING_MESSAGE);
+			JOptionPane.showMessageDialog(null, "이미 구매한 회차 입니다.", "해당 회차 종료", JOptionPane.WARNING_MESSAGE);
 
 		}
 		JPanel pnl = new JPanel();
@@ -117,7 +117,7 @@ public class BuyFrame extends JFrame {
 		sl_pnl.putConstraint(SpringLayout.NORTH, btnreturn, 29, SpringLayout.NORTH, pnl);
 		sl_pnl.putConstraint(SpringLayout.WEST, btnreturn, 10, SpringLayout.WEST, pnl);
 		pnl.add(btnreturn);
-		
+
 		btnreturn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -147,33 +147,32 @@ public class BuyFrame extends JFrame {
 		pnl.add(btnAuto);
 		// "자동선택" 버튼에 대한 ActionListener를 추가
 		btnAuto.addActionListener(new ActionListener() {
-		    @Override
-		    public void actionPerformed(ActionEvent e) {
-		    	autoSelected = true;
-		    	// 자동으로 선택할 번호 개수
-		    	int autoSelectCount = SELECTED_NUMBER;
-		    	int selectedCount = 0;
-		    	for (JToggleButton toggleButton : numberToggleButtons) {
-		    		if (toggleButton.isSelected()) {
-		    			selectedCount++;
-		    		}
-		    	}
-		    	
-		    	
-		    	// 나머지 번호를 자동으로 선택
-		    	if (selectedCount < autoSelectCount) {
-		    		Random random = new Random();
-		    		while (selectedCount < autoSelectCount) {
-		    			int randomNumber = random.nextInt(45) + 1;
-		    			if (!numberToggleButtons.get(randomNumber - 1).isSelected()) {
-		    				numberToggleButtons.get(randomNumber - 1).setSelected(true);
-		    				selectedCount++;
-		    			}
-		    		}
-		    	}
-		    }
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				autoSelected = true;
+				// 자동으로 선택할 번호 개수
+				int autoSelectCount = SELECTED_NUMBER;
+				int selectedCount = 0;
+				for (JToggleButton toggleButton : numberToggleButtons) {
+					if (toggleButton.isSelected()) {
+						selectedCount++;
+					}
+				}
+
+				// 나머지 번호를 자동으로 선택
+				if (selectedCount < autoSelectCount) {
+					Random random = new Random();
+					while (selectedCount < autoSelectCount) {
+						int randomNumber = random.nextInt(45) + 1;
+						if (!numberToggleButtons.get(randomNumber - 1).isSelected()) {
+							numberToggleButtons.get(randomNumber - 1).setSelected(true);
+							selectedCount++;
+						}
+					}
+				}
+			}
 		});
-		
+
 		btnCheck = new JButton("번호확인");
 		sl_pnl.putConstraint(SpringLayout.NORTH, btnCheck, 0, SpringLayout.NORTH, btnReset);
 		sl_pnl.putConstraint(SpringLayout.WEST, btnCheck, 6, SpringLayout.EAST, btnAuto);
@@ -544,18 +543,17 @@ public class BuyFrame extends JFrame {
 				countNum = 0;
 			}
 		});
-		
+
 		comboBox = new JComboBox();
 		sl_pnl.putConstraint(SpringLayout.WEST, comboBox, 26, SpringLayout.EAST, btnCheck);
 		sl_pnl.putConstraint(SpringLayout.EAST, comboBox, 0, SpringLayout.EAST, lblStateA);
 		pnl.add(comboBox);
-		
+
 		lblBuyCount = new JLabel("구매수량");
 		sl_pnl.putConstraint(SpringLayout.SOUTH, lblBuyCount, -50, SpringLayout.SOUTH, pnl);
 		sl_pnl.putConstraint(SpringLayout.NORTH, comboBox, 6, SpringLayout.SOUTH, lblBuyCount);
 		sl_pnl.putConstraint(SpringLayout.EAST, lblBuyCount, 0, SpringLayout.EAST, lblStateA);
 		pnl.add(lblBuyCount);
-		
 
 		btnCheck.addActionListener(new ActionListener() {
 			@Override
@@ -588,7 +586,7 @@ public class BuyFrame extends JFrame {
 							countNum = 3;
 						} else if (lotto.resultBuy.get(4).size() == 0) {
 							countNum = 4;
-						}
+						} 
 					}
 
 //               if (lblStateA.getText().equals("미지정") || lblCheckA.getText().equals("6개를 선택해야 합니다.")) {
@@ -689,7 +687,7 @@ public class BuyFrame extends JFrame {
 							lotto.resultBuy.set(4, selectedNumbers);
 							System.out.println(lotto.resultBuy);
 							showBall(4, selectedNumbers, ballEpnl, sl_pnl, 270, 50);
-							
+
 							for (JToggleButton toggleButton : numberToggleButtons) {
 								toggleButton.setSelected(false);
 							}
@@ -705,7 +703,7 @@ public class BuyFrame extends JFrame {
 
 							lotto.resultBuyTitle.set(4, lblStateE.getText());
 
-						}
+						} 
 					} else {
 						// 6개가 선택되지 않은 경우
 						lblCheckA.setText("6개를 선택해야 합니다.");
@@ -726,7 +724,9 @@ public class BuyFrame extends JFrame {
 		setVisible(false);
 
 	}
-	public Map<Integer, JLabel[]> showBall(int countNum, ArrayList<String> selectedNumbers, JPanel pnl, SpringLayout sl_pnl, int x, int y) {
+
+	public Map<Integer, JLabel[]> showBall(int countNum, ArrayList<String> selectedNumbers, JPanel pnl,
+			SpringLayout sl_pnl, int x, int y) {
 		ballLabels = new HashMap<>();
 		JLabel[] labels = ballLabels.get(countNum);
 
