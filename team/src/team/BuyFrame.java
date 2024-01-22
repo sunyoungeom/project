@@ -146,37 +146,27 @@ public class BuyFrame extends JFrame {
 		btnAuto.addActionListener(new ActionListener() {
 		    @Override
 		    public void actionPerformed(ActionEvent e) {
-		        autoSelected = true;
-		        autoSelectCount = 6;
-		        // 반자동 선택인지 확인
-		        if (numSelect >= 1 && numSelect <= 5) {
-		            // numSelect이 설정된 경우, 수동으로 번호 선택
-		            Set<Integer> selectedNumbers = new HashSet<>();
-		            for (int i = 1; i <= autoSelectCount; i++) {
-		                int manualNumber = (numSelect * autoSelectCount) + i;
-		                selectedNumbers.add(manualNumber);
-		            }
-		            // 토글 버튼에 수동으로 선택된 번호 반영
-		            for (Integer number : selectedNumbers) {
-		                numberToggleButtons.get(number - 1).setSelected(true);
-		            }
-		        } else {
-		            // numSelect이 설정되지 않은 경우, 랜덤한 번호 생성
-		            Random random = new Random();
-		            Set<Integer> selectedNumbers = new HashSet<>();
-		            // 자동으로 랜덤한 번호 선택.
-		            while (selectedNumbers.size() < autoSelectCount) {
-		            	for (JToggleButton toggleButton : numberToggleButtons) {
-							toggleButton.setSelected(false);
-						}
-		                int randomNumber = random.nextInt(45) + 1;
-		                selectedNumbers.add(randomNumber);
-		            }
-		            // 토글 버튼에 자동으로 선택된 번호 반영
-		            for (Integer number : selectedNumbers) {
-		                numberToggleButtons.get(number - 1).setSelected(true);
-		            }
-		        }
+		    	autoSelected = true;
+		    	// 자동으로 선택할 번호 개수
+		    	int autoSelectCount = SELECTED_NUMBER;
+		    	int selectedCount = 0;
+		    	for (JToggleButton toggleButton : numberToggleButtons) {
+		    		if (toggleButton.isSelected()) {
+		    			selectedCount++;
+		    		}
+		    	}
+		    	
+		    	// 나머지 번호를 자동으로 선택
+		    	if (selectedCount < autoSelectCount) {
+		    		Random random = new Random();
+		    		while (selectedCount < autoSelectCount) {
+		    			int randomNumber = random.nextInt(45) + 1;
+		    			if (!numberToggleButtons.get(randomNumber - 1).isSelected()) {
+		    				numberToggleButtons.get(randomNumber - 1).setSelected(true);
+		    				selectedCount++;
+		    			}
+		    		}
+		    	}
 		    }
 		});
 		
