@@ -156,6 +156,7 @@ public class BuyFrame extends JFrame {
 		    		}
 		    	}
 		    	
+		    	
 		    	// 나머지 번호를 자동으로 선택
 		    	if (selectedCount < autoSelectCount) {
 		    		Random random = new Random();
