@@ -146,55 +146,6 @@ public class HelpFrame extends JFrame {
 		});
 		
 		
-//		
-//		JLabel[] resultTitleLabels = { titleA, titleB, titleC, titleD, titleE };
-//		for (int j = 0; j < resultTitleLabels.length; j++) {
-//			if (!lotto.resultBuyTitle.get(j).isEmpty() && j < lotto.resultBuyTitle.size()
-//					&& lotto.resultBuyTitle.size() > 0) {
-//				StringBuilder resultTitleText = new StringBuilder();
-//				System.out.println((char) (ch + j));
-//				resultTitleText.append(ch).append(" ").append(lotto.resultBuyTitle.get(j));
-//				ch += 1;
-//				resultTitleLabels[j].setText(resultTitleText.toString());
-//
-//			} else {
-//				// 이 블록은 예외를 방지하기 위한 로직을 추가할 수 있습니다.
-//				// 예를 들어, 메시지를 출력하거나 기본값을 설정하는 등의 작업을 수행할 수 있습니다.
-//				resultTitleLabels[j].setText("");
-//			}
-//		}
-//
-//		JLabel[] resultLabels = { resultA, resultB, resultC, resultD, resultE };
-//		for (int j = 0; j < resultLabels.length; j++) {
-//			if (!lotto.resultBuy.isEmpty() && j < lotto.resultBuy.size() && lotto.resultBuy.get(j).size() > 0) {
-//				StringBuilder resultText = new StringBuilder();
-//				for (int i = 0; i < 6 && i < lotto.resultBuy.get(j).size(); i++) {
-//					resultText.append(lotto.resultBuy.get(j).get(i)).append(" ");
-//				}
-//				resultLabels[j].setText(resultText.toString());
-//			} else {
-//				// 이 블록은 예외를 방지하기 위한 로직을 추가할 수 있습니다.
-//				// 예를 들어, 메시지를 출력하거나 기본값을 설정하는 등의 작업을 수행할 수 있습니다.
-//				resultLabels[j].setText("");
-//			}
-//		}
-//		int resultNum = 0;
-//		for (int i = 0; i < 5; i++) {
-//			if (lotto.resultBuy.get(i).size() != 0) {
-//				resultNum++;
-//			}
-//		}
-		
-		JButton btnNewButton = new JButton("New button");
-//		btnNewButton.addActionListener(new ActionListener() {
-//			public void actionPerformed(ActionEvent arg0) {
-//				pnl.setVisible(true);
-//				pnlImage.setVisible(false);
-//			}
-//		});
-		pnlImage.add(btnNewButton);
-		
-		
 		
 		Timer timer = new Timer();
 		
@@ -208,20 +159,6 @@ public class HelpFrame extends JFrame {
 		};
 
 		timer.schedule(task, DISPLAY_TIME);
-
-		btnNewButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-            	pnlImage.setVisible(false);
-
-                 // 버튼을 누르면 이미지를 보이고, 3초 후에 타이머 시작
-//                 lblNewLabel_5.setVisible(true);
-//                 timer.schedule(task, DISPLAY_TIME);
-            	timer.schedule(task, DISPLAY_TIME);
-                 pnl.setVisible(true);
-//                 timer.cancel(); // 타이머 중지
-            }
-        });
 		
 		
 		
