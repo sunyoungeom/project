@@ -31,6 +31,8 @@ public class LottoProgram extends JFrame {
 
 	public static CircleImagePanel circleImagePanel;
 	public static ImageTextPair[] imageTextPairs = new ImageTextPair[6];
+	private BufferedImage scratchLayer;
+	private boolean isScratching = false;
 
 	public int getRoundNum() {
 		return roundNum;
@@ -39,13 +41,6 @@ public class LottoProgram extends JFrame {
 	public void setRoundNum(int roundNum) {
 		this.roundNum = roundNum;
 	}
-	// public ArrayList<ArrayList<String>> getResultBuy() {
-//        return resultBuy;
-//    }
-//
-//    public void setResultBuy(ArrayList<ArrayList<String>> resultBuy) {
-//        this.resultBuy = resultBuy;
-//    }
 
 	public LottoProgram() {
 		for (int i = 0; i < 5; i++) {
@@ -58,34 +53,37 @@ public class LottoProgram extends JFrame {
 
 		setTitle("메인 창");
 		JPanel main = new JPanel();
+		JLabel backgroundImage = new JLabel(new ImageIcon("images/lottoMainimage.png"));
+		SpringLayout sl_main = new SpringLayout();
+		backgroundImage.setLayout(sl_main);
 
 		JButton btnBuy = new JButton("구매하기");
 		JButton btnResult = new JButton("결과확인");
 		JButton btnBefore = new JButton("이전회차");
 		JButton btnHelp = new JButton("도움말");
-		SpringLayout sl_main = new SpringLayout();
-		sl_main.putConstraint(SpringLayout.WEST, btnBuy, 547, SpringLayout.WEST, main);
-		sl_main.putConstraint(SpringLayout.EAST, btnBuy, -55, SpringLayout.EAST, main);
-		sl_main.putConstraint(SpringLayout.NORTH, btnHelp, 6, SpringLayout.SOUTH, btnBefore);
-		sl_main.putConstraint(SpringLayout.WEST, btnHelp, 0, SpringLayout.WEST, btnBuy);
-		sl_main.putConstraint(SpringLayout.SOUTH, btnHelp, 279, SpringLayout.SOUTH, btnBuy);
-		sl_main.putConstraint(SpringLayout.EAST, btnHelp, 0, SpringLayout.EAST, btnBuy);
-		sl_main.putConstraint(SpringLayout.NORTH, btnBefore, 6, SpringLayout.SOUTH, btnResult);
-		sl_main.putConstraint(SpringLayout.WEST, btnBefore, 0, SpringLayout.WEST, btnBuy);
-		sl_main.putConstraint(SpringLayout.SOUTH, btnBefore, -200, SpringLayout.SOUTH, main);
-		sl_main.putConstraint(SpringLayout.EAST, btnBefore, 0, SpringLayout.EAST, btnBuy);
-		sl_main.putConstraint(SpringLayout.NORTH, btnResult, 6, SpringLayout.SOUTH, btnBuy);
-		sl_main.putConstraint(SpringLayout.WEST, btnResult, 0, SpringLayout.WEST, btnBuy);
-		sl_main.putConstraint(SpringLayout.SOUTH, btnResult, 93, SpringLayout.SOUTH, btnBuy);
-		sl_main.putConstraint(SpringLayout.EAST, btnResult, 182, SpringLayout.WEST, btnBuy);
-		sl_main.putConstraint(SpringLayout.NORTH, btnBuy, 88, SpringLayout.NORTH, main);
-		sl_main.putConstraint(SpringLayout.SOUTH, btnBuy, -386, SpringLayout.SOUTH, main);
-		main.setLayout(sl_main);
 
-		main.add(btnBuy);
-		main.add(btnResult);
-		main.add(btnBefore);
-		main.add(btnHelp);
+		backgroundImage.add(btnBuy);
+		backgroundImage.add(btnResult);
+		backgroundImage.add(btnBefore);
+		backgroundImage.add(btnHelp);
+		sl_main.putConstraint(SpringLayout.WEST, btnBuy, 347, SpringLayout.WEST, main);
+		sl_main.putConstraint(SpringLayout.EAST, btnBuy, -155, SpringLayout.EAST, main);
+		sl_main.putConstraint(SpringLayout.NORTH, btnBuy, 108, SpringLayout.NORTH, main);
+		sl_main.putConstraint(SpringLayout.SOUTH, btnBuy, -420, SpringLayout.SOUTH, main);
+		sl_main.putConstraint(SpringLayout.NORTH, btnResult, 0, SpringLayout.SOUTH, btnBuy);
+		sl_main.putConstraint(SpringLayout.SOUTH, btnResult, 85, SpringLayout.SOUTH, btnBuy);
+		sl_main.putConstraint(SpringLayout.WEST, btnResult, 0, SpringLayout.WEST, btnBuy);
+		sl_main.putConstraint(SpringLayout.EAST, btnResult, 308, SpringLayout.WEST, btnBuy);
+		sl_main.putConstraint(SpringLayout.NORTH, btnBefore, 0, SpringLayout.SOUTH, btnResult);
+		sl_main.putConstraint(SpringLayout.SOUTH, btnBefore, 85, SpringLayout.SOUTH, btnResult);
+		sl_main.putConstraint(SpringLayout.WEST, btnBefore, 0, SpringLayout.WEST, btnResult);
+		sl_main.putConstraint(SpringLayout.EAST, btnBefore, 0, SpringLayout.EAST, btnResult);
+		sl_main.putConstraint(SpringLayout.NORTH, btnHelp, 0, SpringLayout.SOUTH, btnBefore);
+		sl_main.putConstraint(SpringLayout.SOUTH, btnHelp, 78, SpringLayout.SOUTH, btnBefore);
+		sl_main.putConstraint(SpringLayout.WEST, btnHelp, 0, SpringLayout.WEST, btnBefore);
+		sl_main.putConstraint(SpringLayout.EAST, btnHelp, 0, SpringLayout.EAST, btnBefore);
+
+		main.add(backgroundImage);
 
 		btnBuy.addActionListener(new ActionListener() {
 			@Override
@@ -104,7 +102,7 @@ public class LottoProgram extends JFrame {
 					ResultFrame resultFrame = new ResultFrame(LottoProgram.this);
 					resultFrame.setVisible(true);
 				} else {
-					 JOptionPane.showMessageDialog(null, "구매하기를 먼저 진행해 주세요", "해당 회차 종료", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "구매하기를 먼저 진행해 주세요", "해당 회차 종료", JOptionPane.WARNING_MESSAGE);
 					System.out.println("구매하기 먼저");
 				}
 
@@ -129,16 +127,11 @@ public class LottoProgram extends JFrame {
 				helpFrame.setVisible(true);
 			}
 		});
+
 		getContentPane().add(main);
 
-		JPanel panel = new JPanel();
-		sl_main.putConstraint(SpringLayout.NORTH, panel, 8, SpringLayout.NORTH, btnBuy);
-		sl_main.putConstraint(SpringLayout.WEST, panel, 302, SpringLayout.WEST, main);
-		sl_main.putConstraint(SpringLayout.SOUTH, panel, -90, SpringLayout.SOUTH, main);
-		sl_main.putConstraint(SpringLayout.EAST, panel, -9, SpringLayout.WEST, btnBuy);
-		main.add(panel);
-
 		setSize(800, 600);
+		pack();
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
