@@ -432,16 +432,7 @@ public class BuyFrame extends JFrame {
 				lblStateA.setText("미지정");
 				lotto.resultBuy.set(0, new ArrayList<>());
 				countNum = 0;
-//				lotto.resultBuy.set(0, new ArrayList<>());
-
-				pnl.remove(LottoProgram.circleImagePanel);
-
-				lotto.circleImagePanel.removeAll();
-				lotto.circleImagePanel.revalidate();
-				lotto.circleImagePanel.repaint();
-
-				lotto.imageTextPairs[0] = new ImageTextPair(null, null);
-
+				removeBalls(0, ballApnl, ballLabels);
 			}
 		});
 
@@ -452,7 +443,6 @@ public class BuyFrame extends JFrame {
 		btnDeleteB.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-//            countNum = 1;
 				lblCheckB.setText("");
 				lblStateB.setText("미지정");
 				lotto.resultBuy.set(1, new ArrayList<>());
