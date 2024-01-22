@@ -702,6 +702,7 @@ public class BuyFrame extends JFrame {
 								toggleButton.setSelected(false);
 							}
 
+							
 							if (autoSelected && lblStateE.getText().equals("미지정")) {
 								lblStateE.setText("자동");
 //								autoSelected = false;
