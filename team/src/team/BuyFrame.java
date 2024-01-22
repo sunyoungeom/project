@@ -616,13 +616,12 @@ public class BuyFrame extends JFrame {
 						}
 						if (autoSelected && lblStateA.getText().equals("미지정")) {
 							lblStateA.setText("자동");
-							autoSelected = false;
+							autoSelected = false; 
 						} else if (!autoSelected && (lblStateA.getText().equals("미지정") || lblStateA.getText().equals("자동"))) { // () = true
 							lblStateA.setText("수동");
-						} 
-//						else {
-//							lblStateA.setText("반자동");
-//						}
+						} else {
+							lblStateA.setText("반자동");
+						}
 						lotto.resultBuyTitle.set(0, lblStateA.getText());
 //                  countNum++;
 					} else if (countNum == 1 || lblCheckB.getText().equals("6개를 선택해야 합니다.")) {
