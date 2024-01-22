@@ -10,8 +10,10 @@ import java.util.TreeMap;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import javax.swing.SpringLayout;
@@ -102,6 +104,7 @@ public class LottoProgram extends JFrame {
 					ResultFrame resultFrame = new ResultFrame(LottoProgram.this);
 					resultFrame.setVisible(true);
 				} else {
+					 JOptionPane.showMessageDialog(null, "구매하기를 먼저 진행해 주세요", "해당 회차 종료", JOptionPane.WARNING_MESSAGE);
 					System.out.println("구매하기 먼저");
 				}
 

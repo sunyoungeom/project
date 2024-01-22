@@ -171,51 +171,6 @@ public class ResultDialog extends JDialog {
 			}
 		}
 
-//		// A 결과 출력
-//		if (lotto.resultBuy.get(0).get(0) != null) {
-//			String resultText = "";
-//			for (int i = 0; i < 6; i++) {
-//				resultText += lotto.resultBuy.get(0).get(i) + " ";
-//			}
-//			resultA.setText(resultText);
-//		}
-//		
-//		// B 결과 출력
-//		if (lotto.resultBuy.get(1).get(0) != null) {
-//			String resultText = "";
-//			for (int i = 0; i < 6; i++) {
-//				resultText += lotto.resultBuy.get(1).get(i) + " ";
-//			}
-//			resultB.setText(resultText);
-//		}
-//		
-//		// C 결과 출력
-//		if (lotto.resultBuy.get(2).get(0) != null) {
-//			String resultText = "";
-//			for (int i = 0; i < 6; i++) {
-//				resultText += lotto.resultBuy.get(2).get(i) + " ";
-//			}
-//			resultC.setText(resultText);
-//		}
-//		
-//		// D 결과 출력
-//		if (lotto.resultBuy.get(3).get(0) != null) {
-//			String resultText = "";
-//			for (int i = 0; i < 6; i++) {
-//				resultText += lotto.resultBuy.get(3).get(i) + " ";
-//			}
-//			resultD.setText(resultText);
-//		}
-//		
-//		// E 결과 출력
-//		if (lotto.resultBuy.get(4).get(0) != null) {
-//			String resultText = "";
-//			for (int i = 0; i < 6; i++) {
-//				resultText += lotto.resultBuy.get(4).get(i) + " ";
-//			}
-//			resultE.setText(resultText);
-//		}
-
 	}
 
 }

@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.SpringLayout;
@@ -79,6 +80,8 @@ public class BuyFrame extends JFrame {
 
 		if (lotto.resultBuy.get(0).size() != 0) {
 			System.out.println("이미 구매한회차");
+			JOptionPane.showMessageDialog(null, "이미 구매한 회차 입니다.", "해당 회차 종료", JOptionPane.WARNING_MESSAGE);
+
 		}
 		JPanel pnl = new JPanel();
 		SpringLayout sl_pnl = new SpringLayout();
@@ -592,7 +595,7 @@ public class BuyFrame extends JFrame {
 							countNum = 3;
 						} else if (lotto.resultBuy.get(4).size() == 0) {
 							countNum = 4;
-						}
+						} 
 					}
 
 //               if (lblStateA.getText().equals("미지정") || lblCheckA.getText().equals("6개를 선택해야 합니다.")) {
@@ -709,7 +712,7 @@ public class BuyFrame extends JFrame {
 
 							lotto.resultBuyTitle.set(4, lblStateE.getText());
 
-						}
+						} 
 					} else {
 						// 6개가 선택되지 않은 경우
 						lblCheckA.setText("6개를 선택해야 합니다.");
