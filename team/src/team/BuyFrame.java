@@ -169,15 +169,15 @@ public class BuyFrame extends JFrame {
 							selectedCount++;
 						}
 					}
-				} // 자동 
-				 else if (selectedCount == 0 || autoSelectCount == 6) {
+				} // 자동
+				else if (selectedCount == 0 || autoSelectCount == 6) {
 					random = new Random();
 					while (selectedCount < autoSelectCount) {
 						for (JToggleButton toggleButton : numberToggleButtons) {
 							toggleButton.setSelected(false);
 						}
 					}
-					
+
 				}
 			}
 		});
@@ -312,10 +312,7 @@ public class BuyFrame extends JFrame {
 					toggleButton = numberToggleButtons.get(index);
 					toggleButton.setSelected(true);
 				}
-
-//              lblStateA.getText().equals("");
-//              lotto.resultBuy.set(0, new ArrayList<>());
-
+				removeBalls(0, ballApnl, ballLabels);
 			}
 		});
 
@@ -337,9 +334,7 @@ public class BuyFrame extends JFrame {
 					toggleButton = numberToggleButtons.get(index);
 					toggleButton.setSelected(true);
 				}
-
-//              lblStateA.getText().equals("");
-//              lotto.resultBuy.set(1, new ArrayList<>());
+				removeBalls(1, ballBpnl, ballLabels);
 			}
 		});
 		sl_pnl.putConstraint(SpringLayout.WEST, btnRetouchA, 0, SpringLayout.WEST, btnRetouchB);
@@ -364,8 +359,7 @@ public class BuyFrame extends JFrame {
 					toggleButton = numberToggleButtons.get(index);
 					toggleButton.setSelected(true);
 				}
-//              lblStateA.getText().equals("");
-//              lotto.resultBuy.set(2, new ArrayList<>());
+				removeBalls(2, ballCpnl, ballLabels);
 			}
 		});
 		sl_pnl.putConstraint(SpringLayout.SOUTH, btnRetouchC, 0, SpringLayout.SOUTH, lblC);
@@ -390,8 +384,7 @@ public class BuyFrame extends JFrame {
 					toggleButton = numberToggleButtons.get(index);
 					toggleButton.setSelected(true);
 				}
-//              lblStateA.getText().equals("");
-//              lotto.resultBuy.set(3, new ArrayList<>());
+				removeBalls(3, ballDpnl, ballLabels);
 			}
 
 		});
@@ -416,8 +409,7 @@ public class BuyFrame extends JFrame {
 					toggleButton = numberToggleButtons.get(index);
 					toggleButton.setSelected(true);
 				}
-//              lblStateA.getText().equals("");
-//              lotto.resultBuy.set(4, new ArrayList<>());
+				removeBalls(4, ballEpnl, ballLabels);
 			}
 		});
 		pnl.add(btnRetouchE);
@@ -595,7 +587,7 @@ public class BuyFrame extends JFrame {
 							countNum = 3;
 						} else if (lotto.resultBuy.get(4).size() == 0) {
 							countNum = 4;
-						} 
+						}
 					}
 
 //               if (lblStateA.getText().equals("미지정") || lblCheckA.getText().equals("6개를 선택해야 합니다.")) {
@@ -712,7 +704,7 @@ public class BuyFrame extends JFrame {
 
 							lotto.resultBuyTitle.set(4, lblStateE.getText());
 
-						} 
+						}
 					} else {
 						// 6개가 선택되지 않은 경우
 						lblCheckA.setText("6개를 선택해야 합니다.");
