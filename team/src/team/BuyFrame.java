@@ -186,7 +186,7 @@ public class BuyFrame extends JFrame {
 					for (JToggleButton toggleButton : numberToggleButtons) {
 						toggleButton.setSelected(false);
 					}
-//					numSelect = 0; // 버튼 초기화
+					numSelect = 0; // 버튼 초기화
 					while (numSelect < autoSelectCount) {
 						int randomNumber = random.nextInt(45) + 1;
 						if (!numberToggleButtons.get(randomNumber - 1).isSelected()) {
@@ -315,7 +315,6 @@ public class BuyFrame extends JFrame {
 				System.out.println("대화 상자를 생성합니다.");
 				JDialog dialog = new ResultDialog(lottoProgram);
 				dialog.setVisible(true);
-
 				System.out.println("출력 확인!!");
 			}
 		});
@@ -341,6 +340,9 @@ public class BuyFrame extends JFrame {
 					toggleButton = numberToggleButtons.get(index);
 					toggleButton.setSelected(true);
 				}
+				lblStateA.setText("미지정");
+				lotto.resultBuy.set(0, new ArrayList<>());
+
 			}
 		});
 
@@ -365,6 +367,9 @@ public class BuyFrame extends JFrame {
 					toggleButton = numberToggleButtons.get(index);
 					toggleButton.setSelected(true);
 				}
+				lblStateB.setText("미지정");
+				lotto.resultBuy.set(1, new ArrayList<>());
+
 			}
 		});
 		pnl.add(btnRetouchB);
@@ -389,6 +394,9 @@ public class BuyFrame extends JFrame {
 					toggleButton = numberToggleButtons.get(index);
 					toggleButton.setSelected(true);
 				}
+				lblStateC.setText("미지정");
+				lotto.resultBuy.set(2, new ArrayList<>());
+
 			}
 		});
 		pnl.add(btnRetouchC);
@@ -412,10 +420,10 @@ public class BuyFrame extends JFrame {
 					toggleButton = numberToggleButtons.get(index);
 					toggleButton.setSelected(true);
 				}
+				lblStateD.setText("미지정");
+				lotto.resultBuy.set(3, new ArrayList<>());
 			}
-
 		});
-
 		pnl.add(btnRetouchD);
 
 		btnRetouchE = new JButton("수정");
@@ -438,8 +446,8 @@ public class BuyFrame extends JFrame {
 					toggleButton.setSelected(true);
 				}
 				lblStateE.setText("미지정");
-				lotto.resultBuy.set(0, new ArrayList<>());
-				countNum = 0;
+				lotto.resultBuy.set(4, new ArrayList<>());
+//				countNum = 0;
 			}
 		});
 		pnl.add(btnRetouchE);
