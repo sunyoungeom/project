@@ -268,7 +268,6 @@ public class BuyFrame extends JFrame {
 				lblStateE.setText("미지정");
 				lotto.resultBuy.set(4, new ArrayList<>());
 				removeBalls(ballEpnl);
-				// countNum을 -1로 재설정
 				countNum = 0;
 			}
 		});
