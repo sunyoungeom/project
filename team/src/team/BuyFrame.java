@@ -28,8 +28,9 @@ import sun.net.www.content.image.jpeg;
 
 import java.awt.Color;
 import java.awt.Component;
-import javax.swing.JComboBox;
 import java.awt.Font;
+
+import javax.swing.JComboBox;
 
 public class BuyFrame extends JFrame {
 	private LottoProgram lotto;

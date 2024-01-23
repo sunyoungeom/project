@@ -14,9 +14,10 @@ import java.awt.event.ActionListener;
 	import java.util.Arrays;
 	import java.awt.event.ActionEvent;
 
+	// 내가 산기록
 	public class RecordDialog extends JDialog {
 		private LottoProgram lotto;
-
+		private int tempNum;
 		public RecordDialog(LottoProgram lottoProgram) {
 			this.lotto = lottoProgram;
 			getContentPane().setBackground(Color.WHITE);
@@ -137,12 +138,13 @@ import java.awt.event.ActionListener;
 			
 			
 			
-			JButton btnNewButton_ = new JButton("<");
-			btnNewButton_.addActionListener(new ActionListener() {
+			JButton btnLeft = new JButton("<");
+			btnLeft.addActionListener(new ActionListener() {
 				
+
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					int tempNum = lotto.roundNum;
+					tempNum = lotto.roundNum;
 					tempNum--;
 					JLabel[] resultLabels = { resultA, resultB, resultC, resultD, resultE };
 					for (int j = 0; j < resultLabels.length; j++) {
@@ -161,9 +163,9 @@ import java.awt.event.ActionListener;
 					
 				}
 			});
-			springLayout.putConstraint(SpringLayout.NORTH, btnNewButton_, 10, SpringLayout.SOUTH, thirdLine);
-			springLayout.putConstraint(SpringLayout.WEST, btnNewButton_, 250, SpringLayout.WEST, getContentPane());
-			getContentPane().add(btnNewButton_);
+			springLayout.putConstraint(SpringLayout.NORTH, btnLeft, 10, SpringLayout.SOUTH, thirdLine);
+			springLayout.putConstraint(SpringLayout.WEST, btnLeft, 250, SpringLayout.WEST, getContentPane());
+			getContentPane().add(btnLeft);
 
 			JButton btnNewButton = new JButton("확인");
 			springLayout.putConstraint(SpringLayout.NORTH, btnNewButton, 35, SpringLayout.SOUTH, thirdLine);
@@ -185,7 +187,6 @@ import java.awt.event.ActionListener;
 					resultTitleText.append(ch).append(" ").append(lotto.resultBuyTitle.get(j));
 					ch += 1;
 					resultTitleLabels[j].setText(resultTitleText.toString());
-
 				} else {
 					// 이 블록은 예외를 방지하기 위한 로직을 추가할 수 있습니다.
 					// 예를 들어, 메시지를 출력하거나 기본값을 설정하는 등의 작업을 수행할 수 있습니다.
@@ -195,7 +196,7 @@ import java.awt.event.ActionListener;
 
 			JLabel[] resultLabels = { resultA, resultB, resultC, resultD, resultE };
 			for (int j = 0; j < resultLabels.length; j++) {
-				if (!lotto.buyNumberCollection.get(lotto.roundNum).isEmpty() && j < lotto.buyNumberCollection.get(lotto.roundNum).size() && lotto.buyNumberCollection.get(lotto.roundNum).get(j).size() > 0) {
+				if (lotto.buyNumberCollection.get(tempNum) != null && j < lotto.buyNumberCollection.get(tempNum).size() && lotto.buyNumberCollection.get(tempNum).get(j) != null && lotto.buyNumberCollection.get(tempNum).get(j).size() > 0) {
 					StringBuilder resultText = new StringBuilder();
 					for (int i = 0; i < 6 && i < lotto.resultBuy.get(j).size(); i++) {
 						resultText.append(lotto.buyNumberCollection.get(lotto.roundNum).get(j).get(i)).append(" ");
