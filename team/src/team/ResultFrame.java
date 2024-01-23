@@ -26,6 +26,7 @@ import java.awt.Image;
 public class ResultFrame extends JFrame {
 	private LottoProgram lotto;
 	private BuyFrame buy;
+	private int winningCount = 0;
 //	public static Map<Integer, ArrayList<String>> winningNumberCollection = new TreeMap<>();
 
 	public ResultFrame(LottoProgram lottoProgram) {
@@ -80,7 +81,6 @@ public class ResultFrame extends JFrame {
 		JLabel secondLine = new JLabel("");
 		springLayout.putConstraint(SpringLayout.NORTH, secondLine, 6, SpringLayout.SOUTH, lottoDate);
 		springLayout.putConstraint(SpringLayout.WEST, secondLine, 0, SpringLayout.WEST, firstLine);
-//		secondLine.setIcon(new ImageIcon("images/lottoResult_3.png"));
 		backgroundImage.add(secondLine);
 
 		JLabel titleA = new JLabel("New label");
@@ -143,6 +143,10 @@ public class ResultFrame extends JFrame {
 		springLayout.putConstraint(SpringLayout.NORTH, total, 6, SpringLayout.SOUTH, thirdLine);
 		springLayout.putConstraint(SpringLayout.WEST, total, 0, SpringLayout.WEST, lblNewLabel_1);
 		backgroundImage.add(total);
+		JLabel WinningresultA = new JLabel(""); // 당첨결과를 알려주기 위한 라벨
+		springLayout.putConstraint(SpringLayout.NORTH, WinningresultA, 110, SpringLayout.SOUTH, secondLine);
+		springLayout.putConstraint(SpringLayout.WEST, WinningresultA, 200, SpringLayout.WEST, lblTitle);
+		backgroundImage.add(WinningresultA);
 
 		JButton btnNewButton = new JButton("확인");
 		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton, 35, SpringLayout.SOUTH, thirdLine);
@@ -227,10 +231,34 @@ public class ResultFrame extends JFrame {
 			ArrayList<String> ll = new ArrayList<>();
 			ll = lotto.winningNumberCollection.get(lotto.roundNum);
 			System.out.println("dd" + ll);
+			System.out.println(lotto.winningNumberCollection.get(lotto.roundNum).get(0));
 
 			for (Integer numKey : lotto.winningNumberCollection.keySet()) {
 				System.out.println("제" + (numKey) + "회" + ": " + lotto.winningNumberCollection.get(numKey));
 			}
+			// A번호 매칭하여 1,2,3,4,5,낙첨 출력
+			for (int i = 0; i < 6; i++) {
+				for (int j = 0; j < 6; j++) {
+					if (lotto.resultBuy.get(0).get(i)
+							.equals(lotto.winningNumberCollection.get(lotto.roundNum).get(j))) {
+						winningCount++;
+						break;
+					}
+				}
+			}
+			if (winningCount == 0 || winningCount < 3) {
+				WinningresultA.setText("낙첨");
+			} else if (winningCount == 3) {
+				WinningresultA.setText("4등");
+			} else if (winningCount == 4) {
+				WinningresultA.setText("3등");
+			} else if (winningCount == 5) {
+				WinningresultA.setText("2등");
+			} else if (winningCount == 6) {
+				WinningresultA.setText("1등");
+			}
+			winningCount = 0;
+			
 			showResultBall(lotto.resultBuy.get(index), springLayout, backgroundImage);
 
 		}

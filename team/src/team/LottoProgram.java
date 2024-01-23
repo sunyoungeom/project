@@ -52,6 +52,7 @@ public class LottoProgram extends JFrame {
 		}
 
 		setTitle("메인 창");
+
 		JPanel main = new JPanel();
 		JLabel backgroundImage = new JLabel(new ImageIcon("images/lottoMainimage.png"));
 		SpringLayout sl_main = new SpringLayout();
@@ -75,11 +76,11 @@ public class LottoProgram extends JFrame {
 		sl_main.putConstraint(SpringLayout.WEST, btnResult, 0, SpringLayout.WEST, btnBuy);
 		sl_main.putConstraint(SpringLayout.EAST, btnResult, 308, SpringLayout.WEST, btnBuy);
 		sl_main.putConstraint(SpringLayout.NORTH, btnBefore, 0, SpringLayout.SOUTH, btnResult);
-		sl_main.putConstraint(SpringLayout.SOUTH, btnBefore, 85, SpringLayout.SOUTH, btnResult);
+		sl_main.putConstraint(SpringLayout.SOUTH, btnBefore, 83, SpringLayout.SOUTH, btnResult);
 		sl_main.putConstraint(SpringLayout.WEST, btnBefore, 0, SpringLayout.WEST, btnResult);
 		sl_main.putConstraint(SpringLayout.EAST, btnBefore, 0, SpringLayout.EAST, btnResult);
 		sl_main.putConstraint(SpringLayout.NORTH, btnHelp, 0, SpringLayout.SOUTH, btnBefore);
-		sl_main.putConstraint(SpringLayout.SOUTH, btnHelp, 78, SpringLayout.SOUTH, btnBefore);
+		sl_main.putConstraint(SpringLayout.SOUTH, btnHelp, 80, SpringLayout.SOUTH, btnBefore);
 		sl_main.putConstraint(SpringLayout.WEST, btnHelp, 0, SpringLayout.WEST, btnBefore);
 		sl_main.putConstraint(SpringLayout.EAST, btnHelp, 0, SpringLayout.EAST, btnBefore);
 
@@ -102,7 +103,8 @@ public class LottoProgram extends JFrame {
 					ResultFrame resultFrame = new ResultFrame(LottoProgram.this);
 					resultFrame.setVisible(true);
 				} else {
-					JOptionPane.showMessageDialog(null, "구매하기를 먼저 진행해 주세요", "해당 회차 종료", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(LottoProgram.this, "구매하기를 먼저 진행해 주세요", "해당 회차 종료",
+							JOptionPane.WARNING_MESSAGE);
 					System.out.println("구매하기 먼저");
 				}
 
@@ -129,9 +131,9 @@ public class LottoProgram extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (resultBuy.get(0).size() != 0) {
-				setVisible(false);
-				HelpFrame helpFrame = new HelpFrame(LottoProgram.this);
-				helpFrame.setVisible(true);
+					setVisible(false);
+					HelpFrame helpFrame = new HelpFrame(LottoProgram.this);
+					helpFrame.setVisible(true);
 				}
 			}
 		});
