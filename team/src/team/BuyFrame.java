@@ -92,7 +92,7 @@ public class BuyFrame extends JFrame {
 		JPanel ballApnl = new JPanel();
 		ballApnl.setBackground(Color.WHITE);
 		sl_pnl.putConstraint(SpringLayout.NORTH, ballApnl, 90, SpringLayout.NORTH, pnl);
-		sl_pnl.putConstraint(SpringLayout.WEST, ballApnl, 440, SpringLayout.WEST, pnl);
+		sl_pnl.putConstraint(SpringLayout.WEST, ballApnl, 470, SpringLayout.WEST, pnl);
 		pnl.add(ballApnl);
 
 		JPanel ballBpnl = new JPanel();
@@ -774,6 +774,12 @@ public class BuyFrame extends JFrame {
 		sl_pnl.putConstraint(SpringLayout.WEST, lblNewLabel, 0, SpringLayout.WEST, lblBuyCount);
 		lblNewLabel.setIcon(new ImageIcon("images/img.jpg"));
 		pnl.add(lblNewLabel);
+		
+//		JLabel lblNewLabel_1 = new JLabel("");
+//		sl_pnl.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 0, SpringLayout.NORTH, ballApnl);
+//		sl_pnl.putConstraint(SpringLayout.WEST, lblNewLabel_1, 28, SpringLayout.EAST, ballApnl);
+//		lblNewLabel_1.setIcon(new ImageIcon("D:\\young\\ball\\ball_s_1.png"));
+//		pnl.add(lblNewLabel_1);
 		setSize(1000, 600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(false);
@@ -791,17 +797,18 @@ public class BuyFrame extends JFrame {
 
 		for (int i = 0; i < selectedNumbers.size(); i++) {
 			String num = selectedNumbers.get(i);
-			String path = "images/ball/ball_";
-			String imagePath = "images/ball/ball_" + num + ".PNG";
+//			String path = "images/ball/ball_";
+			String imagePath = "images/ball/ball_s_" + num + ".PNG";
 
 			ImageIcon icon = new ImageIcon(imagePath);
-			Image image = icon.getImage(); // Image 객체로 변환
-			Image resizedImage = image.getScaledInstance(54, 40, Image.SCALE_SMOOTH); // 크기 조정
-			ImageIcon resizedIcon = new ImageIcon(resizedImage); // 조정된 이미지로 새로운 아이콘 생성
+//			Image image = icon.getImage(); // Image 객체로 변환
+//			Image resizedImage = image.getScaledInstance(54, 40, Image.SCALE_SMOOTH); // 크기 조정
+//			ImageIcon resizedIcon = new ImageIcon(resizedImage); // 조정된 이미지로 새로운 아이콘 생성
 
-			JLabel label = new JLabel(resizedIcon);
+//			JLabel label = new JLabel(resizedIcon);
+			JLabel label = new JLabel(icon);
 			sl_pnl.putConstraint(SpringLayout.NORTH, label, x, SpringLayout.NORTH, lblA);
-			sl_pnl.putConstraint(SpringLayout.WEST, label, y + (i * 50), SpringLayout.EAST, lblStateA);
+			sl_pnl.putConstraint(SpringLayout.WEST, label, y + (i * 80), SpringLayout.EAST, lblStateA);
 			pnl.add(label);
 			labels[i] = label;
 		}
