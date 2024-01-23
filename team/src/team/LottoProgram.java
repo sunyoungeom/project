@@ -103,7 +103,8 @@ public class LottoProgram extends JFrame {
 					ResultFrame resultFrame = new ResultFrame(LottoProgram.this);
 					resultFrame.setVisible(true);
 				} else {
-					JOptionPane.showMessageDialog(null, "구매하기를 먼저 진행해 주세요", "해당 회차 종료", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(LottoProgram.this, "구매하기를 먼저 진행해 주세요", "해당 회차 종료",
+							JOptionPane.WARNING_MESSAGE);
 					System.out.println("구매하기 먼저");
 				}
 
