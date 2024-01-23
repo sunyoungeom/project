@@ -21,13 +21,13 @@ import javax.swing.SpringLayout;
 import com.sun.xml.internal.messaging.saaj.soap.JpegDataContentHandler;
 
 public class LottoProgram extends JFrame {
-	private BeforeFrame beforeFrame = new BeforeFrame(this);
 //	private HelpFrame helpFrame = new HelpFrame(this);
 	public ArrayList<ArrayList<String>> resultBuy = new ArrayList<>(5);
 //    public ArrayList<ArrayList<String>> resultBuyTitles = new ArrayList<>();
 	public ArrayList<String> resultBuyTitle = new ArrayList<>(5);
 	public int roundNum = 0;
 	public static Map<Integer, ArrayList<String>> winningNumberCollection = new TreeMap<>();
+	public static Map<Integer, ArrayList<ArrayList<String>>> buyNumberCollection = new TreeMap<>();
 
 	public static CircleImagePanel circleImagePanel;
 	public static ImageTextPair[] imageTextPairs = new ImageTextPair[6];
@@ -113,10 +113,15 @@ public class LottoProgram extends JFrame {
 		btnBefore.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				beforeFrame.setVisible(true);
 				if (winningNumberCollection.get(roundNum) != null) {
+					setVisible(false);
+					BeforeFrame beforeFrame = new BeforeFrame(LottoProgram.this);
+					beforeFrame.setVisible(true);
+//					showRBall(lotto.winningNumberCollection.get(roundNum), pnl, sl_pnl, 10, 10);
 					System.out.println(winningNumberCollection.get(roundNum));
+				} else {
+					JOptionPane.showMessageDialog(null, "이전 회차가 없습니다.", "???뭐라고할까요", JOptionPane.WARNING_MESSAGE);
+
 				}
 			}
 		});
