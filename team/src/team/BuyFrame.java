@@ -77,6 +77,7 @@ public class BuyFrame extends JFrame {
 	private JPanel ballCpnl;
 	private JPanel ballDpnl;
 	private JPanel ballEpnl;
+	private JButton btnRetouchA;
 
 	public BuyFrame(LottoProgram lottoProgram) {
 		this.lotto = lottoProgram;
@@ -94,8 +95,6 @@ public class BuyFrame extends JFrame {
 
 		btnreturn = new JButton("돌아가기");
 		btnreturn.setBackground(Color.WHITE);
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnreturn, 29, SpringLayout.NORTH, pnl);
-		sl_pnl.putConstraint(SpringLayout.WEST, btnreturn, 10, SpringLayout.WEST, pnl);
 		pnl.add(btnreturn);
 
 		btnreturn.addActionListener(new ActionListener() {
@@ -103,14 +102,14 @@ public class BuyFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				lotto.setVisible(true);
-				lotto.setRoundNum(lotto.getRoundNum() + 1);
 			}
 		});
 
 		btnReset = new JButton("초기화");
+		sl_pnl.putConstraint(SpringLayout.WEST, btnreturn, 0, SpringLayout.WEST, btnReset);
+		sl_pnl.putConstraint(SpringLayout.EAST, btnreturn, 18, SpringLayout.EAST, btnReset);
+		sl_pnl.putConstraint(SpringLayout.WEST, btnReset, 10, SpringLayout.WEST, pnl);
 		btnReset.setBackground(Color.WHITE);
-		sl_pnl.putConstraint(SpringLayout.WEST, btnReset, 0, SpringLayout.WEST, btnreturn);
-		sl_pnl.putConstraint(SpringLayout.EAST, btnReset, 0, SpringLayout.EAST, btnreturn);
 		pnl.add(btnReset);
 		btnReset.addActionListener(new ActionListener() {
 			@Override
@@ -123,10 +122,11 @@ public class BuyFrame extends JFrame {
 		});
 
 		btnAuto = new JButton("자동선택");
+		sl_pnl.putConstraint(SpringLayout.WEST, btnAuto, 123, SpringLayout.WEST, pnl);
+		sl_pnl.putConstraint(SpringLayout.EAST, btnReset, -32, SpringLayout.WEST, btnAuto);
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnAuto, 0, SpringLayout.NORTH, btnReset);
 		btnAuto.setBackground(Color.WHITE);
 		btnAuto.setForeground(Color.BLACK);
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnAuto, 0, SpringLayout.NORTH, btnReset);
-		sl_pnl.putConstraint(SpringLayout.WEST, btnAuto, 6, SpringLayout.EAST, btnReset);
 		pnl.add(btnAuto);
 		// "자동선택" 버튼에 대한 ActionListener를 추가
 		btnAuto.addActionListener(new ActionListener() {
@@ -173,17 +173,17 @@ public class BuyFrame extends JFrame {
 
 		btnCheck = new JButton("번호확인");
 		sl_pnl.putConstraint(SpringLayout.NORTH, btnCheck, 0, SpringLayout.NORTH, btnReset);
-		sl_pnl.putConstraint(SpringLayout.WEST, btnCheck, 6, SpringLayout.EAST, btnAuto);
 		pnl.add(btnCheck);
 		btnCheck.setOpaque(false);
 		btnCheck.setContentAreaFilled(false);
 
 		toggleButtonPanel = new JPanel();
+		sl_pnl.putConstraint(SpringLayout.NORTH, toggleButtonPanel, 11, SpringLayout.SOUTH, btnreturn);
+		sl_pnl.putConstraint(SpringLayout.SOUTH, toggleButtonPanel, -66, SpringLayout.SOUTH, pnl);
+		sl_pnl.putConstraint(SpringLayout.EAST, btnCheck, 0, SpringLayout.EAST, toggleButtonPanel);
 		toggleButtonPanel.setBackground(Color.WHITE);
 		toggleButtonPanel.setBorder(new LineBorder(Color.DARK_GRAY));
 		sl_pnl.putConstraint(SpringLayout.NORTH, btnReset, 21, SpringLayout.SOUTH, toggleButtonPanel);
-		sl_pnl.putConstraint(SpringLayout.NORTH, toggleButtonPanel, 11, SpringLayout.SOUTH, btnreturn);
-		sl_pnl.putConstraint(SpringLayout.SOUTH, toggleButtonPanel, -66, SpringLayout.SOUTH, pnl);
 		sl_pnl.putConstraint(SpringLayout.EAST, toggleButtonPanel, -667, SpringLayout.EAST, pnl);
 		sl_pnl.putConstraint(SpringLayout.WEST, toggleButtonPanel, 10, SpringLayout.WEST, pnl);
 		pnl.add(toggleButtonPanel);
@@ -227,7 +227,7 @@ public class BuyFrame extends JFrame {
 
 		btnPurchase = new JButton("구매하기");
 		sl_pnl.putConstraint(SpringLayout.NORTH, btnPurchase, -6, SpringLayout.NORTH, btnReset);
-		sl_pnl.putConstraint(SpringLayout.WEST, btnPurchase, 294, SpringLayout.EAST, btnCheck);
+		sl_pnl.putConstraint(SpringLayout.WEST, btnPurchase, 242, SpringLayout.EAST, btnCheck);
 		sl_pnl.putConstraint(SpringLayout.SOUTH, btnPurchase, 29, SpringLayout.NORTH, btnReset);
 		sl_pnl.putConstraint(SpringLayout.EAST, btnPurchase, -312, SpringLayout.EAST, pnl);
 		btnPurchase.setBackground(Color.WHITE);
@@ -236,6 +236,7 @@ public class BuyFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("대화 상자를 생성합니다.");
+				lotto.roundNum++;
 				JDialog dialog = new ResultDialog(lottoProgram);
 				dialog.setVisible(true);
 				System.out.println("출력 확인!!");
@@ -243,10 +244,11 @@ public class BuyFrame extends JFrame {
 		});
 
 		btnNumReset = new JButton("초기화");
-		btnNumReset.setBackground(Color.WHITE);
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnNumReset, 0, SpringLayout.NORTH, btnreturn);
-		sl_pnl.putConstraint(SpringLayout.WEST, btnNumReset, 725, SpringLayout.EAST, btnreturn);
+		sl_pnl.putConstraint(SpringLayout.WEST, btnNumReset, 707, SpringLayout.EAST, btnreturn);
 		sl_pnl.putConstraint(SpringLayout.EAST, btnNumReset, -69, SpringLayout.EAST, pnl);
+		sl_pnl.putConstraint(SpringLayout.SOUTH, btnreturn, 0, SpringLayout.SOUTH, btnNumReset);
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnNumReset, 29, SpringLayout.NORTH, pnl);
+		btnNumReset.setBackground(Color.WHITE);
 		pnl.add(btnNumReset);
 		btnNumReset.addActionListener(new ActionListener() {
 			@Override
@@ -288,7 +290,6 @@ public class BuyFrame extends JFrame {
 					for (JToggleButton toggleButton : numberToggleButtons) {
 						toggleButton.setSelected(false);
 					}
-
 					if (btnDeleteA.isSelected() || btnDeleteB.isSelected() || btnDeleteC.isSelected()
 							|| btnDeleteD.isSelected() || btnDeleteE.isSelected()) {
 					}
@@ -306,13 +307,11 @@ public class BuyFrame extends JFrame {
 					}
 					if (lotto.resultBuy.get(0).size() == 0) {
 						countNum = 0;
-
 					}
 					if (countNum == 5) {
 						JOptionPane.showMessageDialog(BuyFrame.this, "구매횟수를 초과했습니다", "구매횟수 초과",
 								JOptionPane.WARNING_MESSAGE);
 					}
-
 					if (countNum == 0) {
 						lotto.resultBuy.set(0, selectedNumbers);
 						System.out.println(lotto.resultBuy);
@@ -387,11 +386,9 @@ public class BuyFrame extends JFrame {
 							lotto.resultBuy.set(4, selectedNumbers);
 							System.out.println(lotto.resultBuy);
 							showBall(4, selectedNumbers, ballEpnl, sl_pnl, 270, 50);
-
 							for (JToggleButton toggleButton : numberToggleButtons) {
 								toggleButton.setSelected(false);
 							}
-
 							if (numSelect == 0) {
 								lblStateE.setText("자동");
 								autoSelected = false;
@@ -403,7 +400,6 @@ public class BuyFrame extends JFrame {
 							lotto.resultBuyTitle.set(4, lblStateE.getText());
 							countNum = 5;
 						}
-
 					} else {
 						// 6개가 선택되지 않은 경우
 					}
@@ -413,14 +409,14 @@ public class BuyFrame extends JFrame {
 							break;
 						}
 					}
-
 					numSelect = 0;
 				}
 			}
 		});
 
 		JLabel lblNewLabel = new JLabel("");
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblNewLabel, -19, SpringLayout.NORTH, btnreturn);
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnreturn, 0, SpringLayout.NORTH, lblNewLabel);
+		sl_pnl.putConstraint(SpringLayout.NORTH, lblNewLabel, 10, SpringLayout.NORTH, pnl);
 		sl_pnl.putConstraint(SpringLayout.WEST, lblNewLabel, 389, SpringLayout.WEST, pnl);
 		lblNewLabel.setIcon(new ImageIcon("images/img.jpg"));
 		pnl.add(lblNewLabel);
@@ -428,7 +424,6 @@ public class BuyFrame extends JFrame {
 		JPanel panel = new JPanel();
 		sl_pnl.putConstraint(SpringLayout.SOUTH, panel, 0, SpringLayout.SOUTH, toggleButtonPanel);
 		sl_pnl.putConstraint(SpringLayout.EAST, panel, -10, SpringLayout.EAST, pnl);
-		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
 		panel.setBackground(Color.WHITE);
 		sl_pnl.putConstraint(SpringLayout.NORTH, panel, 0, SpringLayout.NORTH, toggleButtonPanel);
 		sl_pnl.putConstraint(SpringLayout.WEST, panel, 22, SpringLayout.EAST, toggleButtonPanel);
@@ -436,129 +431,266 @@ public class BuyFrame extends JFrame {
 		panel.setLayout(null);
 		
 		lblLineA = new JLabel("A");
-		lblLineA.setBounds(25, 10, 20, 35);
+		lblLineA.setBounds(20, 10, 20, 35);
 		lblLineA.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
 		panel.add(lblLineA);
 		
 		lblStateA = new JLabel("미지정");
-		lblStateA.setBounds(80, 20, 45, 21);
+		lblStateA.setBounds(60, 20, 45, 21);
 		lblStateA.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		panel.add(lblStateA);
 		
 		ballApnl = new JPanel();
 		ballApnl.setBackground(Color.WHITE);
-		ballApnl.setBounds(160, 5, 330, 50);
+		ballApnl.setBounds(130, 5, 330, 50);
 		panel.add(ballApnl);
 		
-		JButton btnRetouchA = new JButton("수정");
+		btnRetouchA = new JButton("수정");
 		btnRetouchA.setBackground(Color.WHITE);
-		btnRetouchA.setBounds(507, 15, 60, 25);
+		btnRetouchA.setBounds(480, 15, 60, 25);
 		panel.add(btnRetouchA);
+		btnRetouchA.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				countNum = 0;
+				for (JToggleButton toggleButton : numberToggleButtons) {
+					toggleButton.setSelected(false);
+				}
+//              lotto.resultBuy.set(0, selectedNumbers);
+				ArrayList<String> selectAnumbers = lotto.resultBuy.get(0);
+				// 선택된 숫자에 해당하는 토글 버튼을 선택 상태로 설정
+				for (String number : selectAnumbers) {
+					int index = Integer.parseInt(number) - 1; // 토글 버튼은 0부터 시작하므로 1을 빼줍니다.
+					toggleButton = numberToggleButtons.get(index);
+					toggleButton.setSelected(true);
+				}
+				lblStateA.setText("미지정");
+				lotto.resultBuy.set(0, new ArrayList<>());
+
+			}
+		});
 		
 		btnDeleteA = new JButton("삭제");
 		btnDeleteA.setBackground(Color.WHITE);
-		btnDeleteA.setBounds(575, 15, 60, 25);
+		btnDeleteA.setBounds(550, 15, 60, 25);
 		panel.add(btnDeleteA);
+		btnDeleteA.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				lblStateA.setText("미지정");
+				lotto.resultBuy.set(0, new ArrayList<>());
+				countNum = 0;
+				removeBalls(ballApnl);
+			}
+		});
 		
 		ballBpnl = new JPanel();
 		ballBpnl.setBackground(Color.WHITE);
-		ballBpnl.setBounds(160, 95, 330, 50);
+		ballBpnl.setBounds(130, 95, 330, 50);
 		panel.add(ballBpnl);
 		
 		lblLineB = new JLabel("B");
-		lblLineB.setBounds(25, 100, 20, 35);
+		lblLineB.setBounds(20, 100, 20, 35);
 		lblLineB.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
 		panel.add(lblLineB);
 		
 		lblStateB = new JLabel("미지정");
-		lblStateB.setBounds(80, 110, 45, 21);
+		lblStateB.setBounds(60, 110, 45, 21);
 		lblStateB.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		panel.add(lblStateB);
 		
 		btnRetouchB = new JButton("수정");
 		btnRetouchB.setBackground(Color.WHITE);
-		btnRetouchB.setBounds(507, 105, 60, 25);
+		btnRetouchB.setBounds(480, 105, 60, 25);
 		panel.add(btnRetouchB);
+		btnRetouchB.setBackground(Color.WHITE);
+		btnRetouchB.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				countNum = 1;
+				for (JToggleButton toggleButton : numberToggleButtons) {
+					toggleButton.setSelected(false);
+				}
+//              lotto.resultBuy.set(1, selectedNumbers);
+				ArrayList<String> selectBnumbers = lotto.resultBuy.get(1);
+				// 선택된 숫자에 해당하는 토글 버튼을 선택 상태로 설정
+				for (String number : selectBnumbers) {
+					int index = Integer.parseInt(number) - 1; // 토글 버튼은 0부터 시작하므로 1을 빼줍니다.
+					toggleButton = numberToggleButtons.get(index);
+					toggleButton.setSelected(true);
+				}
+				lblStateB.setText("미지정");
+				lotto.resultBuy.set(1, new ArrayList<>());
+			}
+		});
 		
 		btnDeleteB = new JButton("삭제");
 		btnDeleteB.setBackground(Color.WHITE);
-		btnDeleteB.setBounds(575, 105, 60, 25);
+		btnDeleteB.setBounds(550, 105, 60, 25);
 		panel.add(btnDeleteB);
+		btnDeleteB.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				lblStateB.setText("미지정");
+				lotto.resultBuy.set(1, new ArrayList<>());
+				countNum = 1;
+				removeBalls(ballBpnl);
+			}
+		});
 		
 		lblLineC = new JLabel("C");
-		lblLineC.setBounds(30, 190, 20, 35);
+		lblLineC.setBounds(20, 190, 20, 35);
 		lblLineC.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
 		panel.add(lblLineC);
 		
 		lblStateC = new JLabel("미지정");
-		lblStateC.setBounds(83, 200, 45, 21);
+		lblStateC.setBounds(60, 200, 45, 21);
 		lblStateC.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		panel.add(lblStateC);
 		
 		ballCpnl = new JPanel();
 		ballCpnl.setBackground(Color.WHITE);
-		ballCpnl.setBounds(160, 185, 330, 50);
+		ballCpnl.setBounds(130, 185, 330, 50);
 		panel.add(ballCpnl);
 		
 		btnRetouchC = new JButton("수정");
 		btnRetouchC.setBackground(Color.WHITE);
-		btnRetouchC.setBounds(507, 195, 60, 25);
+		btnRetouchC.setBounds(480, 195, 60, 25);
 		panel.add(btnRetouchC);
+		btnRetouchC.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				countNum = 2;
+				for (JToggleButton toggleButton : numberToggleButtons) {
+					toggleButton.setSelected(false);
+				}
+//              lotto.resultBuy.set(2, selectedNumbers);
+				ArrayList<String> selectCnumbers = lotto.resultBuy.get(2);
+				// 선택된 숫자에 해당하는 토글 버튼을 선택 상태로 설정
+				for (String number : selectCnumbers) {
+					int index = Integer.parseInt(number) - 1; // 토글 버튼은 0부터 시작하므로 1을 빼줍니다.
+					toggleButton = numberToggleButtons.get(index);
+					toggleButton.setSelected(true);
+				}
+				lblStateC.setText("미지정");
+				lotto.resultBuy.set(2, new ArrayList<>());
+			}
+		});
 		
 		btnDeleteC = new JButton("삭제");
 		btnDeleteC.setBackground(Color.WHITE);
-		btnDeleteC.setBounds(575, 195, 60, 25);
+		btnDeleteC.setBounds(550, 195, 60, 25);
 		panel.add(btnDeleteC);
+		btnDeleteC.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				lblStateC.setText("미지정");
+				lotto.resultBuy.set(2, new ArrayList<>());
+				countNum = 2;
+				removeBalls(ballCpnl);
+			}
+		});
 		
 		lblLineD = new JLabel("D");
-		lblLineD.setBounds(30, 280, 20, 35);
+		lblLineD.setBounds(20, 280, 20, 35);
 		lblLineD.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
 		panel.add(lblLineD);
 		
 		lblStateD = new JLabel("미지정");
-		lblStateD.setBounds(83, 290, 45, 21);
+		lblStateD.setBounds(60, 290, 45, 21);
 		lblStateD.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		panel.add(lblStateD);
 		
 		ballDpnl = new JPanel();
 		ballDpnl.setBackground(Color.WHITE);
-		ballDpnl.setBounds(160, 275, 330, 50);
+		ballDpnl.setBounds(130, 275, 330, 50);
 		panel.add(ballDpnl);
 		
 		btnRetouchD = new JButton("수정");
 		btnRetouchD.setBackground(Color.WHITE);
-		btnRetouchD.setBounds(507, 285, 60, 25);
+		btnRetouchD.setBounds(480, 285, 60, 25);
 		panel.add(btnRetouchD);
+		btnRetouchD.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				countNum = 3;
+				for (JToggleButton toggleButton : numberToggleButtons) {
+					toggleButton.setSelected(false);
+				}
+				ArrayList<String> selectDnumbers = lotto.resultBuy.get(3);
+				// 선택된 숫자에 해당하는 토글 버튼을 선택 상태로 설정
+				for (String number : selectDnumbers) {
+					int index = Integer.parseInt(number) - 1; // 토글 버튼은 0부터 시작하므로 1을 빼줍니다.
+					toggleButton = numberToggleButtons.get(index);
+					toggleButton.setSelected(true);
+				}
+				lblStateD.setText("미지정");
+				lotto.resultBuy.set(3, new ArrayList<>());
+			}
+		});
 		
 		btnDeleteD = new JButton("삭제");
 		btnDeleteD.setBackground(Color.WHITE);
-		btnDeleteD.setBounds(575, 285, 60, 25);
+		btnDeleteD.setBounds(550, 285, 60, 25);
 		panel.add(btnDeleteD);
+		btnDeleteD.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				lblStateD.setText("미지정");
+				lotto.resultBuy.set(3, new ArrayList<>());
+				countNum = 3;
+				removeBalls(ballDpnl);
+			}
+		});
 		
 		lblLineE = new JLabel("E");
-		lblLineE.setBounds(32, 370, 20, 35);
+		lblLineE.setBounds(20, 370, 20, 35);
 		lblLineE.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
 		panel.add(lblLineE);
 		
 		lblStateE = new JLabel("미지정");
-		lblStateE.setBounds(83, 380, 45, 21);
+		lblStateE.setBounds(60, 380, 45, 21);
 		lblStateE.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		panel.add(lblStateE);
 		
-		btnRetouchE = new JButton("수정");
-		btnRetouchE.setBackground(Color.WHITE);
-		btnRetouchE.setBounds(507, 375, 60, 25);
-		panel.add(btnRetouchE);
-		
 		ballEpnl = new JPanel();
 		ballEpnl.setBackground(Color.WHITE);
-		ballEpnl.setBounds(160, 365, 330, 50);
+		ballEpnl.setBounds(130, 365, 330, 50);
 		panel.add(ballEpnl);
+		
+		btnRetouchE = new JButton("수정");
+		btnRetouchE.setBackground(Color.WHITE);
+		btnRetouchE.setBounds(480, 375, 60, 25);
+		panel.add(btnRetouchE);
+		btnRetouchE.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				countNum = 4;
+				for (JToggleButton toggleButton : numberToggleButtons) {
+					toggleButton.setSelected(false);
+				}
+				ArrayList<String> selectEnumbers = lotto.resultBuy.get(4);
+				// 선택된 숫자에 해당하는 토글 버튼을 선택 상태로 설정
+				for (String number : selectEnumbers) {
+					int index = Integer.parseInt(number) - 1; // 토글 버튼은 0부터 시작하므로 1을 빼줍니다.
+					toggleButton = numberToggleButtons.get(index);
+					toggleButton.setSelected(true);
+				}
+				lblStateE.setText("미지정");
+				lotto.resultBuy.set(4, new ArrayList<>());
+//				countNum = 0;
+			}
+		});
 		
 		btnDeleteE = new JButton("삭제");
 		btnDeleteE.setBackground(Color.WHITE);
-		btnDeleteE.setBounds(575, 375, 60, 25);
+		btnDeleteE.setBounds(550, 375, 60, 25);
 		panel.add(btnDeleteE);
+		btnDeleteE.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				lblStateE.setText("미지정");
+				lotto.resultBuy.set(4, new ArrayList<>());
+				countNum = 4;
+				removeBalls(ballEpnl);
+			}
+		});
 
 //		JLabel lblNewLabel_1 = new JLabel("");
 //		sl_pnl.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 0, SpringLayout.NORTH, ballApnl);
@@ -602,8 +734,7 @@ public class BuyFrame extends JFrame {
 		return ballLabels;
 	}
 
-	public void removeBalls(int key, JPanel pnl, Map<Integer, JLabel[]> ballLabels) {
-		JLabel[] labelsArray = ballLabels.get(key);
+	public void removeBalls(JPanel pnl) {
 		pnl.removeAll();
 		pnl.revalidate();
 		pnl.repaint();
