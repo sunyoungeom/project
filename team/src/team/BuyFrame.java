@@ -31,41 +31,19 @@ import java.awt.Component;
 import java.awt.Font;
 
 import javax.swing.JComboBox;
+import java.awt.GridBagLayout;
+import java.awt.GridBagConstraints;
+import java.awt.Insets;
 
 public class BuyFrame extends JFrame {
 	private LottoProgram lotto;
 	public static ArrayList<JToggleButton> numberToggleButtons;
 	public static ArrayList<String> selectedNumbers;
 	private int SELECTED_NUMBER = 6;
-	private JLabel lblCheckA;
-	private JLabel lblCheckB;
-	private JLabel lblCheckC;
-	private JLabel lblCheckD;
-	private JLabel lblCheckE;
-	private JLabel lblA;
-	private JLabel lblB;
-	private JLabel lblC;
-	private JLabel lblD;
-	private JLabel lblE;
-	private JLabel lblStateA;
-	private JLabel lblStateB;
-	private JLabel lblStateC;
-	private JLabel lblStateD;
-	private JLabel lblStateE;
 	private JButton btnAuto;
 	private JButton btnReset;
 	private JButton btnreturn;
-	private JButton btnDeleteA;
-	private JButton btnRetouchD;
-	private JButton btnRetouchE;
-	private JButton btnRetouchC;
-	private JButton btnRetouchB;
-	private JButton btnRetouchA;
 	private JButton btnPurchase;
-	private JButton btnDeleteB;
-	private JButton btnDeleteC;
-	private JButton btnDeleteD;
-	private JButton btnDeleteE;
 	private JButton btnCheck;
 	private JPanel toggleButtonPanel;
 	private boolean autoSelected = false;
@@ -74,9 +52,31 @@ public class BuyFrame extends JFrame {
 	private int autoSelectCount;
 	public int countNum = 0; // 배열의 대한 숫자 0~4까지
 	public int numSelect = 0; // 직접 내가 누르는 번호의 개수
-	private JComboBox comboBox;
-	private JLabel lblBuyCount;
 	private Map<Integer, JLabel[]> ballLabels;
+	private JLabel lblLineA;
+	private JLabel lblLineB;
+	private JLabel lblLineC;
+	private JLabel lblLineD;
+	private JLabel lblLineE;
+	private JLabel lblStateA;
+	private JLabel lblStateB;
+	private JLabel lblStateC;
+	private JLabel lblStateD;
+	private JLabel lblStateE;
+	private JButton btnRetouchB;
+	private JButton btnRetouchC;
+	private JButton btnRetouchD;
+	private JButton btnRetouchE;
+	private JButton btnDeleteA;
+	private JButton btnDeleteB;
+	private JButton btnDeleteC;
+	private JButton btnDeleteD;
+	private JButton btnDeleteE;
+	private JPanel ballApnl;
+	private JPanel ballBpnl;
+	private JPanel ballCpnl;
+	private JPanel ballDpnl;
+	private JPanel ballEpnl;
 
 	public BuyFrame(LottoProgram lottoProgram) {
 		this.lotto = lottoProgram;
@@ -91,35 +91,6 @@ public class BuyFrame extends JFrame {
 		SpringLayout sl_pnl = new SpringLayout();
 		pnl.setLayout(sl_pnl);
 		getContentPane().add(pnl);
-
-		JPanel ballEpnl = new JPanel();
-		sl_pnl.putConstraint(SpringLayout.NORTH, ballEpnl, 411, SpringLayout.NORTH, pnl);
-		ballEpnl.setBackground(Color.WHITE);
-		pnl.add(ballEpnl);
-		
-		JPanel ballBpnl = new JPanel();
-		sl_pnl.putConstraint(SpringLayout.NORTH, ballBpnl, 196, SpringLayout.NORTH, pnl);
-		sl_pnl.putConstraint(SpringLayout.WEST, ballBpnl, 0, SpringLayout.WEST, ballEpnl);
-		ballBpnl.setBackground(Color.WHITE);
-		pnl.add(ballBpnl);
-
-		JPanel ballApnl = new JPanel();
-		sl_pnl.putConstraint(SpringLayout.WEST, ballApnl, 0, SpringLayout.WEST, ballEpnl);
-		sl_pnl.putConstraint(SpringLayout.SOUTH, ballApnl, -22, SpringLayout.NORTH, ballBpnl);
-		ballApnl.setBackground(Color.WHITE);
-		pnl.add(ballApnl);
-
-		JPanel ballCpnl = new JPanel();
-		sl_pnl.putConstraint(SpringLayout.SOUTH, ballCpnl, -244, SpringLayout.SOUTH, pnl);
-		sl_pnl.putConstraint(SpringLayout.WEST, ballCpnl, 0, SpringLayout.WEST, ballEpnl);
-		ballCpnl.setBackground(Color.WHITE);
-		pnl.add(ballCpnl);
-
-		JPanel ballDpnl = new JPanel();
-		sl_pnl.putConstraint(SpringLayout.NORTH, ballDpnl, 21, SpringLayout.SOUTH, ballCpnl);
-		sl_pnl.putConstraint(SpringLayout.WEST, ballDpnl, 0, SpringLayout.WEST, ballEpnl);
-		ballDpnl.setBackground(Color.WHITE);
-		pnl.add(ballDpnl);
 
 		btnreturn = new JButton("돌아가기");
 		btnreturn.setBackground(Color.WHITE);
@@ -254,74 +225,10 @@ public class BuyFrame extends JFrame {
 			toggleButtonPanel.add(toggleButton);
 		}
 
-		lblA = new JLabel("A");
-		sl_pnl.putConstraint(SpringLayout.EAST, lblA, -596, SpringLayout.EAST, pnl);
-		lblA.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
-		pnl.add(lblA);
-
-		lblB = new JLabel("B");
-		sl_pnl.putConstraint(SpringLayout.EAST, lblB, -596, SpringLayout.EAST, pnl);
-		sl_pnl.putConstraint(SpringLayout.SOUTH, lblA, -51, SpringLayout.NORTH, lblB);
-		lblB.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
-		pnl.add(lblB);
-
-		lblC = new JLabel("C");
-		sl_pnl.putConstraint(SpringLayout.NORTH, ballCpnl, 0, SpringLayout.NORTH, lblC);
-		sl_pnl.putConstraint(SpringLayout.SOUTH, lblB, -46, SpringLayout.NORTH, lblC);
-		sl_pnl.putConstraint(SpringLayout.WEST, lblC, 0, SpringLayout.WEST, lblA);
-		lblC.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
-		pnl.add(lblC);
-
-		lblD = new JLabel("D");
-		sl_pnl.putConstraint(SpringLayout.WEST, ballDpnl, 93, SpringLayout.EAST, lblD);
-		sl_pnl.putConstraint(SpringLayout.SOUTH, lblD, -188, SpringLayout.SOUTH, pnl);
-		sl_pnl.putConstraint(SpringLayout.SOUTH, lblC, -51, SpringLayout.NORTH, lblD);
-		sl_pnl.putConstraint(SpringLayout.WEST, lblD, 0, SpringLayout.WEST, lblA);
-		lblD.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
-		pnl.add(lblD);
-
-		lblE = new JLabel("E");
-		sl_pnl.putConstraint(SpringLayout.WEST, ballEpnl, 97, SpringLayout.EAST, lblE);
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblE, 43, SpringLayout.SOUTH, lblD);
-		sl_pnl.putConstraint(SpringLayout.WEST, lblE, 0, SpringLayout.WEST, lblA);
-		lblE.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
-		pnl.add(lblE);
-
-		lblStateA = new JLabel("미지정");
-		lblStateA.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		pnl.add(lblStateA);
-
-		lblStateB = new JLabel("미지정");
-		sl_pnl.putConstraint(SpringLayout.SOUTH, lblStateA, -36, SpringLayout.NORTH, lblStateB);
-		sl_pnl.putConstraint(SpringLayout.EAST, lblStateA, 0, SpringLayout.EAST, lblStateB);
-		sl_pnl.putConstraint(SpringLayout.WEST, lblStateB, 408, SpringLayout.WEST, pnl);
-		sl_pnl.putConstraint(SpringLayout.WEST, ballBpnl, 29, SpringLayout.EAST, lblStateB);
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblStateB, 5, SpringLayout.NORTH, lblB);
-		lblStateB.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		pnl.add(lblStateB);
-
-		lblStateC = new JLabel("미지정");
-		sl_pnl.putConstraint(SpringLayout.WEST, lblStateC, 20, SpringLayout.EAST, lblC);
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblStateC, 5, SpringLayout.NORTH, lblC);
-		lblStateC.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		pnl.add(lblStateC);
-
-		lblStateD = new JLabel("미지정");
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblStateD, 5, SpringLayout.NORTH, lblD);
-		sl_pnl.putConstraint(SpringLayout.WEST, lblStateD, 19, SpringLayout.EAST, lblD);
-		lblStateD.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		pnl.add(lblStateD);
-
-		lblStateE = new JLabel("미지정");
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblStateE, 5, SpringLayout.NORTH, lblE);
-		sl_pnl.putConstraint(SpringLayout.WEST, lblStateE, 23, SpringLayout.EAST, lblE);
-		lblStateE.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		pnl.add(lblStateE);
-
 		btnPurchase = new JButton("구매하기");
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnPurchase, -12, SpringLayout.NORTH, btnReset);
-		sl_pnl.putConstraint(SpringLayout.WEST, btnPurchase, -425, SpringLayout.EAST, pnl);
-		sl_pnl.putConstraint(SpringLayout.SOUTH, btnPurchase, 23, SpringLayout.NORTH, btnReset);
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnPurchase, -6, SpringLayout.NORTH, btnReset);
+		sl_pnl.putConstraint(SpringLayout.WEST, btnPurchase, 294, SpringLayout.EAST, btnCheck);
+		sl_pnl.putConstraint(SpringLayout.SOUTH, btnPurchase, 29, SpringLayout.NORTH, btnReset);
 		sl_pnl.putConstraint(SpringLayout.EAST, btnPurchase, -312, SpringLayout.EAST, pnl);
 		btnPurchase.setBackground(Color.WHITE);
 		pnl.add(btnPurchase);
@@ -335,243 +242,6 @@ public class BuyFrame extends JFrame {
 			}
 		});
 
-		btnRetouchA = new JButton("수정");
-		sl_pnl.putConstraint(SpringLayout.SOUTH, btnRetouchA, 0, SpringLayout.SOUTH, ballApnl);
-		btnRetouchA.setBackground(Color.WHITE);
-		pnl.add(btnRetouchA);
-		btnRetouchA.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				countNum = 0;
-				for (JToggleButton toggleButton : numberToggleButtons) {
-					toggleButton.setSelected(false);
-				}
-				lblCheckA.setText("");
-				// 선택된 숫자들을 0번 인덱스의 resultBuy에 설정
-//              lotto.resultBuy.set(0, selectedNumbers);
-				ArrayList<String> selectAnumbers = lotto.resultBuy.get(0);
-				// 선택된 숫자에 해당하는 토글 버튼을 선택 상태로 설정
-				for (String number : selectAnumbers) {
-					int index = Integer.parseInt(number) - 1; // 토글 버튼은 0부터 시작하므로 1을 빼줍니다.
-					toggleButton = numberToggleButtons.get(index);
-					toggleButton.setSelected(true);
-				}
-				lblStateA.setText("미지정");
-				lotto.resultBuy.set(0, new ArrayList<>());
-
-			}
-		});
-
-		btnRetouchB = new JButton("수정");
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnRetouchB, 6, SpringLayout.NORTH, lblB);
-		sl_pnl.putConstraint(SpringLayout.EAST, btnRetouchB, 0, SpringLayout.EAST, btnRetouchA);
-		btnRetouchB.setBackground(Color.WHITE);
-		btnRetouchB.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				countNum = 1;
-				for (JToggleButton toggleButton : numberToggleButtons) {
-					toggleButton.setSelected(false);
-				}
-				lblCheckB.setText("");
-				// 선택된 숫자들을 0번 인덱스의 resultBuy에 설정
-//              lotto.resultBuy.set(1, selectedNumbers);
-
-				ArrayList<String> selectBnumbers = lotto.resultBuy.get(1);
-				// 선택된 숫자에 해당하는 토글 버튼을 선택 상태로 설정
-				for (String number : selectBnumbers) {
-					int index = Integer.parseInt(number) - 1; // 토글 버튼은 0부터 시작하므로 1을 빼줍니다.
-					toggleButton = numberToggleButtons.get(index);
-					toggleButton.setSelected(true);
-				}
-				lblStateB.setText("미지정");
-				lotto.resultBuy.set(1, new ArrayList<>());
-
-			}
-		});
-		pnl.add(btnRetouchB);
-
-		btnRetouchC = new JButton("수정");
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnRetouchC, 1, SpringLayout.NORTH, lblC);
-		btnRetouchC.setBackground(Color.WHITE);
-		btnRetouchC.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				countNum = 2;
-				for (JToggleButton toggleButton : numberToggleButtons) {
-					toggleButton.setSelected(false);
-				}
-				lblCheckC.setText("");
-				// 선택된 숫자들을 0번 인덱스의 resultBuy에 설정
-//              lotto.resultBuy.set(2, selectedNumbers);
-				ArrayList<String> selectCnumbers = lotto.resultBuy.get(2);
-				// 선택된 숫자에 해당하는 토글 버튼을 선택 상태로 설정
-				for (String number : selectCnumbers) {
-					int index = Integer.parseInt(number) - 1; // 토글 버튼은 0부터 시작하므로 1을 빼줍니다.
-					toggleButton = numberToggleButtons.get(index);
-					toggleButton.setSelected(true);
-				}
-				lblStateC.setText("미지정");
-				lotto.resultBuy.set(2, new ArrayList<>());
-
-			}
-		});
-		pnl.add(btnRetouchC);
-
-		btnRetouchD = new JButton("수정");
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnRetouchD, 6, SpringLayout.NORTH, lblD);
-		btnRetouchD.setBackground(Color.WHITE);
-		btnRetouchD.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				countNum = 3;
-				for (JToggleButton toggleButton : numberToggleButtons) {
-					toggleButton.setSelected(false);
-				}
-				lblCheckD.setText("");
-				// 선택된 숫자들을 0번 인덱스의 resultBuy에 설정
-				ArrayList<String> selectDnumbers = lotto.resultBuy.get(3);
-				// 선택된 숫자에 해당하는 토글 버튼을 선택 상태로 설정
-				for (String number : selectDnumbers) {
-					int index = Integer.parseInt(number) - 1; // 토글 버튼은 0부터 시작하므로 1을 빼줍니다.
-					toggleButton = numberToggleButtons.get(index);
-					toggleButton.setSelected(true);
-				}
-				lblStateD.setText("미지정");
-				lotto.resultBuy.set(3, new ArrayList<>());
-			}
-		});
-		pnl.add(btnRetouchD);
-
-		btnRetouchE = new JButton("수정");
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnRetouchE, 6, SpringLayout.NORTH, lblE);
-		btnRetouchE.setBackground(Color.WHITE);
-		btnRetouchE.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				countNum = 4;
-				for (JToggleButton toggleButton : numberToggleButtons) {
-					toggleButton.setSelected(false);
-				}
-				lblCheckE.setText("");
-				// 선택된 숫자들을 0번 인덱스의 resultBuy에 설정
-				ArrayList<String> selectEnumbers = lotto.resultBuy.get(4);
-				// 선택된 숫자에 해당하는 토글 버튼을 선택 상태로 설정
-				for (String number : selectEnumbers) {
-					int index = Integer.parseInt(number) - 1; // 토글 버튼은 0부터 시작하므로 1을 빼줍니다.
-					toggleButton = numberToggleButtons.get(index);
-					toggleButton.setSelected(true);
-				}
-				lblStateE.setText("미지정");
-				lotto.resultBuy.set(4, new ArrayList<>());
-//				countNum = 0;
-			}
-		});
-		pnl.add(btnRetouchE);
-
-		btnDeleteA = new JButton("삭제");
-		sl_pnl.putConstraint(SpringLayout.EAST, btnRetouchA, -6, SpringLayout.WEST, btnDeleteA);
-		sl_pnl.putConstraint(SpringLayout.SOUTH, btnDeleteA, 0, SpringLayout.SOUTH, ballApnl);
-		btnDeleteA.setBackground(Color.WHITE);
-		pnl.add(btnDeleteA);
-
-		btnDeleteA.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				lblCheckA.setText("");
-				lblStateA.setText("미지정");
-				lotto.resultBuy.set(0, new ArrayList<>());
-				countNum = 0;
-				removeBalls(0, ballApnl, ballLabels);
-			}
-		});
-
-		btnDeleteB = new JButton("삭제");
-		sl_pnl.putConstraint(SpringLayout.EAST, btnDeleteA, 0, SpringLayout.EAST, btnDeleteB);
-		sl_pnl.putConstraint(SpringLayout.WEST, btnDeleteB, 858, SpringLayout.WEST, pnl);
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnDeleteB, 6, SpringLayout.NORTH, lblB);
-		btnDeleteB.setBackground(Color.WHITE);
-		pnl.add(btnDeleteB);
-		btnDeleteB.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				lblCheckB.setText("");
-				lblStateB.setText("미지정");
-				lotto.resultBuy.set(1, new ArrayList<>());
-				countNum = 1;
-				removeBalls(1, ballBpnl, ballLabels);
-			}
-		});
-
-		btnDeleteC = new JButton("삭제");
-		sl_pnl.putConstraint(SpringLayout.WEST, btnDeleteC, 858, SpringLayout.WEST, pnl);
-		sl_pnl.putConstraint(SpringLayout.EAST, btnRetouchC, -6, SpringLayout.WEST, btnDeleteC);
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnDeleteC, 6, SpringLayout.NORTH, lblC);
-		btnDeleteC.setBackground(Color.WHITE);
-		pnl.add(btnDeleteC);
-		btnDeleteC.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				lblCheckC.setText("");
-				lblStateC.setText("미지정");
-				lotto.resultBuy.set(2, new ArrayList<>());
-				countNum = 2;
-				removeBalls(2, ballCpnl, ballLabels);
-			}
-		});
-		btnDeleteD = new JButton("삭제");
-		sl_pnl.putConstraint(SpringLayout.WEST, btnDeleteD, 858, SpringLayout.WEST, pnl);
-		sl_pnl.putConstraint(SpringLayout.EAST, btnRetouchD, -6, SpringLayout.WEST, btnDeleteD);
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnDeleteD, 6, SpringLayout.NORTH, lblD);
-		btnDeleteD.setBackground(Color.WHITE);
-		pnl.add(btnDeleteD);
-		btnDeleteD.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				lblCheckD.setText("");
-				lblStateD.setText("미지정");
-				lotto.resultBuy.set(3, new ArrayList<>());
-				countNum = 3;
-				removeBalls(3, ballDpnl, ballLabels);
-			}
-		});
-		btnDeleteE = new JButton("삭제");
-		sl_pnl.putConstraint(SpringLayout.WEST, btnDeleteE, 858, SpringLayout.WEST, pnl);
-		sl_pnl.putConstraint(SpringLayout.EAST, btnRetouchE, -6, SpringLayout.WEST, btnDeleteE);
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnDeleteE, 6, SpringLayout.NORTH, lblE);
-		btnDeleteE.setBackground(Color.WHITE);
-		pnl.add(btnDeleteE);
-		btnDeleteE.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				lblCheckE.setText("");
-				lblStateE.setText("미지정");
-				lotto.resultBuy.set(4, new ArrayList<>());
-				countNum = 4;
-				removeBalls(4, ballEpnl, ballLabels);
-			}
-		});
-		lblCheckA = new JLabel("ㅣㅏㅓㅣㅏ");
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblCheckA, 107, SpringLayout.NORTH, pnl);
-		sl_pnl.putConstraint(SpringLayout.WEST, lblCheckA, 186, SpringLayout.EAST, lblA);
-		pnl.add(lblCheckA);
-
-		lblCheckB = new JLabel("");
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblCheckB, 188, SpringLayout.NORTH, pnl);
-		sl_pnl.putConstraint(SpringLayout.WEST, lblCheckB, 0, SpringLayout.WEST, lblCheckA);
-		pnl.add(lblCheckB);
-
-		lblCheckC = new JLabel("");
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblCheckC, 271, SpringLayout.NORTH, pnl);
-		sl_pnl.putConstraint(SpringLayout.WEST, lblCheckC, 0, SpringLayout.WEST, lblCheckA);
-		pnl.add(lblCheckC);
-
-		lblCheckD = new JLabel("");
-		sl_pnl.putConstraint(SpringLayout.WEST, lblCheckD, 0, SpringLayout.WEST, lblCheckA);
-		sl_pnl.putConstraint(SpringLayout.SOUTH, lblCheckD, -197, SpringLayout.NORTH, btnPurchase);
-		pnl.add(lblCheckD);
-
-		lblCheckE = new JLabel("");
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblCheckE, 389, SpringLayout.NORTH, pnl);
-		sl_pnl.putConstraint(SpringLayout.WEST, lblCheckE, 0, SpringLayout.WEST, lblCheckA);
-		pnl.add(lblCheckE);
-
 		btnNumReset = new JButton("초기화");
 		btnNumReset.setBackground(Color.WHITE);
 		sl_pnl.putConstraint(SpringLayout.NORTH, btnNumReset, 0, SpringLayout.NORTH, btnreturn);
@@ -581,41 +251,24 @@ public class BuyFrame extends JFrame {
 		btnNumReset.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				lblCheckA.setText("");
 				lblStateA.setText("미지정");
 				lotto.resultBuy.set(0, new ArrayList<>());
 
-				lblCheckB.setText("");
 				lblStateB.setText("미지정");
 				lotto.resultBuy.set(1, new ArrayList<>());
 
-				lblCheckC.setText("");
 				lblStateC.setText("미지정");
 				lotto.resultBuy.set(2, new ArrayList<>());
 
-				lblCheckD.setText("");
 				lblStateD.setText("미지정");
 				lotto.resultBuy.set(3, new ArrayList<>());
 
-				lblCheckE.setText("");
 				lblStateE.setText("미지정");
 				lotto.resultBuy.set(4, new ArrayList<>());
-
 				// countNum을 -1로 재설정
 				countNum = 0;
 			}
 		});
-
-		comboBox = new JComboBox();
-		sl_pnl.putConstraint(SpringLayout.WEST, comboBox, 26, SpringLayout.EAST, btnCheck);
-		sl_pnl.putConstraint(SpringLayout.EAST, comboBox, -122, SpringLayout.WEST, btnPurchase);
-		pnl.add(comboBox);
-
-		lblBuyCount = new JLabel("구매수량");
-		sl_pnl.putConstraint(SpringLayout.SOUTH, lblBuyCount, -50, SpringLayout.SOUTH, pnl);
-		sl_pnl.putConstraint(SpringLayout.EAST, lblBuyCount, -122, SpringLayout.WEST, btnPurchase);
-		sl_pnl.putConstraint(SpringLayout.NORTH, comboBox, 6, SpringLayout.SOUTH, lblBuyCount);
-		pnl.add(lblBuyCount);
 
 		btnCheck.addActionListener(new ActionListener() {
 			@Override
@@ -660,12 +313,7 @@ public class BuyFrame extends JFrame {
 								JOptionPane.WARNING_MESSAGE);
 					}
 
-//               if (lblStateA.getText().equals("미지정") || lblCheckA.getText().equals("6개를 선택해야 합니다.")) {
-					if (countNum == 0 || lblCheckA.getText().equals("6개를 선택해야 합니다.")) {
-//                  if (lotto.resultBuy.get(0) == null || lblCheckA.getText().equals("6개를 선택해야 합니다.")) {
-						lblCheckA.setText(result.toString());
-						lblCheckA.setVisible(false);
-//                  lotto.showBuyBall(pnl, sl_pnl, -100, selectedNumbers);
+					if (countNum == 0) {
 						lotto.resultBuy.set(0, selectedNumbers);
 						System.out.println(lotto.resultBuy);
 						System.out.println(selectedNumbers.get(0));
@@ -682,11 +330,7 @@ public class BuyFrame extends JFrame {
 							lblStateA.setText("반자동");
 						}
 						lotto.resultBuyTitle.set(0, lblStateA.getText());
-//                  countNum++;
-					} else if (countNum == 1 || lblCheckB.getText().equals("6개를 선택해야 합니다.")) {
-						lblCheckB.setText(result.toString());
-						lblCheckB.setVisible(false);
-//						lotto.showBuyBall(pnl, sl_pnl, -30, selectedNumbers);
+					} else if (countNum == 1) {
 						lotto.resultBuy.set(1, selectedNumbers);
 						System.out.println(lotto.resultBuy);
 						showBall(1, selectedNumbers, ballBpnl, sl_pnl, 60, 50);
@@ -703,11 +347,7 @@ public class BuyFrame extends JFrame {
 							lblStateB.setText("반자동");
 						}
 						lotto.resultBuyTitle.set(1, lblStateB.getText());
-//                  countNum++;
-					} else if (countNum == 2 || lblCheckC.getText().equals("6개를 선택해야 합니다.")) {
-						lblCheckC.setText(result.toString());
-						lblCheckC.setVisible(false);
-//						lotto.showBuyBall(pnl, sl_pnl, 40, selectedNumbers);
+					} else if (countNum == 2) {
 						lotto.resultBuy.set(2, selectedNumbers);
 						System.out.println(lotto.resultBuy);
 						showBall(2, selectedNumbers, ballCpnl, sl_pnl, 130, 50);
@@ -724,11 +364,7 @@ public class BuyFrame extends JFrame {
 							lblStateC.setText("반자동");
 						}
 						lotto.resultBuyTitle.set(2, lblStateC.getText());
-//                  countNum++;
-					} else if (countNum == 3 || lblCheckD.getText().equals("6개를 선택해야 합니다.")) {
-						lblCheckD.setText(result.toString());
-						lblCheckD.setVisible(false);
-//						lotto.showBuyBall(pnl, sl_pnl, 110, selectedNumbers);
+					} else if (countNum == 3) {
 						lotto.resultBuy.set(3, selectedNumbers);
 						System.out.println(lotto.resultBuy);
 						showBall(3, selectedNumbers, ballDpnl, sl_pnl, 200, 50);
@@ -745,11 +381,8 @@ public class BuyFrame extends JFrame {
 							lblStateD.setText("반자동");
 						}
 						lotto.resultBuyTitle.set(3, lblStateD.getText());
-//                  countNum++;
-					} else if (countNum == 4 || lblCheckE.getText().equals("6개를 선택해야 합니다.")) {
+					} else if (countNum == 4) {
 						if (lotto.resultBuy.get(4).size() == 0 || lotto.resultBuy.get(4).size() == 6) {
-							lblCheckE.setText(selectedNumbers.toString());
-							lblCheckE.setVisible(false);
 //							lotto.showBuyBall(pnl, sl_pnl, 180, selectedNumbers);
 							lotto.resultBuy.set(4, selectedNumbers);
 							System.out.println(lotto.resultBuy);
@@ -773,7 +406,6 @@ public class BuyFrame extends JFrame {
 
 					} else {
 						// 6개가 선택되지 않은 경우
-						lblCheckA.setText("6개를 선택해야 합니다.");
 					}
 					for (int j = 0; j < 5; j++) {
 						if (lotto.resultBuy.get(j).size() == 0) {
@@ -786,13 +418,147 @@ public class BuyFrame extends JFrame {
 				}
 			}
 		});
-		ballApnl.setBounds(500, 300, 200, 50);
 
 		JLabel lblNewLabel = new JLabel("");
 		sl_pnl.putConstraint(SpringLayout.NORTH, lblNewLabel, -19, SpringLayout.NORTH, btnreturn);
-		sl_pnl.putConstraint(SpringLayout.WEST, lblNewLabel, 0, SpringLayout.WEST, lblBuyCount);
+		sl_pnl.putConstraint(SpringLayout.WEST, lblNewLabel, 389, SpringLayout.WEST, pnl);
 		lblNewLabel.setIcon(new ImageIcon("images/img.jpg"));
 		pnl.add(lblNewLabel);
+		
+		JPanel panel = new JPanel();
+		sl_pnl.putConstraint(SpringLayout.SOUTH, panel, 0, SpringLayout.SOUTH, toggleButtonPanel);
+		sl_pnl.putConstraint(SpringLayout.EAST, panel, -10, SpringLayout.EAST, pnl);
+		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
+		panel.setBackground(Color.WHITE);
+		sl_pnl.putConstraint(SpringLayout.NORTH, panel, 0, SpringLayout.NORTH, toggleButtonPanel);
+		sl_pnl.putConstraint(SpringLayout.WEST, panel, 22, SpringLayout.EAST, toggleButtonPanel);
+		pnl.add(panel);
+		panel.setLayout(null);
+		
+		lblLineA = new JLabel("A");
+		lblLineA.setBounds(25, 10, 20, 35);
+		lblLineA.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
+		panel.add(lblLineA);
+		
+		lblStateA = new JLabel("미지정");
+		lblStateA.setBounds(80, 20, 45, 21);
+		lblStateA.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		panel.add(lblStateA);
+		
+		ballApnl = new JPanel();
+		ballApnl.setBackground(Color.WHITE);
+		ballApnl.setBounds(160, 5, 330, 50);
+		panel.add(ballApnl);
+		
+		JButton btnRetouchA = new JButton("수정");
+		btnRetouchA.setBackground(Color.WHITE);
+		btnRetouchA.setBounds(507, 15, 60, 25);
+		panel.add(btnRetouchA);
+		
+		btnDeleteA = new JButton("삭제");
+		btnDeleteA.setBackground(Color.WHITE);
+		btnDeleteA.setBounds(575, 15, 60, 25);
+		panel.add(btnDeleteA);
+		
+		ballBpnl = new JPanel();
+		ballBpnl.setBackground(Color.WHITE);
+		ballBpnl.setBounds(160, 95, 330, 50);
+		panel.add(ballBpnl);
+		
+		lblLineB = new JLabel("B");
+		lblLineB.setBounds(25, 100, 20, 35);
+		lblLineB.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
+		panel.add(lblLineB);
+		
+		lblStateB = new JLabel("미지정");
+		lblStateB.setBounds(80, 110, 45, 21);
+		lblStateB.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		panel.add(lblStateB);
+		
+		btnRetouchB = new JButton("수정");
+		btnRetouchB.setBackground(Color.WHITE);
+		btnRetouchB.setBounds(507, 105, 60, 25);
+		panel.add(btnRetouchB);
+		
+		btnDeleteB = new JButton("삭제");
+		btnDeleteB.setBackground(Color.WHITE);
+		btnDeleteB.setBounds(575, 105, 60, 25);
+		panel.add(btnDeleteB);
+		
+		lblLineC = new JLabel("C");
+		lblLineC.setBounds(30, 190, 20, 35);
+		lblLineC.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
+		panel.add(lblLineC);
+		
+		lblStateC = new JLabel("미지정");
+		lblStateC.setBounds(83, 200, 45, 21);
+		lblStateC.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		panel.add(lblStateC);
+		
+		ballCpnl = new JPanel();
+		ballCpnl.setBackground(Color.WHITE);
+		ballCpnl.setBounds(160, 185, 330, 50);
+		panel.add(ballCpnl);
+		
+		btnRetouchC = new JButton("수정");
+		btnRetouchC.setBackground(Color.WHITE);
+		btnRetouchC.setBounds(507, 195, 60, 25);
+		panel.add(btnRetouchC);
+		
+		btnDeleteC = new JButton("삭제");
+		btnDeleteC.setBackground(Color.WHITE);
+		btnDeleteC.setBounds(575, 195, 60, 25);
+		panel.add(btnDeleteC);
+		
+		lblLineD = new JLabel("D");
+		lblLineD.setBounds(30, 280, 20, 35);
+		lblLineD.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
+		panel.add(lblLineD);
+		
+		lblStateD = new JLabel("미지정");
+		lblStateD.setBounds(83, 290, 45, 21);
+		lblStateD.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		panel.add(lblStateD);
+		
+		ballDpnl = new JPanel();
+		ballDpnl.setBackground(Color.WHITE);
+		ballDpnl.setBounds(160, 275, 330, 50);
+		panel.add(ballDpnl);
+		
+		btnRetouchD = new JButton("수정");
+		btnRetouchD.setBackground(Color.WHITE);
+		btnRetouchD.setBounds(507, 285, 60, 25);
+		panel.add(btnRetouchD);
+		
+		btnDeleteD = new JButton("삭제");
+		btnDeleteD.setBackground(Color.WHITE);
+		btnDeleteD.setBounds(575, 285, 60, 25);
+		panel.add(btnDeleteD);
+		
+		lblLineE = new JLabel("E");
+		lblLineE.setBounds(32, 370, 20, 35);
+		lblLineE.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
+		panel.add(lblLineE);
+		
+		lblStateE = new JLabel("미지정");
+		lblStateE.setBounds(83, 380, 45, 21);
+		lblStateE.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		panel.add(lblStateE);
+		
+		btnRetouchE = new JButton("수정");
+		btnRetouchE.setBackground(Color.WHITE);
+		btnRetouchE.setBounds(507, 375, 60, 25);
+		panel.add(btnRetouchE);
+		
+		ballEpnl = new JPanel();
+		ballEpnl.setBackground(Color.WHITE);
+		ballEpnl.setBounds(160, 365, 330, 50);
+		panel.add(ballEpnl);
+		
+		btnDeleteE = new JButton("삭제");
+		btnDeleteE.setBackground(Color.WHITE);
+		btnDeleteE.setBounds(575, 375, 60, 25);
+		panel.add(btnDeleteE);
 
 //		JLabel lblNewLabel_1 = new JLabel("");
 //		sl_pnl.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 0, SpringLayout.NORTH, ballApnl);
@@ -826,7 +592,7 @@ public class BuyFrame extends JFrame {
 
 //			JLabel label = new JLabel(resizedIcon);
 			JLabel label = new JLabel(icon);
-			sl_pnl.putConstraint(SpringLayout.NORTH, label, x, SpringLayout.NORTH, lblA);
+			sl_pnl.putConstraint(SpringLayout.NORTH, label, x, SpringLayout.NORTH, lblLineA);
 			sl_pnl.putConstraint(SpringLayout.WEST, label, y + (i * 80), SpringLayout.EAST, lblStateA);
 			pnl.add(label);
 			labels[i] = label;
