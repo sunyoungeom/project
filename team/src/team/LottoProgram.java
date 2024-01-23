@@ -119,7 +119,7 @@ public class LottoProgram extends JFrame {
 //					showRBall(lotto.winningNumberCollection.get(roundNum), pnl, sl_pnl, 10, 10);
 					System.out.println(winningNumberCollection.get(roundNum));
 				} else {
-					JOptionPane.showMessageDialog(null, "이전 회차가 없습니다.", "???뭐라고할까요", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(null, "이전 회차가 없습니다.", "누적회차 부족", JOptionPane.WARNING_MESSAGE);
 
 				}
 			}

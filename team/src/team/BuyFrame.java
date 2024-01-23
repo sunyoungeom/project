@@ -29,6 +29,7 @@ import sun.net.www.content.image.jpeg;
 import java.awt.Color;
 import java.awt.Component;
 import javax.swing.JComboBox;
+import java.awt.Font;
 
 public class BuyFrame extends JFrame {
 	private LottoProgram lotto;
@@ -90,35 +91,34 @@ public class BuyFrame extends JFrame {
 		pnl.setLayout(sl_pnl);
 		getContentPane().add(pnl);
 
-		JPanel ballApnl = new JPanel();
-		ballApnl.setBackground(Color.WHITE);
-		sl_pnl.putConstraint(SpringLayout.NORTH, ballApnl, 90, SpringLayout.NORTH, pnl);
-		sl_pnl.putConstraint(SpringLayout.WEST, ballApnl, 470, SpringLayout.WEST, pnl);
-		pnl.add(ballApnl);
-
+		JPanel ballEpnl = new JPanel();
+		sl_pnl.putConstraint(SpringLayout.NORTH, ballEpnl, 411, SpringLayout.NORTH, pnl);
+		ballEpnl.setBackground(Color.WHITE);
+		pnl.add(ballEpnl);
+		
 		JPanel ballBpnl = new JPanel();
+		sl_pnl.putConstraint(SpringLayout.NORTH, ballBpnl, 196, SpringLayout.NORTH, pnl);
+		sl_pnl.putConstraint(SpringLayout.WEST, ballBpnl, 0, SpringLayout.WEST, ballEpnl);
 		ballBpnl.setBackground(Color.WHITE);
-		sl_pnl.putConstraint(SpringLayout.NORTH, ballBpnl, 160, SpringLayout.NORTH, pnl);
-		sl_pnl.putConstraint(SpringLayout.WEST, ballBpnl, 440, SpringLayout.WEST, pnl);
 		pnl.add(ballBpnl);
 
+		JPanel ballApnl = new JPanel();
+		sl_pnl.putConstraint(SpringLayout.WEST, ballApnl, 0, SpringLayout.WEST, ballEpnl);
+		sl_pnl.putConstraint(SpringLayout.SOUTH, ballApnl, -22, SpringLayout.NORTH, ballBpnl);
+		ballApnl.setBackground(Color.WHITE);
+		pnl.add(ballApnl);
+
 		JPanel ballCpnl = new JPanel();
+		sl_pnl.putConstraint(SpringLayout.SOUTH, ballCpnl, -244, SpringLayout.SOUTH, pnl);
+		sl_pnl.putConstraint(SpringLayout.WEST, ballCpnl, 0, SpringLayout.WEST, ballEpnl);
 		ballCpnl.setBackground(Color.WHITE);
-		sl_pnl.putConstraint(SpringLayout.NORTH, ballCpnl, 230, SpringLayout.NORTH, pnl);
-		sl_pnl.putConstraint(SpringLayout.WEST, ballCpnl, 440, SpringLayout.WEST, pnl);
 		pnl.add(ballCpnl);
 
 		JPanel ballDpnl = new JPanel();
+		sl_pnl.putConstraint(SpringLayout.NORTH, ballDpnl, 21, SpringLayout.SOUTH, ballCpnl);
+		sl_pnl.putConstraint(SpringLayout.WEST, ballDpnl, 0, SpringLayout.WEST, ballEpnl);
 		ballDpnl.setBackground(Color.WHITE);
-		sl_pnl.putConstraint(SpringLayout.NORTH, ballDpnl, 300, SpringLayout.NORTH, pnl);
-		sl_pnl.putConstraint(SpringLayout.WEST, ballDpnl, 440, SpringLayout.WEST, pnl);
 		pnl.add(ballDpnl);
-
-		JPanel ballEpnl = new JPanel();
-		ballEpnl.setBackground(Color.WHITE);
-		sl_pnl.putConstraint(SpringLayout.NORTH, ballEpnl, 370, SpringLayout.NORTH, pnl);
-		sl_pnl.putConstraint(SpringLayout.WEST, ballEpnl, 440, SpringLayout.WEST, pnl);
-		pnl.add(ballEpnl);
 
 		btnreturn = new JButton("돌아가기");
 		btnreturn.setBackground(Color.WHITE);
@@ -160,6 +160,7 @@ public class BuyFrame extends JFrame {
 		btnAuto.addActionListener(new ActionListener() {
 			private Random random;
 			private int numSelect;
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				autoSelected = true;
@@ -219,87 +220,101 @@ public class BuyFrame extends JFrame {
 		numberToggleButtons = new ArrayList<>();
 
 		for (int i = 1; i <= 45; i++) {
-		    JToggleButton toggleButton = new JToggleButton();
-		    toggleButton.setText(String.valueOf(i));
-		    toggleButton.setBackground(Color.white);
-		    numberToggleButtons.add(toggleButton);
-		    toggleButton.setOpaque(false);
-		    toggleButton.setContentAreaFilled(false);
-		    toggleButton.setForeground(Color.darkGray);
-		    toggleButton.setBackground(Color.white);
-		    toggleButton.addActionListener(new ActionListener() {
-		        @Override
-		        public void actionPerformed(ActionEvent e) {
-		            int selectedCount = 0;
-		            // 토글 버튼을 누를 때마다 선택된 토글 버튼의 개수를 세기
-		            for (Component component : toggleButtonPanel.getComponents()) {
-		                if (component instanceof JToggleButton) {
-		                    JToggleButton btn = (JToggleButton) component;
-		                    if (btn.isSelected()) {
-		                        selectedCount++;
-		                    }
-		                }
-		                if (selectedCount > SELECTED_NUMBER) {
-		                	toggleButton.setSelected(false);
-		                }
-		            }
-		            // 여기서 numSelect 값을 업데이트
-		            numSelect = selectedCount;
-		        }
-		    });
+			JToggleButton toggleButton = new JToggleButton();
+			toggleButton.setText(String.valueOf(i));
+			toggleButton.setBackground(Color.white);
+			numberToggleButtons.add(toggleButton);
+			toggleButton.setOpaque(false);
+			toggleButton.setContentAreaFilled(false);
+			toggleButton.setForeground(Color.darkGray);
+			toggleButton.setBackground(Color.white);
+			toggleButton.addActionListener(new ActionListener() {
+				@Override
+				public void actionPerformed(ActionEvent e) {
+					int selectedCount = 0;
+					// 토글 버튼을 누를 때마다 선택된 토글 버튼의 개수를 세기
+					for (Component component : toggleButtonPanel.getComponents()) {
+						if (component instanceof JToggleButton) {
+							JToggleButton btn = (JToggleButton) component;
+							if (btn.isSelected()) {
+								selectedCount++;
+							}
+						}
+						if (selectedCount > SELECTED_NUMBER) {
+							toggleButton.setSelected(false);
+						}
+					}
+					// 여기서 numSelect 값을 업데이트
+					numSelect = selectedCount;
+				}
+			});
 			toggleButton.setOpaque(true);
 			toggleButton.setContentAreaFilled(true);
 			toggleButtonPanel.add(toggleButton);
 		}
-		
+
 		lblA = new JLabel("A");
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblA, 107, SpringLayout.NORTH, pnl);
-		sl_pnl.putConstraint(SpringLayout.WEST, lblA, 37, SpringLayout.EAST, toggleButtonPanel);
+		sl_pnl.putConstraint(SpringLayout.EAST, lblA, -596, SpringLayout.EAST, pnl);
+		lblA.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
 		pnl.add(lblA);
 
 		lblB = new JLabel("B");
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblB, 54, SpringLayout.SOUTH, lblA);
-		sl_pnl.putConstraint(SpringLayout.WEST, lblB, 0, SpringLayout.WEST, lblA);
+		sl_pnl.putConstraint(SpringLayout.EAST, lblB, -596, SpringLayout.EAST, pnl);
+		sl_pnl.putConstraint(SpringLayout.SOUTH, lblA, -51, SpringLayout.NORTH, lblB);
+		lblB.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
 		pnl.add(lblB);
 
 		lblC = new JLabel("C");
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblC, 56, SpringLayout.SOUTH, lblB);
+		sl_pnl.putConstraint(SpringLayout.NORTH, ballCpnl, 0, SpringLayout.NORTH, lblC);
+		sl_pnl.putConstraint(SpringLayout.SOUTH, lblB, -46, SpringLayout.NORTH, lblC);
 		sl_pnl.putConstraint(SpringLayout.WEST, lblC, 0, SpringLayout.WEST, lblA);
+		lblC.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
 		pnl.add(lblC);
 
 		lblD = new JLabel("D");
+		sl_pnl.putConstraint(SpringLayout.WEST, ballDpnl, 93, SpringLayout.EAST, lblD);
+		sl_pnl.putConstraint(SpringLayout.SOUTH, lblD, -188, SpringLayout.SOUTH, pnl);
+		sl_pnl.putConstraint(SpringLayout.SOUTH, lblC, -51, SpringLayout.NORTH, lblD);
 		sl_pnl.putConstraint(SpringLayout.WEST, lblD, 0, SpringLayout.WEST, lblA);
+		lblD.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
 		pnl.add(lblD);
 
 		lblE = new JLabel("E");
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblE, 389, SpringLayout.NORTH, pnl);
-		sl_pnl.putConstraint(SpringLayout.SOUTH, lblD, -55, SpringLayout.NORTH, lblE);
+		sl_pnl.putConstraint(SpringLayout.WEST, ballEpnl, 97, SpringLayout.EAST, lblE);
+		sl_pnl.putConstraint(SpringLayout.NORTH, lblE, 43, SpringLayout.SOUTH, lblD);
 		sl_pnl.putConstraint(SpringLayout.WEST, lblE, 0, SpringLayout.WEST, lblA);
+		lblE.setFont(new Font("맑은 고딕", Font.PLAIN, 20));
 		pnl.add(lblE);
 
 		lblStateA = new JLabel("미지정");
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblStateA, 0, SpringLayout.NORTH, lblA);
-		sl_pnl.putConstraint(SpringLayout.WEST, lblStateA, 25, SpringLayout.EAST, lblA);
+		lblStateA.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		pnl.add(lblStateA);
 
 		lblStateB = new JLabel("미지정");
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblStateB, 0, SpringLayout.NORTH, lblB);
-		sl_pnl.putConstraint(SpringLayout.WEST, lblStateB, 25, SpringLayout.EAST, lblB);
+		sl_pnl.putConstraint(SpringLayout.SOUTH, lblStateA, -36, SpringLayout.NORTH, lblStateB);
+		sl_pnl.putConstraint(SpringLayout.EAST, lblStateA, 0, SpringLayout.EAST, lblStateB);
+		sl_pnl.putConstraint(SpringLayout.WEST, lblStateB, 408, SpringLayout.WEST, pnl);
+		sl_pnl.putConstraint(SpringLayout.WEST, ballBpnl, 29, SpringLayout.EAST, lblStateB);
+		sl_pnl.putConstraint(SpringLayout.NORTH, lblStateB, 5, SpringLayout.NORTH, lblB);
+		lblStateB.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		pnl.add(lblStateB);
 
 		lblStateC = new JLabel("미지정");
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblStateC, 0, SpringLayout.NORTH, lblC);
-		sl_pnl.putConstraint(SpringLayout.WEST, lblStateC, 24, SpringLayout.EAST, lblC);
+		sl_pnl.putConstraint(SpringLayout.WEST, lblStateC, 20, SpringLayout.EAST, lblC);
+		sl_pnl.putConstraint(SpringLayout.NORTH, lblStateC, 5, SpringLayout.NORTH, lblC);
+		lblStateC.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		pnl.add(lblStateC);
 
 		lblStateD = new JLabel("미지정");
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblStateD, 0, SpringLayout.NORTH, lblD);
-		sl_pnl.putConstraint(SpringLayout.WEST, lblStateD, 0, SpringLayout.WEST, lblStateA);
+		sl_pnl.putConstraint(SpringLayout.NORTH, lblStateD, 5, SpringLayout.NORTH, lblD);
+		sl_pnl.putConstraint(SpringLayout.WEST, lblStateD, 19, SpringLayout.EAST, lblD);
+		lblStateD.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		pnl.add(lblStateD);
 
 		lblStateE = new JLabel("미지정");
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblStateE, 0, SpringLayout.NORTH, lblE);
-		sl_pnl.putConstraint(SpringLayout.WEST, lblStateE, 0, SpringLayout.WEST, lblStateA);
+		sl_pnl.putConstraint(SpringLayout.NORTH, lblStateE, 5, SpringLayout.NORTH, lblE);
+		sl_pnl.putConstraint(SpringLayout.WEST, lblStateE, 23, SpringLayout.EAST, lblE);
+		lblStateE.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		pnl.add(lblStateE);
 
 		btnPurchase = new JButton("구매하기");
@@ -320,8 +335,8 @@ public class BuyFrame extends JFrame {
 		});
 
 		btnRetouchA = new JButton("수정");
+		sl_pnl.putConstraint(SpringLayout.SOUTH, btnRetouchA, 0, SpringLayout.SOUTH, ballApnl);
 		btnRetouchA.setBackground(Color.WHITE);
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnRetouchA, -4, SpringLayout.NORTH, lblA);
 		pnl.add(btnRetouchA);
 		btnRetouchA.addActionListener(new ActionListener() {
 			@Override
@@ -347,9 +362,9 @@ public class BuyFrame extends JFrame {
 		});
 
 		btnRetouchB = new JButton("수정");
-		btnRetouchB.setBackground(Color.WHITE);
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnRetouchB, -4, SpringLayout.NORTH, lblB);
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnRetouchB, 6, SpringLayout.NORTH, lblB);
 		sl_pnl.putConstraint(SpringLayout.EAST, btnRetouchB, 0, SpringLayout.EAST, btnRetouchA);
+		btnRetouchB.setBackground(Color.WHITE);
 		btnRetouchB.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				countNum = 1;
@@ -375,9 +390,8 @@ public class BuyFrame extends JFrame {
 		pnl.add(btnRetouchB);
 
 		btnRetouchC = new JButton("수정");
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnRetouchC, 1, SpringLayout.NORTH, lblC);
 		btnRetouchC.setBackground(Color.WHITE);
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnRetouchC, -4, SpringLayout.NORTH, lblC);
-		sl_pnl.putConstraint(SpringLayout.EAST, btnRetouchC, 0, SpringLayout.EAST, btnRetouchA);
 		btnRetouchC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				countNum = 2;
@@ -402,9 +416,8 @@ public class BuyFrame extends JFrame {
 		pnl.add(btnRetouchC);
 
 		btnRetouchD = new JButton("수정");
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnRetouchD, 6, SpringLayout.NORTH, lblD);
 		btnRetouchD.setBackground(Color.WHITE);
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnRetouchD, -4, SpringLayout.NORTH, lblD);
-		sl_pnl.putConstraint(SpringLayout.EAST, btnRetouchD, 0, SpringLayout.EAST, btnRetouchA);
 		btnRetouchD.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				countNum = 3;
@@ -427,9 +440,8 @@ public class BuyFrame extends JFrame {
 		pnl.add(btnRetouchD);
 
 		btnRetouchE = new JButton("수정");
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnRetouchE, 6, SpringLayout.NORTH, lblE);
 		btnRetouchE.setBackground(Color.WHITE);
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnRetouchE, -4, SpringLayout.NORTH, lblE);
-		sl_pnl.putConstraint(SpringLayout.EAST, btnRetouchE, 0, SpringLayout.EAST, btnRetouchA);
 		btnRetouchE.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				countNum = 4;
@@ -453,10 +465,9 @@ public class BuyFrame extends JFrame {
 		pnl.add(btnRetouchE);
 
 		btnDeleteA = new JButton("삭제");
-		btnDeleteA.setBackground(Color.WHITE);
-		sl_pnl.putConstraint(SpringLayout.WEST, btnDeleteA, 888, SpringLayout.WEST, pnl);
 		sl_pnl.putConstraint(SpringLayout.EAST, btnRetouchA, -6, SpringLayout.WEST, btnDeleteA);
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnDeleteA, -4, SpringLayout.NORTH, lblA);
+		sl_pnl.putConstraint(SpringLayout.SOUTH, btnDeleteA, 0, SpringLayout.SOUTH, ballApnl);
+		btnDeleteA.setBackground(Color.WHITE);
 		pnl.add(btnDeleteA);
 
 		btnDeleteA.addActionListener(new ActionListener() {
@@ -471,9 +482,10 @@ public class BuyFrame extends JFrame {
 		});
 
 		btnDeleteB = new JButton("삭제");
+		sl_pnl.putConstraint(SpringLayout.EAST, btnDeleteA, 0, SpringLayout.EAST, btnDeleteB);
+		sl_pnl.putConstraint(SpringLayout.WEST, btnDeleteB, 858, SpringLayout.WEST, pnl);
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnDeleteB, 6, SpringLayout.NORTH, lblB);
 		btnDeleteB.setBackground(Color.WHITE);
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnDeleteB, -4, SpringLayout.NORTH, lblB);
-		sl_pnl.putConstraint(SpringLayout.EAST, btnDeleteB, 0, SpringLayout.EAST, btnDeleteA);
 		pnl.add(btnDeleteB);
 		btnDeleteB.addActionListener(new ActionListener() {
 			@Override
@@ -487,9 +499,10 @@ public class BuyFrame extends JFrame {
 		});
 
 		btnDeleteC = new JButton("삭제");
+		sl_pnl.putConstraint(SpringLayout.WEST, btnDeleteC, 858, SpringLayout.WEST, pnl);
+		sl_pnl.putConstraint(SpringLayout.EAST, btnRetouchC, -6, SpringLayout.WEST, btnDeleteC);
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnDeleteC, 6, SpringLayout.NORTH, lblC);
 		btnDeleteC.setBackground(Color.WHITE);
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnDeleteC, -4, SpringLayout.NORTH, lblC);
-		sl_pnl.putConstraint(SpringLayout.EAST, btnDeleteC, 0, SpringLayout.EAST, btnDeleteA);
 		pnl.add(btnDeleteC);
 		btnDeleteC.addActionListener(new ActionListener() {
 			@Override
@@ -502,9 +515,10 @@ public class BuyFrame extends JFrame {
 			}
 		});
 		btnDeleteD = new JButton("삭제");
+		sl_pnl.putConstraint(SpringLayout.WEST, btnDeleteD, 858, SpringLayout.WEST, pnl);
+		sl_pnl.putConstraint(SpringLayout.EAST, btnRetouchD, -6, SpringLayout.WEST, btnDeleteD);
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnDeleteD, 6, SpringLayout.NORTH, lblD);
 		btnDeleteD.setBackground(Color.WHITE);
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnDeleteD, -4, SpringLayout.NORTH, lblD);
-		sl_pnl.putConstraint(SpringLayout.WEST, btnDeleteD, 0, SpringLayout.WEST, btnDeleteA);
 		pnl.add(btnDeleteD);
 		btnDeleteD.addActionListener(new ActionListener() {
 			@Override
@@ -517,9 +531,10 @@ public class BuyFrame extends JFrame {
 			}
 		});
 		btnDeleteE = new JButton("삭제");
+		sl_pnl.putConstraint(SpringLayout.WEST, btnDeleteE, 858, SpringLayout.WEST, pnl);
+		sl_pnl.putConstraint(SpringLayout.EAST, btnRetouchE, -6, SpringLayout.WEST, btnDeleteE);
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnDeleteE, 6, SpringLayout.NORTH, lblE);
 		btnDeleteE.setBackground(Color.WHITE);
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnDeleteE, -4, SpringLayout.NORTH, lblE);
-		sl_pnl.putConstraint(SpringLayout.EAST, btnDeleteE, 0, SpringLayout.EAST, btnDeleteA);
 		pnl.add(btnDeleteE);
 		btnDeleteE.addActionListener(new ActionListener() {
 			@Override
@@ -532,27 +547,27 @@ public class BuyFrame extends JFrame {
 			}
 		});
 		lblCheckA = new JLabel("ㅣㅏㅓㅣㅏ");
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblCheckA, 0, SpringLayout.NORTH, lblA);
-		sl_pnl.putConstraint(SpringLayout.WEST, lblCheckA, 137, SpringLayout.EAST, lblStateA);
+		sl_pnl.putConstraint(SpringLayout.NORTH, lblCheckA, 107, SpringLayout.NORTH, pnl);
+		sl_pnl.putConstraint(SpringLayout.WEST, lblCheckA, 186, SpringLayout.EAST, lblA);
 		pnl.add(lblCheckA);
 
 		lblCheckB = new JLabel("");
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblCheckB, 0, SpringLayout.NORTH, lblB);
+		sl_pnl.putConstraint(SpringLayout.NORTH, lblCheckB, 188, SpringLayout.NORTH, pnl);
 		sl_pnl.putConstraint(SpringLayout.WEST, lblCheckB, 0, SpringLayout.WEST, lblCheckA);
 		pnl.add(lblCheckB);
 
 		lblCheckC = new JLabel("");
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblCheckC, 0, SpringLayout.NORTH, lblC);
+		sl_pnl.putConstraint(SpringLayout.NORTH, lblCheckC, 271, SpringLayout.NORTH, pnl);
 		sl_pnl.putConstraint(SpringLayout.WEST, lblCheckC, 0, SpringLayout.WEST, lblCheckA);
 		pnl.add(lblCheckC);
 
 		lblCheckD = new JLabel("");
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblCheckD, 0, SpringLayout.NORTH, lblD);
 		sl_pnl.putConstraint(SpringLayout.WEST, lblCheckD, 0, SpringLayout.WEST, lblCheckA);
+		sl_pnl.putConstraint(SpringLayout.SOUTH, lblCheckD, -197, SpringLayout.NORTH, btnPurchase);
 		pnl.add(lblCheckD);
 
 		lblCheckE = new JLabel("");
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblCheckE, 0, SpringLayout.NORTH, lblE);
+		sl_pnl.putConstraint(SpringLayout.NORTH, lblCheckE, 389, SpringLayout.NORTH, pnl);
 		sl_pnl.putConstraint(SpringLayout.WEST, lblCheckE, 0, SpringLayout.WEST, lblCheckA);
 		pnl.add(lblCheckE);
 
@@ -592,13 +607,13 @@ public class BuyFrame extends JFrame {
 
 		comboBox = new JComboBox();
 		sl_pnl.putConstraint(SpringLayout.WEST, comboBox, 26, SpringLayout.EAST, btnCheck);
-		sl_pnl.putConstraint(SpringLayout.EAST, comboBox, 0, SpringLayout.EAST, lblStateA);
+		sl_pnl.putConstraint(SpringLayout.EAST, comboBox, -122, SpringLayout.WEST, btnPurchase);
 		pnl.add(comboBox);
 
 		lblBuyCount = new JLabel("구매수량");
 		sl_pnl.putConstraint(SpringLayout.SOUTH, lblBuyCount, -50, SpringLayout.SOUTH, pnl);
+		sl_pnl.putConstraint(SpringLayout.EAST, lblBuyCount, -122, SpringLayout.WEST, btnPurchase);
 		sl_pnl.putConstraint(SpringLayout.NORTH, comboBox, 6, SpringLayout.SOUTH, lblBuyCount);
-		sl_pnl.putConstraint(SpringLayout.EAST, lblBuyCount, 0, SpringLayout.EAST, lblStateA);
 		pnl.add(lblBuyCount);
 
 		btnCheck.addActionListener(new ActionListener() {
@@ -623,23 +638,25 @@ public class BuyFrame extends JFrame {
 					if (btnDeleteA.isSelected() || btnDeleteB.isSelected() || btnDeleteC.isSelected()
 							|| btnDeleteD.isSelected() || btnDeleteE.isSelected()) {
 					}
-						if (lotto.resultBuy.get(4).size() == 0) {
-							countNum = 4;
-						} 
-						if (lotto.resultBuy.get(3).size() == 0) {
-							countNum = 3;
-						}
-						if (lotto.resultBuy.get(2).size() == 0) {
-							countNum = 2;
-						}
-						if (lotto.resultBuy.get(1).size() == 0) {
-							countNum = 1;
-						}
-						if (lotto.resultBuy.get(0).size() == 0) {
-							countNum = 0;
-						
-						} if (countNum == 5) {
-						JOptionPane.showMessageDialog(BuyFrame.this, "구매횟수를 초과했습니다", "구매횟수 초과", JOptionPane.WARNING_MESSAGE);
+					if (lotto.resultBuy.get(4).size() == 0) {
+						countNum = 4;
+					}
+					if (lotto.resultBuy.get(3).size() == 0) {
+						countNum = 3;
+					}
+					if (lotto.resultBuy.get(2).size() == 0) {
+						countNum = 2;
+					}
+					if (lotto.resultBuy.get(1).size() == 0) {
+						countNum = 1;
+					}
+					if (lotto.resultBuy.get(0).size() == 0) {
+						countNum = 0;
+
+					}
+					if (countNum == 5) {
+						JOptionPane.showMessageDialog(BuyFrame.this, "구매횟수를 초과했습니다", "구매횟수 초과",
+								JOptionPane.WARNING_MESSAGE);
 					}
 
 //               if (lblStateA.getText().equals("미지정") || lblCheckA.getText().equals("6개를 선택해야 합니다.")) {
@@ -741,7 +758,6 @@ public class BuyFrame extends JFrame {
 								toggleButton.setSelected(false);
 							}
 
-							
 							if (numSelect == 0) {
 								lblStateE.setText("자동");
 								autoSelected = false;
@@ -753,7 +769,7 @@ public class BuyFrame extends JFrame {
 							lotto.resultBuyTitle.set(4, lblStateE.getText());
 							countNum = 5;
 						}
-				
+
 					} else {
 						// 6개가 선택되지 않은 경우
 						lblCheckA.setText("6개를 선택해야 합니다.");
@@ -764,19 +780,19 @@ public class BuyFrame extends JFrame {
 							break;
 						}
 					}
-					
+
 					numSelect = 0;
 				}
 			}
 		});
 		ballApnl.setBounds(500, 300, 200, 50);
-		
+
 		JLabel lblNewLabel = new JLabel("");
 		sl_pnl.putConstraint(SpringLayout.NORTH, lblNewLabel, -19, SpringLayout.NORTH, btnreturn);
 		sl_pnl.putConstraint(SpringLayout.WEST, lblNewLabel, 0, SpringLayout.WEST, lblBuyCount);
 		lblNewLabel.setIcon(new ImageIcon("images/img.jpg"));
 		pnl.add(lblNewLabel);
-		
+
 //		JLabel lblNewLabel_1 = new JLabel("");
 //		sl_pnl.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 0, SpringLayout.NORTH, ballApnl);
 //		sl_pnl.putConstraint(SpringLayout.WEST, lblNewLabel_1, 28, SpringLayout.EAST, ballApnl);
