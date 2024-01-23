@@ -37,141 +37,127 @@ public class ResultFrame extends JFrame {
 
 		JLabel backgroundImage = new JLabel(new ImageIcon("images/lottoResult.png"));
 		SpringLayout springLayout = new SpringLayout();
-		backgroundImage.setLayout(springLayout);
+		backgroundImage.setLayout(null);
 
 		JLabel lblTitle = new JLabel("구매내역/결과확인");
-		springLayout.putConstraint(SpringLayout.WEST, lblTitle, 33, SpringLayout.WEST, getContentPane());
+		lblTitle.setBounds(33, 15, 110, 19);
 		lblTitle.setBackground(Color.WHITE);
 		lblTitle.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		backgroundImage.add(lblTitle);
 
-//		// 결과 공 표시  
-//		JPanel pnlResultBall = new JPanel();
-//		springLayout.putConstraint(SpringLayout.NORTH, pnlResultBall, 90, SpringLayout.NORTH, backgroundImage);
-//		springLayout.putConstraint(SpringLayout.WEST, pnlResultBall, 440, SpringLayout.WEST, backgroundImage);
-//		backgroundImage.add(pnlResultBall);
-
-		JLabel firstLine = new JLabel("");
-		springLayout.putConstraint(SpringLayout.SOUTH, lblTitle, -6, SpringLayout.NORTH, firstLine);
-		springLayout.putConstraint(SpringLayout.NORTH, firstLine, 48, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, firstLine, 0, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, firstLine, 375, SpringLayout.WEST, getContentPane());
-//		firstLine.setIcon(new ImageIcon("images/lottoResult_2.png"));
+		JLabel firstLine = new JLabel("1111111"); // 용도 확인 불가능
+		firstLine.setBounds(33, 35, 110, 19);
+		firstLine.setBackground(Color.WHITE);
+		firstLine.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		backgroundImage.add(firstLine);
 
 		JLabel lottoIcon = new JLabel("");
-		springLayout.putConstraint(SpringLayout.NORTH, lottoIcon, 9, SpringLayout.SOUTH, firstLine);
-		springLayout.putConstraint(SpringLayout.WEST, lottoIcon, 0, SpringLayout.WEST, lblTitle);
+		lottoIcon.setBounds(33, 72, 0, 0);
 		lottoIcon.setIcon(new ImageIcon("images/lottoResult_1.png"));
 		backgroundImage.add(lottoIcon);
 
 		JLabel lottoDate = new JLabel("발 행 일: ");
-		springLayout.putConstraint(SpringLayout.NORTH, lottoDate, 17, SpringLayout.SOUTH, lottoIcon);
-		springLayout.putConstraint(SpringLayout.WEST, lottoDate, 0, SpringLayout.WEST, lblTitle);
-		lottoDate.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
+		lottoDate.setBounds(115, 127, 138, 17);
+		lottoDate.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 		backgroundImage.add(lottoDate);
 
 		JLabel lblNewLabel_1 = new JLabel("제 1회");
-		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 19, SpringLayout.SOUTH, firstLine);
-		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_1, 67, SpringLayout.EAST, lottoIcon);
-		lblNewLabel_1.setText("제 " + lotto.roundNum + "회");
+		lblNewLabel_1.setBounds(235, 81, 59, 27);
 		lblNewLabel_1.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+		lblNewLabel_1.setText("제 " + lotto.roundNum + "회");
 		backgroundImage.add(lblNewLabel_1);
 
 		JLabel secondLine = new JLabel("");
-		springLayout.putConstraint(SpringLayout.NORTH, secondLine, 6, SpringLayout.SOUTH, lottoDate);
-		springLayout.putConstraint(SpringLayout.WEST, secondLine, 0, SpringLayout.WEST, firstLine);
+		secondLine.setBounds(0, 112, 0, 0);
+		secondLine.setIcon(new ImageIcon("images/lottoResult_3.png"));
 		backgroundImage.add(secondLine);
 
 		JLabel titleA = new JLabel("New label");
-		springLayout.putConstraint(SpringLayout.NORTH, titleA, 110, SpringLayout.SOUTH, secondLine);
-		springLayout.putConstraint(SpringLayout.WEST, titleA, 0, SpringLayout.WEST, lblTitle);
+		titleA.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		titleA.setBounds(51, 205, 69, 15);
 		backgroundImage.add(titleA);
 
 		JLabel titleB = new JLabel("New label");
-		springLayout.putConstraint(SpringLayout.NORTH, titleB, 22, SpringLayout.SOUTH, titleA);
-		springLayout.putConstraint(SpringLayout.WEST, titleB, 0, SpringLayout.WEST, lblTitle);
+		titleB.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		titleB.setBounds(51, 245, 69, 15);
 		backgroundImage.add(titleB);
 
 		JLabel titleC = new JLabel("New label");
-		springLayout.putConstraint(SpringLayout.NORTH, titleC, 26, SpringLayout.SOUTH, titleB);
-		springLayout.putConstraint(SpringLayout.WEST, titleC, 0, SpringLayout.WEST, lblTitle);
+		titleC.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		titleC.setBounds(51, 285, 69, 15);
 		backgroundImage.add(titleC);
 
 		JLabel titleD = new JLabel("New label");
-		springLayout.putConstraint(SpringLayout.NORTH, titleD, 30, SpringLayout.SOUTH, titleC);
-		springLayout.putConstraint(SpringLayout.EAST, titleD, 0, SpringLayout.EAST, titleA);
+		titleD.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		titleD.setBounds(51, 325, 69, 15);
 		backgroundImage.add(titleD);
 
 		JLabel titleE = new JLabel("New label");
-		springLayout.putConstraint(SpringLayout.NORTH, titleE, 25, SpringLayout.SOUTH, titleD);
-		springLayout.putConstraint(SpringLayout.WEST, titleE, 0, SpringLayout.WEST, lblTitle);
+		titleE.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		titleE.setBounds(51, 365, 69, 15);
 		backgroundImage.add(titleE);
 
 		JLabel resultA = new JLabel("New label");
-		springLayout.putConstraint(SpringLayout.NORTH, resultA, 110, SpringLayout.SOUTH, secondLine);
-		springLayout.putConstraint(SpringLayout.WEST, resultA, 34, SpringLayout.EAST, titleA);
+		resultA.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		resultA.setBounds(140, 205, 177, 15);
 		backgroundImage.add(resultA);
 
 		JLabel resultB = new JLabel("New label");
-		springLayout.putConstraint(SpringLayout.NORTH, resultB, 0, SpringLayout.NORTH, titleB);
-		springLayout.putConstraint(SpringLayout.WEST, resultB, 0, SpringLayout.WEST, resultA);
+		resultB.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		resultB.setBounds(140, 245, 177, 15);
 		backgroundImage.add(resultB);
 
 		JLabel resultC = new JLabel("New label");
-		springLayout.putConstraint(SpringLayout.NORTH, resultC, 0, SpringLayout.NORTH, titleC);
-		springLayout.putConstraint(SpringLayout.WEST, resultC, 0, SpringLayout.WEST, resultA);
+		resultC.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		resultC.setBounds(140, 285, 177, 15);
 		backgroundImage.add(resultC);
 
 		JLabel resultD = new JLabel("New label");
-		springLayout.putConstraint(SpringLayout.NORTH, resultD, 0, SpringLayout.NORTH, titleD);
-		springLayout.putConstraint(SpringLayout.WEST, resultD, 0, SpringLayout.WEST, resultA);
+		resultD.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		resultD.setBounds(140, 325, 177, 15);
 		backgroundImage.add(resultD);
 
 		JLabel resultE = new JLabel("New label");
-		springLayout.putConstraint(SpringLayout.NORTH, resultE, 0, SpringLayout.NORTH, titleE);
-		springLayout.putConstraint(SpringLayout.WEST, resultE, 0, SpringLayout.WEST, resultA);
+		resultE.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		resultE.setBounds(140, 365, 177, 15);
 		backgroundImage.add(resultE);
 
 		JLabel thirdLine = new JLabel("");
-		springLayout.putConstraint(SpringLayout.NORTH, thirdLine, 6, SpringLayout.SOUTH, titleE);
-		springLayout.putConstraint(SpringLayout.WEST, thirdLine, 0, SpringLayout.WEST, firstLine);
+		thirdLine.setBounds(0, 302, 0, 0);
 		thirdLine.setIcon(new ImageIcon("images/lottoResult_3.png"));
 		backgroundImage.add(thirdLine);
 
-		JLabel total = new JLabel("New label");
-		springLayout.putConstraint(SpringLayout.NORTH, total, 6, SpringLayout.SOUTH, thirdLine);
-		springLayout.putConstraint(SpringLayout.WEST, total, 0, SpringLayout.WEST, lblNewLabel_1);
+		JLabel total = new JLabel("New label"); // 무슨 토탈인가???
+		total.setBounds(270, 422, 57, 15);
 		backgroundImage.add(total);
 
 		JLabel WinningresultA = new JLabel(""); // 당첨결과를 알려주기 위한 라벨
-		springLayout.putConstraint(SpringLayout.NORTH, WinningresultA, 110, SpringLayout.SOUTH, secondLine);
-		springLayout.putConstraint(SpringLayout.WEST, WinningresultA, 280, SpringLayout.WEST, lblTitle);
+		WinningresultA.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		WinningresultA.setBounds(300, 205, 70, 15);
 		backgroundImage.add(WinningresultA);
 
 		JLabel WinningresultB = new JLabel(""); // 당첨결과를 알려주기 위한 라벨
-		springLayout.putConstraint(SpringLayout.NORTH, WinningresultB, 145, SpringLayout.SOUTH, secondLine);
-		springLayout.putConstraint(SpringLayout.WEST, WinningresultB, 280, SpringLayout.WEST, lblTitle);
+		WinningresultB.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		WinningresultB.setBounds(300, 245, 70, 15);
 		backgroundImage.add(WinningresultB);
 
 		JLabel WinningresultC = new JLabel(""); // 당첨결과를 알려주기 위한 라벨
-		springLayout.putConstraint(SpringLayout.NORTH, WinningresultC, 180, SpringLayout.SOUTH, secondLine);
-		springLayout.putConstraint(SpringLayout.WEST, WinningresultC, 280, SpringLayout.WEST, lblTitle);
+		WinningresultC.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		WinningresultC.setBounds(300, 285, 70, 15);
 		backgroundImage.add(WinningresultC);
 
 		JLabel WinningresultD = new JLabel(""); // 당첨결과를 알려주기 위한 라벨
-		springLayout.putConstraint(SpringLayout.NORTH, WinningresultD, 215, SpringLayout.SOUTH, secondLine);
-		springLayout.putConstraint(SpringLayout.WEST, WinningresultD, 280, SpringLayout.WEST, lblTitle);
+		WinningresultD.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		WinningresultD.setBounds(300, 325, 70, 15);
 		backgroundImage.add(WinningresultD);
 
 		JLabel WinningresultE = new JLabel(""); // 당첨결과를 알려주기 위한 라벨
-		springLayout.putConstraint(SpringLayout.NORTH, WinningresultE, 250, SpringLayout.SOUTH, secondLine);
-		springLayout.putConstraint(SpringLayout.WEST, WinningresultE, 280, SpringLayout.WEST, lblTitle);
+		WinningresultE.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		WinningresultE.setBounds(300, 365, 70, 15);
 		backgroundImage.add(WinningresultE);
 
 		JButton btnNewButton = new JButton("확인");
-		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton, 35, SpringLayout.SOUTH, thirdLine);
-		springLayout.putConstraint(SpringLayout.WEST, btnNewButton, 158, SpringLayout.WEST, getContentPane());
+		btnNewButton.setBounds(147, 422, 69, 34);
 		backgroundImage.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			@Override
@@ -222,12 +208,6 @@ public class ResultFrame extends JFrame {
 				resultLabels[j].setText("");
 			}
 		}
-//		int resultNum = 0;
-//		for (int i = 0; i < 5; i++) {
-//			if (lotto.resultBuy.get(i).size() != 0) {
-//				resultNum++;
-//			}
-//		}
 		int resultNum = 0;
 		for (int i = 0; i < lotto.resultBuy.size(); i++) {
 			if (!lotto.resultBuy.get(i).isEmpty()) {
@@ -238,16 +218,16 @@ public class ResultFrame extends JFrame {
 		System.out.println(lotto.roundNum);
 		System.out.println("ghkr");
 
-		JLabel winningNumber = new JLabel();
-		springLayout.putConstraint(SpringLayout.NORTH, btnNewButton, 100, SpringLayout.SOUTH, thirdLine);
-		springLayout.putConstraint(SpringLayout.WEST, btnNewButton, 60, SpringLayout.WEST, getContentPane());
+		JLabel winningNumber = new JLabel(); // 당첨번호 출력해주는라벨
+		winningNumber.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		winningNumber.setBounds(80, 160, 220
+				, 20);
 
 		int index = 0;
 		if (resultNum != 0) {
 			index = random.nextInt(resultNum);
 			winningNumber.setText("당첨 번호 : " + lotto.resultBuy.get(index)); // 당첨 번호 출력하는 라벨
 
-//		winningNumberCollection = new TreeMap<>();
 			lotto.winningNumberCollection.put(lotto.roundNum, lotto.resultBuy.get(index));
 			ArrayList<String> ll = new ArrayList<>();
 			ll = lotto.winningNumberCollection.get(lotto.roundNum);
@@ -257,6 +237,7 @@ public class ResultFrame extends JFrame {
 			for (Integer numKey : lotto.winningNumberCollection.keySet()) {
 				System.out.println("제" + (numKey) + "회" + ": " + lotto.winningNumberCollection.get(numKey));
 			}
+
 			// A번호 매칭하여 1,2,3,4,5,낙첨 출력
 			for (int i = 0; i < 6; i++) {
 				for (int j = 0; j < 6; j++) {
