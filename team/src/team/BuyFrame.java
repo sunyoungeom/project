@@ -255,18 +255,19 @@ public class BuyFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				lblStateA.setText("미지정");
 				lotto.resultBuy.set(0, new ArrayList<>());
-
+				removeBalls(ballApnl);
 				lblStateB.setText("미지정");
 				lotto.resultBuy.set(1, new ArrayList<>());
-
+				removeBalls(ballBpnl);
 				lblStateC.setText("미지정");
 				lotto.resultBuy.set(2, new ArrayList<>());
-
+				removeBalls(ballCpnl);
 				lblStateD.setText("미지정");
 				lotto.resultBuy.set(3, new ArrayList<>());
-
+				removeBalls(ballDpnl);
 				lblStateE.setText("미지정");
 				lotto.resultBuy.set(4, new ArrayList<>());
+				removeBalls(ballEpnl);
 				// countNum을 -1로 재설정
 				countNum = 0;
 			}
