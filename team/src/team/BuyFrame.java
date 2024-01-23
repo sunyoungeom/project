@@ -99,7 +99,7 @@ public class BuyFrame extends JFrame {
 		
 		JPanel ballBpnl = new JPanel();
 		sl_pnl.putConstraint(SpringLayout.NORTH, ballBpnl, 196, SpringLayout.NORTH, pnl);
-		sl_pnl.putConstraint(SpringLayout.WEST, ballBpnl, 0, SpringLayout.WEST, ballEpnl);
+		sl_pnl.putConstraint(SpringLayout.WEST, ballBpnl, 50, SpringLayout.EAST, ballEpnl); // Adjust the offset value
 		ballBpnl.setBackground(Color.WHITE);
 		pnl.add(ballBpnl);
 
