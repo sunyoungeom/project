@@ -58,7 +58,7 @@ public class ResultDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 19, SpringLayout.SOUTH, firstLine);
 		springLayout.putConstraint(SpringLayout.WEST, lblNewLabel_1, 67, SpringLayout.EAST, lottoIcon);
 		lblNewLabel_1.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-		lblNewLabel_1.setText("제 " + (lotto.roundNum + 1) + "회");
+		lblNewLabel_1.setText("제 " + lotto.roundNum+ "회");
 		getContentPane().add(lblNewLabel_1);
 
 		JLabel secondLine = new JLabel("");
@@ -139,6 +139,9 @@ public class ResultDialog extends JDialog {
 //			System.out.println((char)(ch + j));
 //			lotto.resultBuyTitle.
 //		}
+
+		
+		
 //		
 		JLabel[] resultTitleLabels = { titleA, titleB, titleC, titleD, titleE };
 		for (int j = 0; j < resultTitleLabels.length; j++) {

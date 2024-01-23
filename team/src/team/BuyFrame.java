@@ -130,7 +130,7 @@ public class BuyFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				lotto.setVisible(true);
-				lotto.setRoundNum(lotto.getRoundNum() + 1);
+//				lotto.setRoundNum(lotto.getRoundNum() + 1);
 			}
 		});
 
@@ -313,8 +313,12 @@ public class BuyFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("대화 상자를 생성합니다.");
+				lotto.roundNum++;
 				JDialog dialog = new ResultDialog(lottoProgram);
 				dialog.setVisible(true);
+				
+				System.out.println(lotto.roundNum);
+				lotto.buyNumberCollection.put(lotto.roundNum, lotto.resultBuy);
 
 				System.out.println("출력 확인!!");
 			}
