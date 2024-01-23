@@ -131,7 +131,6 @@ public class BuyFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				lotto.setVisible(true);
-				lotto.setRoundNum(lotto.getRoundNum() + 1);
 			}
 		});
 
@@ -313,8 +312,12 @@ public class BuyFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("대화 상자를 생성합니다.");
+				System.out.println(lotto.roundNum);
+				lotto.roundNum++;
+				System.out.println(lotto.roundNum);
 				JDialog dialog = new ResultDialog(lottoProgram);
 				dialog.setVisible(true);
+				System.out.println(lotto.roundNum);
 				System.out.println("출력 확인!!");
 			}
 		});
@@ -740,8 +743,6 @@ public class BuyFrame extends JFrame {
 							for (JToggleButton toggleButton : numberToggleButtons) {
 								toggleButton.setSelected(false);
 							}
-
-							
 							if (numSelect == 0) {
 								lblStateE.setText("자동");
 								autoSelected = false;
@@ -753,7 +754,6 @@ public class BuyFrame extends JFrame {
 							lotto.resultBuyTitle.set(4, lblStateE.getText());
 							countNum = 5;
 						}
-				
 					} else {
 						// 6개가 선택되지 않은 경우
 						lblCheckA.setText("6개를 선택해야 합니다.");
@@ -764,7 +764,6 @@ public class BuyFrame extends JFrame {
 							break;
 						}
 					}
-					
 					numSelect = 0;
 				}
 			}
@@ -807,7 +806,6 @@ public class BuyFrame extends JFrame {
 			pnl.add(label);
 			labels[i] = label;
 		}
-
 		ballLabels.put(countNum, labels);
 		return ballLabels;
 	}

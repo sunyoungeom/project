@@ -133,16 +133,19 @@ public class ResultDialog extends JDialog {
 		springLayout.putConstraint(SpringLayout.WEST, btnNewButton, 158, SpringLayout.WEST, getContentPane());
 		getContentPane().add(btnNewButton);
 		System.out.println(lotto.resultBuy.get(0));
-
-		char ch = 'A';
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+				dispose();
+			}
+		});
 //		for (int i = 0; i < array.length; i++) {
 //			System.out.println((char)(ch + j));
 //			lotto.resultBuyTitle.
 //		}
-
-		
-		
-//		
+		char ch = 'A';
 		JLabel[] resultTitleLabels = { titleA, titleB, titleC, titleD, titleE };
 		for (int j = 0; j < resultTitleLabels.length; j++) {
 			if (!lotto.resultBuyTitle.get(j).isEmpty() && j < lotto.resultBuyTitle.size() && lotto.resultBuyTitle.size() > 0) {
