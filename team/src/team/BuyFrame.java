@@ -82,11 +82,7 @@ public class BuyFrame extends JFrame {
 	public BuyFrame(LottoProgram lottoProgram) {
 		this.lotto = lottoProgram;
 
-		if (lotto.resultBuy.get(0).size() != 0) {
-			System.out.println("이미 구매한회차");
-			JOptionPane.showMessageDialog(null, "이미 구매한 회차 입니다.", "해당 회차 종료", JOptionPane.WARNING_MESSAGE);
-
-		}
+		
 		JPanel pnl = new JPanel();
 		pnl.setBackground(Color.WHITE);
 		SpringLayout sl_pnl = new SpringLayout();

@@ -85,13 +85,26 @@ public class LottoProgram extends JFrame {
 		sl_main.putConstraint(SpringLayout.EAST, btnHelp, 0, SpringLayout.EAST, btnBefore);
 
 		main.add(backgroundImage);
-
+		
 		btnBuy.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				BuyFrame buyFrame = new BuyFrame(LottoProgram.this);
-				buyFrame.setVisible(true);
+				if (resultBuy.get(0).size() == 0
+						&& resultBuy.get(1).size() == 0
+						&& resultBuy.get(2).size() == 0
+						&& resultBuy.get(3).size() == 0
+						&& resultBuy.get(4).size() == 0) {
+					setVisible(false);
+					BuyFrame buyFrame = new BuyFrame(LottoProgram.this);
+					buyFrame.setVisible(true);
+					
+
+				} else {
+					System.out.println("이미 구매한회차");
+					JOptionPane.showMessageDialog(null, "이미 구매한 회차 입니다.", "해당 회차 종료", JOptionPane.WARNING_MESSAGE);
+				}
+				
+				
 			}
 		});
 
