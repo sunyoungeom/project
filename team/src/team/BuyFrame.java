@@ -91,6 +91,7 @@ public class BuyFrame extends JFrame {
 
 		btnreturn = new JButton("돌아가기");
 		btnreturn.setBackground(Color.WHITE);
+		btnreturn.setEnabled(false); // 초기설정에는 비활성화
 		pnl.add(btnreturn);
 
 		btnreturn.addActionListener(new ActionListener() {
@@ -98,6 +99,7 @@ public class BuyFrame extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				setVisible(false);
 				lotto.setVisible(true);
+				
 			}
 		});
 
@@ -231,11 +233,10 @@ public class BuyFrame extends JFrame {
 		btnPurchase.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("대화 상자를 생성합니다.");
 				lotto.roundNum++;
 				JDialog dialog = new ResultDialog(lottoProgram);
 				dialog.setVisible(true);
-				System.out.println("출력 확인!!");
+				btnreturn.setEnabled(true);
 			}
 		});
 
