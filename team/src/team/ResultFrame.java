@@ -157,7 +157,7 @@ public class ResultFrame extends JFrame {
 		backgroundImage.add(WinningresultE);
 
 		JButton btnNewButton = new JButton("확인");
-		btnNewButton.setBounds(147, 422, 69, 34);
+		btnNewButton.setBounds(147, 440, 69, 34);
 		backgroundImage.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			@Override
@@ -220,8 +220,7 @@ public class ResultFrame extends JFrame {
 
 		JLabel winningNumber = new JLabel(); // 당첨번호 출력해주는라벨
 		winningNumber.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		winningNumber.setBounds(80, 160, 220
-				, 20);
+		winningNumber.setBounds(80, 170, 220, 20);
 
 		int index = 0;
 		if (resultNum != 0) {
