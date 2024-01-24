@@ -91,15 +91,16 @@ public class BuyFrame extends JFrame {
 
 		btnreturn = new JButton("돌아가기");
 		btnreturn.setBackground(Color.WHITE);
-		btnreturn.setEnabled(false); // 초기설정에는 비활성화
 		pnl.add(btnreturn);
-
+		
 		btnreturn.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				lotto.setVisible(true);
-				
+				int answer = JOptionPane.showConfirmDialog(BuyFrame.this, "구매하시지않고 뒤로 가시겠습니까?","경고",JOptionPane.YES_NO_OPTION);
+				if (answer == JOptionPane.YES_OPTION) {
+					setVisible(false);
+					lotto.setVisible(true);
+				}
 			}
 		});
 
