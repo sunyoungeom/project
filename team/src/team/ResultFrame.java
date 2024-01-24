@@ -51,7 +51,7 @@ public class ResultFrame extends JFrame {
 		backgroundImage.add(lottoDate);
 
 		JLabel lblNewLabel_1 = new JLabel("제 1회");
-		lblNewLabel_1.setBounds(235, 81, 59, 27);
+		lblNewLabel_1.setBounds(220, 100, 70, 27);
 		lblNewLabel_1.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		lblNewLabel_1.setText("제 " + lotto.roundNum + "회");
 		backgroundImage.add(lblNewLabel_1);

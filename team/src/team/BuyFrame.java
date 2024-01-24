@@ -96,7 +96,7 @@ public class BuyFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (returnCount == 0) {
-					int answer = JOptionPane.showConfirmDialog(BuyFrame.this, "구매하시지않고 뒤로 가시겠습니까?", "경고",
+					int answer = JOptionPane.showConfirmDialog(BuyFrame.this, "구매하시지 않고 뒤로 가시겠습니까?", "경고",
 							JOptionPane.YES_NO_OPTION);
 					if (answer == JOptionPane.YES_OPTION) {
 						setVisible(false);
@@ -196,8 +196,8 @@ public class BuyFrame extends JFrame {
 		pnl.add(toggleButtonPanel);
 		toggleButtonPanel.setLayout(new GridLayout(9, 5, 15, 15));
 
+		// 버튼 45개 생성
 		numberToggleButtons = new ArrayList<>();
-
 		for (int i = 1; i <= 45; i++) {
 			JToggleButton toggleButton = new JToggleButton();
 			toggleButton.setText(String.valueOf(i));
