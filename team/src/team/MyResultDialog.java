@@ -12,10 +12,10 @@ import java.awt.event.ActionListener;
 import java.util.Arrays;
 import java.awt.event.ActionEvent;
 
-public class ResultDialog extends JDialog {
+public class MyResultDialog extends JDialog {
 	private LottoProgram lotto;
 
-	public ResultDialog(LottoProgram lottoProgram) {
+	public MyResultDialog(LottoProgram lottoProgram) {
 		this.lotto = lottoProgram;
 
 		JLabel backgroundImage = new JLabel(new ImageIcon("images/lottoResult.png"));
@@ -103,7 +103,18 @@ public class ResultDialog extends JDialog {
 				dispose();
 			}
 		});
+		JButton btnShowMyRecord = new JButton("구매내역");
+		btnShowMyRecord.setBounds(50, 300, 69, 34);
 
+		System.out.println(lotto.resultBuy.get(0));
+
+		btnShowMyRecord.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+				dispose();
+			}
+		});
 		char ch = 'A';
 		JLabel[] resultTitleLabels = { titleA, titleB, titleC, titleD, titleE };
 		for (int j = 0; j < resultTitleLabels.length; j++) {
@@ -179,6 +190,7 @@ public class ResultDialog extends JDialog {
 		backgroundImage.add(resultE);
 		backgroundImage.add(total);
 		backgroundImage.add(btnNewButton);
+		backgroundImage.add(btnShowMyRecord);
 
 		getContentPane().add(backgroundImage);
 

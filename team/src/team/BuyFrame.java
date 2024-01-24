@@ -28,6 +28,7 @@ import sun.net.www.content.image.jpeg;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Container;
 import java.awt.Font;
 
 import javax.swing.JComboBox;
@@ -96,6 +97,7 @@ public class BuyFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (returnCount == 0) {
+					
 					int answer = JOptionPane.showConfirmDialog(BuyFrame.this, "구매하시지 않고 뒤로 가시겠습니까?", "경고",
 							JOptionPane.YES_NO_OPTION);
 					if (answer == JOptionPane.YES_OPTION) {
@@ -106,6 +108,7 @@ public class BuyFrame extends JFrame {
 						}
 					}
 				} else {
+					
 					setVisible(false);
 					lotto.setVisible(true);
 				}
@@ -129,13 +132,13 @@ public class BuyFrame extends JFrame {
 			}
 		});
 
-		btnAuto = new JButton("자동선택");
+		btnAuto = new JButton("자 동선택");
 		sl_pnl.putConstraint(SpringLayout.NORTH, btnAuto, 0, SpringLayout.NORTH, btnReset);
 		sl_pnl.putConstraint(SpringLayout.WEST, btnAuto, 27, SpringLayout.EAST, btnReset);
 		btnAuto.setBackground(Color.WHITE);
 		btnAuto.setForeground(Color.BLACK);
 		pnl.add(btnAuto);
-		// "자동선택" 버튼에 대한 ActionListener를 추가
+		// "자 동선택" 버튼에 대한 ActionListener를 추가
 		btnAuto.addActionListener(new ActionListener() {
 			private Random random;
 			private int numSelect;
@@ -150,7 +153,7 @@ public class BuyFrame extends JFrame {
 						numSelect++; // 내가 누르는 번호의 개수
 					}
 				}
-				// 나머지 번호를 자동으로 선택 (반자동)
+				// 나머지 번호를 자 동으로 선택 (반자동)
 				if (numSelect < autoSelectCount) {
 					random = new Random();
 					while (numSelect < autoSelectCount) {
@@ -160,7 +163,7 @@ public class BuyFrame extends JFrame {
 							numSelect++;
 						}
 					}
-				} // 자동
+				} // 자 동
 				else if (numSelect == 0 || autoSelectCount == 6) {
 					random = new Random();
 					for (JToggleButton toggleButton : numberToggleButtons) {
@@ -249,14 +252,33 @@ public class BuyFrame extends JFrame {
 												&& lotto.resultBuy.get(4).size() == 0) {
 					JOptionPane.showMessageDialog(BuyFrame.this, "구매 수량이 없습니다");
 				} else {
+					btnPurchase.setEnabled(false); // 한번 구매시 구매버튼 비활성화
+					
+						disableAllButtons(getContentPane()); // 돌아가기 제외 모든 버튼 비활성화
+						btnreturn.setEnabled(true);
+					
 					returnCount++;
 					lotto.roundNum++;
 					JDialog dialog = new ResultDialog(lottoProgram);
+					dialog.setTitle("구매내역");
 					dialog.setVisible(true);
-					btnreturn.setEnabled(true);
+					
+					// 구매시 기본공 출력
+					removeBalls(ballApnl);
+					removeBalls(ballBpnl);
+					removeBalls(ballCpnl);
+					removeBalls(ballDpnl);
+					removeBalls(ballEpnl);
+					
+					showDefaultBall(sl_pnl, ballApnl);
+					showDefaultBall(sl_pnl, ballBpnl);
+					showDefaultBall(sl_pnl, ballCpnl);
+					showDefaultBall(sl_pnl, ballDpnl);
+					showDefaultBall(sl_pnl, ballEpnl);
 				}
 			}
 		});
+		
 
 		btnNumReset = new JButton("초기화");
 		sl_pnl.putConstraint(SpringLayout.WEST, btnNumReset, 707, SpringLayout.EAST, btnreturn);
@@ -342,12 +364,12 @@ public class BuyFrame extends JFrame {
 							toggleButton.setSelected(false);
 						}
 						if (numSelect == 0) {
-							lblStateA.setText("자동");
+							lblStateA.setText("자 동");
 							autoSelected = false;
 						} else if (numSelect >= 1 && numSelect <= 5) { // () = true
 							lblStateA.setText("반자동");
 						} else {
-							lblStateA.setText("수동");
+							lblStateA.setText("수 동");
 						}
 						lotto.resultBuyTitle.set(0, lblStateA.getText());
 					} else if (countNum == 1) {
@@ -359,10 +381,10 @@ public class BuyFrame extends JFrame {
 							toggleButton.setSelected(false);
 						}
 						if (numSelect == 0 || autoSelectCount == 6) {
-							lblStateB.setText("자동");
+							lblStateB.setText("자 동");
 							autoSelected = false;
 						} else if (numSelect == 6) { // () = true
-							lblStateB.setText("수동");
+							lblStateB.setText("수 동");
 						} else {
 							lblStateB.setText("반자동");
 						}
@@ -377,10 +399,10 @@ public class BuyFrame extends JFrame {
 							toggleButton.setSelected(false);
 						}
 						if (numSelect == 0) {
-							lblStateC.setText("자동");
+							lblStateC.setText("자 동");
 							autoSelected = false;
 						} else if (numSelect == 6) { // () = true
-							lblStateC.setText("수동");
+							lblStateC.setText("수 동");
 						} else {
 							lblStateC.setText("반자동");
 						}
@@ -395,10 +417,10 @@ public class BuyFrame extends JFrame {
 							toggleButton.setSelected(false);
 						}
 						if (numSelect == 0) {
-							lblStateD.setText("자동");
+							lblStateD.setText("자 동");
 							autoSelected = false;
 						} else if (numSelect == 6) { // () = true
-							lblStateD.setText("수동");
+							lblStateD.setText("수 동");
 						} else {
 							lblStateD.setText("반자동");
 						}
@@ -414,10 +436,10 @@ public class BuyFrame extends JFrame {
 								toggleButton.setSelected(false);
 							}
 							if (numSelect == 0) {
-								lblStateE.setText("자동");
+								lblStateE.setText("자 동");
 								autoSelected = false;
 							} else if (numSelect == 6) { // () = true
-								lblStateE.setText("수동");
+								lblStateE.setText("수 동");
 							} else {
 								lblStateE.setText("반자동");
 							}
@@ -453,23 +475,23 @@ public class BuyFrame extends JFrame {
 		panel.setLayout(null);
 
 		lblLineA = new JLabel("A");
-		lblLineA.setBounds(20, 10, 20, 35);
+		lblLineA.setBounds(45, 55, 20, 35);
 		lblLineA.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
 		panel.add(lblLineA);
 
 		lblStateA = new JLabel("미지정");
-		lblStateA.setBounds(60, 20, 45, 21);
+		lblStateA.setBounds(70, 65, 45, 21);
 		lblStateA.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		panel.add(lblStateA);
 
 		ballApnl = new JPanel();
 		ballApnl.setBackground(Color.WHITE);
-		ballApnl.setBounds(130, 5, 330, 50);
+		ballApnl.setBounds(130, 50, 310, 50);
 		panel.add(ballApnl);
 
 		btnRetouchA = new JButton("수정");
 		btnRetouchA.setBackground(Color.WHITE);
-		btnRetouchA.setBounds(480, 15, 60, 25);
+		btnRetouchA.setBounds(450, 60, 60, 25);
 		panel.add(btnRetouchA);
 		btnRetouchA.addActionListener(new ActionListener() {
 			@Override
@@ -493,7 +515,7 @@ public class BuyFrame extends JFrame {
 
 		btnDeleteA = new JButton("삭제");
 		btnDeleteA.setBackground(Color.WHITE);
-		btnDeleteA.setBounds(550, 15, 60, 25);
+		btnDeleteA.setBounds(520, 60, 60, 25);
 		panel.add(btnDeleteA);
 		btnDeleteA.addActionListener(new ActionListener() {
 			@Override
@@ -508,22 +530,22 @@ public class BuyFrame extends JFrame {
 
 		ballBpnl = new JPanel();
 		ballBpnl.setBackground(Color.WHITE);
-		ballBpnl.setBounds(130, 95, 330, 50);
+		ballBpnl.setBounds(130, 125, 310, 50);
 		panel.add(ballBpnl);
 
 		lblLineB = new JLabel("B");
-		lblLineB.setBounds(20, 100, 20, 35);
+		lblLineB.setBounds(45, 130, 20, 35);
 		lblLineB.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
 		panel.add(lblLineB);
 
 		lblStateB = new JLabel("미지정");
-		lblStateB.setBounds(60, 110, 45, 21);
+		lblStateB.setBounds(70, 140, 45, 21);
 		lblStateB.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		panel.add(lblStateB);
 
 		btnRetouchB = new JButton("수정");
 		btnRetouchB.setBackground(Color.WHITE);
-		btnRetouchB.setBounds(480, 105, 60, 25);
+		btnRetouchB.setBounds(450, 135, 60, 25);
 		panel.add(btnRetouchB);
 		btnRetouchB.setBackground(Color.WHITE);
 		btnRetouchB.addActionListener(new ActionListener() {
@@ -546,7 +568,7 @@ public class BuyFrame extends JFrame {
 
 		btnDeleteB = new JButton("삭제");
 		btnDeleteB.setBackground(Color.WHITE);
-		btnDeleteB.setBounds(550, 105, 60, 25);
+		btnDeleteB.setBounds(520, 135, 60, 25);
 		panel.add(btnDeleteB);
 		btnDeleteB.addActionListener(new ActionListener() {
 			@Override
@@ -560,23 +582,23 @@ public class BuyFrame extends JFrame {
 		});
 
 		lblLineC = new JLabel("C");
-		lblLineC.setBounds(20, 190, 20, 35);
+		lblLineC.setBounds(45, 205, 20, 35);
 		lblLineC.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
 		panel.add(lblLineC);
 
 		lblStateC = new JLabel("미지정");
-		lblStateC.setBounds(60, 200, 45, 21);
+		lblStateC.setBounds(70, 215, 45, 21);
 		lblStateC.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		panel.add(lblStateC);
 
 		ballCpnl = new JPanel();
 		ballCpnl.setBackground(Color.WHITE);
-		ballCpnl.setBounds(130, 185, 330, 50);
+		ballCpnl.setBounds(130, 200, 310, 50);
 		panel.add(ballCpnl);
 
 		btnRetouchC = new JButton("수정");
 		btnRetouchC.setBackground(Color.WHITE);
-		btnRetouchC.setBounds(480, 195, 60, 25);
+		btnRetouchC.setBounds(450, 210, 60, 25);
 		panel.add(btnRetouchC);
 		btnRetouchC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -598,7 +620,7 @@ public class BuyFrame extends JFrame {
 
 		btnDeleteC = new JButton("삭제");
 		btnDeleteC.setBackground(Color.WHITE);
-		btnDeleteC.setBounds(550, 195, 60, 25);
+		btnDeleteC.setBounds(520, 210, 60, 25);
 		panel.add(btnDeleteC);
 		btnDeleteC.addActionListener(new ActionListener() {
 			@Override
@@ -612,23 +634,23 @@ public class BuyFrame extends JFrame {
 		});
 
 		lblLineD = new JLabel("D");
-		lblLineD.setBounds(20, 280, 20, 35);
+		lblLineD.setBounds(45, 280, 20, 35);
 		lblLineD.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
 		panel.add(lblLineD);
 
 		lblStateD = new JLabel("미지정");
-		lblStateD.setBounds(60, 290, 45, 21);
+		lblStateD.setBounds(70, 290, 45, 21);
 		lblStateD.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		panel.add(lblStateD);
 
 		ballDpnl = new JPanel();
 		ballDpnl.setBackground(Color.WHITE);
-		ballDpnl.setBounds(130, 275, 330, 50);
+		ballDpnl.setBounds(130, 275, 310, 50);
 		panel.add(ballDpnl);
 
 		btnRetouchD = new JButton("수정");
 		btnRetouchD.setBackground(Color.WHITE);
-		btnRetouchD.setBounds(480, 285, 60, 25);
+		btnRetouchD.setBounds(450, 285, 60, 25);
 		panel.add(btnRetouchD);
 		btnRetouchD.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -650,7 +672,7 @@ public class BuyFrame extends JFrame {
 
 		btnDeleteD = new JButton("삭제");
 		btnDeleteD.setBackground(Color.WHITE);
-		btnDeleteD.setBounds(550, 285, 60, 25);
+		btnDeleteD.setBounds(520, 285, 60, 25);
 		panel.add(btnDeleteD);
 		btnDeleteD.addActionListener(new ActionListener() {
 			@Override
@@ -664,23 +686,23 @@ public class BuyFrame extends JFrame {
 		});
 
 		lblLineE = new JLabel("E");
-		lblLineE.setBounds(20, 370, 20, 35);
+		lblLineE.setBounds(45, 355, 20, 35);
 		lblLineE.setFont(new Font("맑은 고딕", Font.PLAIN, 25));
 		panel.add(lblLineE);
 
 		lblStateE = new JLabel("미지정");
-		lblStateE.setBounds(60, 380, 45, 21);
+		lblStateE.setBounds(70, 365, 45, 21);
 		lblStateE.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		panel.add(lblStateE);
 
 		ballEpnl = new JPanel();
 		ballEpnl.setBackground(Color.WHITE);
-		ballEpnl.setBounds(130, 365, 330, 50);
+		ballEpnl.setBounds(130, 350, 310, 50);
 		panel.add(ballEpnl);
 
 		btnRetouchE = new JButton("수정");
 		btnRetouchE.setBackground(Color.WHITE);
-		btnRetouchE.setBounds(480, 375, 60, 25);
+		btnRetouchE.setBounds(450, 360, 60, 25);
 		panel.add(btnRetouchE);
 		btnRetouchE.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -702,7 +724,7 @@ public class BuyFrame extends JFrame {
 
 		btnDeleteE = new JButton("삭제");
 		btnDeleteE.setBackground(Color.WHITE);
-		btnDeleteE.setBounds(550, 375, 60, 25);
+		btnDeleteE.setBounds(520, 360, 60, 25);
 		panel.add(btnDeleteE);
 		btnDeleteE.addActionListener(new ActionListener() {
 			@Override
@@ -714,6 +736,7 @@ public class BuyFrame extends JFrame {
 				showDefaultBall(sl_pnl, ballEpnl);
 			}
 		});
+		
 
 		// 기본 공 출력
 		showDefaultBall(sl_pnl, ballApnl);
@@ -727,6 +750,23 @@ public class BuyFrame extends JFrame {
 		setVisible(false);
 
 	}
+	
+	// 모든 버튼을 비활성화하는 메서드
+    private static void disableAllButtons(Container container) {
+        Component[] components = container.getComponents();
+
+        for (Component component : components) {
+            if (component instanceof JButton) {
+                JButton button = (JButton) component;
+                button.setEnabled(false);
+            } else if (component instanceof Container) {
+                // 재귀적으로 컨테이너 내의 모든 하위 컴포넌트 검사
+                disableAllButtons((Container) component);
+            }
+        }
+    }
+	
+	
 
 	public void showDefaultBall(SpringLayout springLayout, JPanel pnl) {
 		for (int i = 0; i < 6; i++) {

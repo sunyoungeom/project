@@ -110,7 +110,7 @@ public class HelpFrame extends JFrame {
 				pnl.setVisible(true);
 
 				System.out.println("대화 상자를 생성합니다.");
-				JDialog dialog = new ResultDialog(lottoProgram);
+				JDialog dialog = new RecordDialog(lottoProgram);
 				dialog.setVisible(true);
 				dialog.setTitle("결과확인");
 //		        timer.cancel(); // 타이머 중지
