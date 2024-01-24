@@ -44,7 +44,6 @@ public class ResultFrame extends JFrame {
 		lblTitle.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		backgroundImage.add(lblTitle);
 
-
 		JLabel lottoDate = new JLabel("0000-00-00");
 		lottoDate.setBounds(120, 146, 138, 17);
 		lottoDate.setFont(new Font("맑은 고딕", Font.BOLD, 15));
