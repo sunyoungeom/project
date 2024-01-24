@@ -313,6 +313,7 @@ public class BuyFrame extends JFrame {
 						lotto.resultBuy.set(0, selectedNumbers);
 						System.out.println(lotto.resultBuy);
 						System.out.println(selectedNumbers.get(0));
+						removeBalls(ballApnl);
 						showBall(0, selectedNumbers, ballApnl, sl_pnl, -10, 50);
 						for (JToggleButton toggleButton : numberToggleButtons) {
 							toggleButton.setSelected(false);
@@ -329,6 +330,7 @@ public class BuyFrame extends JFrame {
 					} else if (countNum == 1) {
 						lotto.resultBuy.set(1, selectedNumbers);
 						System.out.println(lotto.resultBuy);
+						removeBalls(ballBpnl);
 						showBall(1, selectedNumbers, ballBpnl, sl_pnl, 60, 50);
 
 						for (JToggleButton toggleButton : numberToggleButtons) {
@@ -346,6 +348,7 @@ public class BuyFrame extends JFrame {
 					} else if (countNum == 2) {
 						lotto.resultBuy.set(2, selectedNumbers);
 						System.out.println(lotto.resultBuy);
+						removeBalls(ballCpnl);
 						showBall(2, selectedNumbers, ballCpnl, sl_pnl, 130, 50);
 
 						for (JToggleButton toggleButton : numberToggleButtons) {
@@ -363,6 +366,7 @@ public class BuyFrame extends JFrame {
 					} else if (countNum == 3) {
 						lotto.resultBuy.set(3, selectedNumbers);
 						System.out.println(lotto.resultBuy);
+						removeBalls(ballDpnl);
 						showBall(3, selectedNumbers, ballDpnl, sl_pnl, 200, 50);
 
 						for (JToggleButton toggleButton : numberToggleButtons) {
@@ -382,6 +386,7 @@ public class BuyFrame extends JFrame {
 //							lotto.showBuyBall(pnl, sl_pnl, 180, selectedNumbers);
 							lotto.resultBuy.set(4, selectedNumbers);
 							System.out.println(lotto.resultBuy);
+							removeBalls(ballEpnl);
 							showBall(4, selectedNumbers, ballEpnl, sl_pnl, 270, 50);
 							for (JToggleButton toggleButton : numberToggleButtons) {
 								toggleButton.setSelected(false);
@@ -478,6 +483,7 @@ public class BuyFrame extends JFrame {
 				lotto.resultBuy.set(0, new ArrayList<>());
 				countNum = 0;
 				removeBalls(ballApnl);
+				showDefaultBall(sl_pnl, ballApnl);
 			}
 		});
 		
@@ -531,6 +537,7 @@ public class BuyFrame extends JFrame {
 				lotto.resultBuy.set(1, new ArrayList<>());
 				countNum = 1;
 				removeBalls(ballBpnl);
+				showDefaultBall(sl_pnl, ballBpnl);
 			}
 		});
 		
@@ -583,6 +590,7 @@ public class BuyFrame extends JFrame {
 				lotto.resultBuy.set(2, new ArrayList<>());
 				countNum = 2;
 				removeBalls(ballCpnl);
+				showDefaultBall(sl_pnl, ballCpnl);
 			}
 		});
 		
@@ -634,6 +642,7 @@ public class BuyFrame extends JFrame {
 				lotto.resultBuy.set(3, new ArrayList<>());
 				countNum = 3;
 				removeBalls(ballDpnl);
+				showDefaultBall(sl_pnl, ballDpnl);
 			}
 		});
 		
@@ -686,9 +695,18 @@ public class BuyFrame extends JFrame {
 				lotto.resultBuy.set(4, new ArrayList<>());
 				countNum = 4;
 				removeBalls(ballEpnl);
+				showDefaultBall(sl_pnl, ballEpnl);
 			}
 		});
 
+		
+		// 기본 공 출력
+		showDefaultBall(sl_pnl,ballApnl);
+		showDefaultBall(sl_pnl,ballBpnl);
+		showDefaultBall(sl_pnl,ballCpnl);
+		showDefaultBall(sl_pnl,ballDpnl);
+		showDefaultBall(sl_pnl,ballEpnl);
+		
 //		JLabel lblNewLabel_1 = new JLabel("");
 //		sl_pnl.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 0, SpringLayout.NORTH, ballApnl);
 //		sl_pnl.putConstraint(SpringLayout.WEST, lblNewLabel_1, 28, SpringLayout.EAST, ballApnl);
@@ -699,6 +717,22 @@ public class BuyFrame extends JFrame {
 		setVisible(false);
 
 	}
+	
+	public void showDefaultBall( SpringLayout springLayout, JPanel pnl) {
+		for (int i = 0; i < 6; i++) {
+			String imagePath = "images/ball/ball_s_0.PNG";
+
+			ImageIcon icon = new ImageIcon(imagePath);
+
+			JLabel label = new JLabel(icon);
+			springLayout.putConstraint(SpringLayout.NORTH, label, 0, SpringLayout.NORTH, pnl);
+			springLayout.putConstraint(SpringLayout.WEST, label, 0 + (i * 50), SpringLayout.EAST, pnl);
+			pnl.add(label);
+		}
+	}
+	
+	
+	
 
 	public Map<Integer, JLabel[]> showBall(int countNum, ArrayList<String> selectedNumbers, JPanel pnl,
 			SpringLayout sl_pnl, int x, int y) {
