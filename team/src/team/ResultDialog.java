@@ -157,10 +157,8 @@ public class ResultDialog extends JDialog {
 //		
 
 		backgroundImage.add(lblTitle);
-		backgroundImage.add(lottoIcon);
 		backgroundImage.add(lottoDate);
 		backgroundImage.add(lblNewLabel_1);
-		backgroundImage.add(secondLine);
 		backgroundImage.add(titleA);
 		backgroundImage.add(titleB);
 		backgroundImage.add(titleC);
@@ -171,7 +169,6 @@ public class ResultDialog extends JDialog {
 		backgroundImage.add(resultC);
 		backgroundImage.add(resultD);
 		backgroundImage.add(resultE);
-		backgroundImage.add(thirdLine);
 		backgroundImage.add(total);
 		backgroundImage.add(btnNewButton);
 
