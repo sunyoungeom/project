@@ -17,102 +17,82 @@ public class ResultDialog extends JDialog {
 
 	public ResultDialog(LottoProgram lottoProgram) {
 		this.lotto = lottoProgram;
-		
+
 		JLabel backgroundImage = new JLabel(new ImageIcon("images/lottoResult.png"));
 		SpringLayout springLayout = new SpringLayout();
 		backgroundImage.setLayout(null);
-		
-//		getContentPane().setBackground(Color.WHITE);
+
 		setTitle("대화 상자");
 		setModal(true);
-//		setIconImage(image);
 		setSize(401, 536);
 		setLocation(lotto.getX() + lotto.getWidth() + 190, lotto.getY());
-//		setLocationRelativeTo(parent);
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
 
 		JLabel lblTitle = new JLabel("구매내역/결과확인");
 		lblTitle.setBounds(33, 15, 110, 19);
 		lblTitle.setBackground(Color.WHITE);
 		lblTitle.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		
-		JLabel lottoIcon = new JLabel("");
-		lottoIcon.setBounds(33, 72, 0, 0);
-		lottoIcon.setIcon(new ImageIcon("images/lottoResult_1.png"));
-		
+
 
 		JLabel lottoDate = new JLabel("0000-00-00");
 		lottoDate.setBounds(115, 127, 138, 17);
 		lottoDate.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
-	
 
 		JLabel lblNewLabel_1 = new JLabel("제 1회");
 		lblNewLabel_1.setBounds(235, 81, 59, 27);
 		lblNewLabel_1.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-		lblNewLabel_1.setText("제 " + lotto.roundNum+ "회");
-	
+		lblNewLabel_1.setText("제 " + lotto.roundNum + "회");
 
-		JLabel secondLine = new JLabel("");
-		secondLine.setBounds(0, 112, 0, 0);
-		secondLine.setIcon(new ImageIcon("images/lottoResult_3.png"));
-	
 
-		JLabel titleA = new JLabel("New label");
+		JLabel titleA = new JLabel("");
 		titleA.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		titleA.setBounds(51, 205, 69, 15);
-	
 
-		JLabel titleB = new JLabel("New label");
+		JLabel titleB = new JLabel("");
 		titleB.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		titleB.setBounds(51, 245, 69, 15);
-	
 
-		JLabel titleC = new JLabel("New label");
+		JLabel titleC = new JLabel("");
 		titleC.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		titleC.setBounds(51, 285, 69, 15);
 
-		JLabel titleD = new JLabel("New label");
+		JLabel titleD = new JLabel("");
 		titleD.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		titleD.setBounds(51, 325, 69, 15);
-		
 
-		JLabel titleE = new JLabel("New label");
+		JLabel titleE = new JLabel("");
 		titleE.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		titleE.setBounds(51, 365, 69, 15);
-		
-		JLabel resultA = new JLabel("New label");
+
+		JLabel resultA = new JLabel("");
 		resultA.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		resultA.setBounds(140, 205, 177, 15);
-		
-		JLabel resultB = new JLabel("New label");
+
+		JLabel resultB = new JLabel("");
 		resultB.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		resultB.setBounds(140, 245, 177, 15);
-		
-		JLabel resultC = new JLabel("New label");
+
+		JLabel resultC = new JLabel("");
 		resultC.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		resultC.setBounds(140, 285, 177, 15);
-		
-		JLabel resultD = new JLabel("New label");
+
+		JLabel resultD = new JLabel("");
 		resultD.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		resultD.setBounds(140, 325, 177, 15);
-		
-		JLabel resultE = new JLabel("New label");
+
+		JLabel resultE = new JLabel("");
 		resultE.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		resultE.setBounds(140, 365, 177, 15);
-		
-		JLabel thirdLine = new JLabel("");
-		thirdLine.setBounds(0, 302, 0, 0);
-		thirdLine.setIcon(new ImageIcon("images/lottoResult_3.png"));
-		
+
+
 		JLabel total = new JLabel("");
 		total.setBounds(270, 422, 57, 15);
-		
+
 		JButton btnNewButton = new JButton("확인");
 		btnNewButton.setBounds(147, 422, 69, 34);
-		
+
 		System.out.println(lotto.resultBuy.get(0));
-		
+
 		btnNewButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -120,18 +100,19 @@ public class ResultDialog extends JDialog {
 				dispose();
 			}
 		});
-		
+
 		char ch = 'A';
 		JLabel[] resultTitleLabels = { titleA, titleB, titleC, titleD, titleE };
 		for (int j = 0; j < resultTitleLabels.length; j++) {
-			if (!lotto.resultBuyTitle.get(j).isEmpty() && j < lotto.resultBuyTitle.size() && lotto.resultBuyTitle.size() > 0) {
+			if (!lotto.resultBuyTitle.get(j).isEmpty() && j < lotto.resultBuyTitle.size()
+					&& lotto.resultBuyTitle.size() > 0) {
 				StringBuilder resultTitleText = new StringBuilder();
 				System.out.println((char) (ch + j));
 				resultTitleText.append(ch).append(" ").append(lotto.resultBuyTitle.get(j)).append(" ");
 				ch += 1;
 				resultTitleLabels[j].setText(resultTitleText.toString());
 
-			} else {
+			} else if (lotto.resultBuyTitle.get(j).equals("미지정")) {
 				// 이 블록은 예외를 방지하기 위한 로직을 추가할 수 있습니다.
 				// 예를 들어, 메시지를 출력하거나 기본값을 설정하는 등의 작업을 수행할 수 있습니다.
 				resultTitleLabels[j].setText("");
@@ -173,14 +154,11 @@ public class ResultDialog extends JDialog {
 //		getContentPane().add(thirdLine);
 //		getContentPane().add(total);
 //		getContentPane().add(btnNewButton);
-////		
-		
-		
+//		
+
 		backgroundImage.add(lblTitle);
-		backgroundImage.add(lottoIcon);
 		backgroundImage.add(lottoDate);
 		backgroundImage.add(lblNewLabel_1);
-		backgroundImage.add(secondLine);
 		backgroundImage.add(titleA);
 		backgroundImage.add(titleB);
 		backgroundImage.add(titleC);
@@ -191,10 +169,9 @@ public class ResultDialog extends JDialog {
 		backgroundImage.add(resultC);
 		backgroundImage.add(resultD);
 		backgroundImage.add(resultE);
-		backgroundImage.add(thirdLine);
 		backgroundImage.add(total);
 		backgroundImage.add(btnNewButton);
-		
+
 		getContentPane().add(backgroundImage);
 
 	}
