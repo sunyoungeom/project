@@ -97,8 +97,7 @@ public class LottoProgram extends JFrame {
 					setVisible(false);
 					BuyFrame buyFrame = new BuyFrame(LottoProgram.this);
 					buyFrame.setVisible(true);
-					
-
+					buyFrame.returnCount = 0;
 				} else {
 					System.out.println("이미 구매한회차");
 					JOptionPane.showMessageDialog(null, "이미 구매한 회차 입니다.", "해당 회차 종료", JOptionPane.WARNING_MESSAGE);
