@@ -44,19 +44,9 @@ public class ResultFrame extends JFrame {
 		lblTitle.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		backgroundImage.add(lblTitle);
 
-		JLabel firstLine = new JLabel("1111111"); // 용도 확인 불가능
-		firstLine.setBounds(33, 35, 110, 19);
-		firstLine.setBackground(Color.WHITE);
-		firstLine.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		backgroundImage.add(firstLine);
 
-		JLabel lottoIcon = new JLabel("");
-		lottoIcon.setBounds(33, 72, 0, 0);
-		lottoIcon.setIcon(new ImageIcon("images/lottoResult_1.png"));
-		backgroundImage.add(lottoIcon);
-
-		JLabel lottoDate = new JLabel("발 행 일: ");
-		lottoDate.setBounds(115, 127, 138, 17);
+		JLabel lottoDate = new JLabel("0000-00-00");
+		lottoDate.setBounds(120, 146, 138, 17);
 		lottoDate.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		backgroundImage.add(lottoDate);
 
@@ -65,11 +55,6 @@ public class ResultFrame extends JFrame {
 		lblNewLabel_1.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		lblNewLabel_1.setText("제 " + lotto.roundNum + "회");
 		backgroundImage.add(lblNewLabel_1);
-
-		JLabel secondLine = new JLabel("");
-		secondLine.setBounds(0, 112, 0, 0);
-		secondLine.setIcon(new ImageIcon("images/lottoResult_3.png"));
-		backgroundImage.add(secondLine);
 
 		JLabel titleA = new JLabel("New label");
 		titleA.setFont(new Font("맑은 고딕", Font.BOLD, 13));
@@ -220,6 +205,7 @@ public class ResultFrame extends JFrame {
 		if (resultNum != 0) {
 			index = random.nextInt(resultNum);
 			winningNumber.setText("당첨 번호 : " + lotto.resultBuy.get(index)); // 당첨 번호 출력하는 라벨
+			winningNumber.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 
 			lotto.winningNumberCollection.put(lotto.roundNum, lotto.resultBuy.get(index));
 			ArrayList<String> ll = new ArrayList<>();
