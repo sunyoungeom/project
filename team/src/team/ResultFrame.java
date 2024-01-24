@@ -36,7 +36,6 @@ public class ResultFrame extends JFrame {
 		setTitle("로또 결과 확인");
 
 		JLabel backgroundImage = new JLabel(new ImageIcon("images/lottoResult.png"));
-		SpringLayout springLayout = new SpringLayout();
 		backgroundImage.setLayout(null);
 
 		JLabel lblTitle = new JLabel("구매내역/결과확인");
@@ -45,20 +44,9 @@ public class ResultFrame extends JFrame {
 		lblTitle.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		backgroundImage.add(lblTitle);
 
-		JLabel firstLine = new JLabel("1111111"); // 용도 확인 불가능
-		firstLine.setBounds(33, 35, 110, 19);
-		firstLine.setBackground(Color.WHITE);
-		firstLine.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		backgroundImage.add(firstLine);
-
-		JLabel lottoIcon = new JLabel("");
-		lottoIcon.setBounds(33, 72, 0, 0);
-		lottoIcon.setIcon(new ImageIcon("images/lottoResult_1.png"));
-		backgroundImage.add(lottoIcon);
-
 		JLabel lottoDate = new JLabel("발 행 일: ");
 		lottoDate.setBounds(115, 127, 138, 17);
-		lottoDate.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+		lottoDate.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		backgroundImage.add(lottoDate);
 
 		JLabel lblNewLabel_1 = new JLabel("제 1회");
@@ -67,92 +55,82 @@ public class ResultFrame extends JFrame {
 		lblNewLabel_1.setText("제 " + lotto.roundNum + "회");
 		backgroundImage.add(lblNewLabel_1);
 
-		JLabel secondLine = new JLabel("");
-		secondLine.setBounds(0, 112, 0, 0);
-		secondLine.setIcon(new ImageIcon("images/lottoResult_3.png"));
-		backgroundImage.add(secondLine);
-
 		JLabel titleA = new JLabel("New label");
-		titleA.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		titleA.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		titleA.setBounds(51, 205, 69, 15);
 		backgroundImage.add(titleA);
 
 		JLabel titleB = new JLabel("New label");
-		titleB.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		titleB.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		titleB.setBounds(51, 245, 69, 15);
 		backgroundImage.add(titleB);
 
 		JLabel titleC = new JLabel("New label");
-		titleC.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		titleC.setFont(new Font("맑은 고딕",Font.BOLD, 13));
 		titleC.setBounds(51, 285, 69, 15);
 		backgroundImage.add(titleC);
 
 		JLabel titleD = new JLabel("New label");
-		titleD.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		titleD.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		titleD.setBounds(51, 325, 69, 15);
 		backgroundImage.add(titleD);
 
 		JLabel titleE = new JLabel("New label");
-		titleE.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		titleE.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		titleE.setBounds(51, 365, 69, 15);
 		backgroundImage.add(titleE);
 
 		JLabel resultA = new JLabel("New label");
-		resultA.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		resultA.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		resultA.setBounds(140, 205, 177, 15);
 		backgroundImage.add(resultA);
 
 		JLabel resultB = new JLabel("New label");
-		resultB.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		resultB.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		resultB.setBounds(140, 245, 177, 15);
 		backgroundImage.add(resultB);
 
 		JLabel resultC = new JLabel("New label");
-		resultC.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		resultC.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		resultC.setBounds(140, 285, 177, 15);
 		backgroundImage.add(resultC);
 
 		JLabel resultD = new JLabel("New label");
-		resultD.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		resultD.setFont(new Font("맑은 고딕",Font.BOLD, 13));
 		resultD.setBounds(140, 325, 177, 15);
 		backgroundImage.add(resultD);
 
 		JLabel resultE = new JLabel("New label");
-		resultE.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		resultE.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		resultE.setBounds(140, 365, 177, 15);
 		backgroundImage.add(resultE);
 
-		JLabel thirdLine = new JLabel("");
-		thirdLine.setBounds(0, 302, 0, 0);
-		thirdLine.setIcon(new ImageIcon("images/lottoResult_3.png"));
-		backgroundImage.add(thirdLine);
-
-		JLabel total = new JLabel("New label"); // 무슨 토탈인가???
+		JLabel total = new JLabel("New label"); // 당첨금의 합을 알려주는 라벨
 		total.setBounds(270, 422, 57, 15);
 		backgroundImage.add(total);
 
 		JLabel WinningresultA = new JLabel(""); // 당첨결과를 알려주기 위한 라벨
-		WinningresultA.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		WinningresultA.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		WinningresultA.setBounds(300, 205, 70, 15);
 		backgroundImage.add(WinningresultA);
 
 		JLabel WinningresultB = new JLabel(""); // 당첨결과를 알려주기 위한 라벨
-		WinningresultB.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		WinningresultB.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		WinningresultB.setBounds(300, 245, 70, 15);
 		backgroundImage.add(WinningresultB);
 
 		JLabel WinningresultC = new JLabel(""); // 당첨결과를 알려주기 위한 라벨
-		WinningresultC.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		WinningresultC.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		WinningresultC.setBounds(300, 285, 70, 15);
 		backgroundImage.add(WinningresultC);
 
 		JLabel WinningresultD = new JLabel(""); // 당첨결과를 알려주기 위한 라벨
-		WinningresultD.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		WinningresultD.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		WinningresultD.setBounds(300, 325, 70, 15);
 		backgroundImage.add(WinningresultD);
 
 		JLabel WinningresultE = new JLabel(""); // 당첨결과를 알려주기 위한 라벨
-		WinningresultE.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
+		WinningresultE.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		WinningresultE.setBounds(300, 365, 70, 15);
 		backgroundImage.add(WinningresultE);
 
@@ -219,9 +197,8 @@ public class ResultFrame extends JFrame {
 		System.out.println("ghkr");
 
 		JLabel winningNumber = new JLabel(); // 당첨번호 출력해주는라벨
-		winningNumber.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		winningNumber.setBounds(80, 160, 220
-				, 20);
+		winningNumber.setFont(new Font("맑은 고딕", Font.BOLD, 13));
+		winningNumber.setBounds(80, 160, 220, 20);
 
 		int index = 0;
 		if (resultNum != 0) {
@@ -251,18 +228,23 @@ public class ResultFrame extends JFrame {
 			if (winningCount == 0 || winningCount < 3) {
 				WinningresultA.setText("낙첨");
 				winningCount = 0;
+				WinningresultA.setForeground(Color.BLACK);
 			} else if (winningCount == 3) {
 				WinningresultA.setText("4등");
 				winningCount = 0;
+				WinningresultA.setForeground(Color.BLUE);
 			} else if (winningCount == 4) {
 				WinningresultA.setText("3등");
 				winningCount = 0;
+				WinningresultA.setForeground(Color.GREEN);
 			} else if (winningCount == 5) {
 				WinningresultA.setText("2등");
 				winningCount = 0;
+				WinningresultA.setForeground(Color.YELLOW);
 			} else if (winningCount == 6) {
 				WinningresultA.setText("1등");
 				winningCount = 0;
+				WinningresultA.setForeground(Color.RED);
 			}
 
 			// B번호 매칭하여 1,2,3,4,5,낙첨 출력
@@ -279,15 +261,26 @@ public class ResultFrame extends JFrame {
 			}
 			if (winningCount == 0 || winningCount < 3) {
 				WinningresultB.setText("낙첨");
+				WinningresultB.setForeground(Color.BLACK);
+				winningCount = 0;
 			} else if (winningCount == 3) {
 				WinningresultB.setText("4등");
+				WinningresultB.setForeground(Color.BLUE);
+				winningCount = 0;
 			} else if (winningCount == 4) {
 				WinningresultB.setText("3등");
+				WinningresultB.setForeground(Color.GREEN);
+				winningCount = 0;
 			} else if (winningCount == 5) {
 				WinningresultB.setText("2등");
+				WinningresultA.setForeground(Color.YELLOW);
+				winningCount = 0;
 			} else if (winningCount == 6) {
 				WinningresultB.setText("1등");
+				WinningresultA.setForeground(Color.RED);
+				winningCount = 0;
 			}
+
 			// C번호 매칭하여 1,2,3,4,5,낙첨 출력
 			for (int i = 0; i < 6; i++) {
 				if (lotto.resultBuy.size() > 1 && lotto.resultBuy.get(2).size() > i) {
@@ -302,21 +295,25 @@ public class ResultFrame extends JFrame {
 			}
 			if (winningCount == 0 || winningCount < 3) {
 				WinningresultC.setText("낙첨");
+				WinningresultC.setForeground(Color.BLACK);
 				winningCount = 0;
 			} else if (winningCount == 3) {
 				WinningresultC.setText("4등");
+				WinningresultC.setForeground(Color.BLUE);
 				winningCount = 0;
 			} else if (winningCount == 4) {
 				WinningresultC.setText("3등");
+				WinningresultC.setForeground(Color.GREEN);
 				winningCount = 0;
 			} else if (winningCount == 5) {
 				WinningresultC.setText("2등");
+				WinningresultC.setForeground(Color.YELLOW);
 				winningCount = 0;
 			} else if (winningCount == 6) {
 				WinningresultC.setText("1등");
+				WinningresultC.setForeground(Color.RED);
 				winningCount = 0;
 			}
-			winningCount = 0;
 			// D번호 매칭하여 1,2,3,4,5,낙첨 출력
 			for (int i = 0; i < 6; i++) {
 				if (lotto.resultBuy.size() > 1 && lotto.resultBuy.get(3).size() > i) {
@@ -331,18 +328,23 @@ public class ResultFrame extends JFrame {
 			}
 			if (winningCount == 0 || winningCount < 3) {
 				WinningresultD.setText("낙첨");
+				WinningresultD.setForeground(Color.BLACK);
 				winningCount = 0;
 			} else if (winningCount == 3) {
 				WinningresultD.setText("4등");
+				WinningresultD.setForeground(Color.BLUE);
 				winningCount = 0;
 			} else if (winningCount == 4) {
 				WinningresultD.setText("3등");
+				WinningresultD.setForeground(Color.GREEN);
 				winningCount = 0;
 			} else if (winningCount == 5) {
 				WinningresultD.setText("2등");
+				WinningresultD.setForeground(Color.YELLOW);
 				winningCount = 0;
 			} else if (winningCount == 6) {
 				WinningresultD.setText("1등");
+				WinningresultD.setForeground(Color.RED);
 				winningCount = 0;
 			}
 			// E번호 매칭하여 1,2,3,4,5,낙첨 출력
@@ -359,17 +361,23 @@ public class ResultFrame extends JFrame {
 			}
 			if (winningCount == 0 || winningCount < 3) {
 				WinningresultE.setText("낙첨");
+				WinningresultE.setForeground(Color.BLACK);
 				winningCount = 0;
 			} else if (winningCount == 3) {
 				WinningresultE.setText("4등");
+				WinningresultE.setForeground(Color.BLUE);
 				winningCount = 0;
+			} else if (winningCount == 4) {
 				WinningresultE.setText("3등");
+				WinningresultE.setForeground(Color.GREEN);
 				winningCount = 0;
 			} else if (winningCount == 5) {
 				WinningresultE.setText("2등");
+				WinningresultE.setForeground(Color.YELLOW);
 				winningCount = 0;
 			} else if (winningCount == 6) {
 				WinningresultE.setText("1등");
+				WinningresultE.setForeground(Color.RED);
 				winningCount = 0;
 			}
 
