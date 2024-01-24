@@ -108,9 +108,10 @@ public class BuyFrame extends JFrame {
 		});
 
 		btnReset = new JButton("초기화");
+		sl_pnl.putConstraint(SpringLayout.WEST, btnReset, 10, SpringLayout.WEST, pnl);
+		sl_pnl.putConstraint(SpringLayout.EAST, btnReset, -893, SpringLayout.EAST, pnl);
 		sl_pnl.putConstraint(SpringLayout.WEST, btnreturn, 0, SpringLayout.WEST, btnReset);
 		sl_pnl.putConstraint(SpringLayout.EAST, btnreturn, 18, SpringLayout.EAST, btnReset);
-		sl_pnl.putConstraint(SpringLayout.WEST, btnReset, 10, SpringLayout.WEST, pnl);
 		btnReset.setBackground(Color.WHITE);
 		pnl.add(btnReset);
 		btnReset.addActionListener(new ActionListener() {
@@ -124,9 +125,8 @@ public class BuyFrame extends JFrame {
 		});
 
 		btnAuto = new JButton("자동선택");
-		sl_pnl.putConstraint(SpringLayout.WEST, btnAuto, 123, SpringLayout.WEST, pnl);
-		sl_pnl.putConstraint(SpringLayout.EAST, btnReset, -32, SpringLayout.WEST, btnAuto);
 		sl_pnl.putConstraint(SpringLayout.NORTH, btnAuto, 0, SpringLayout.NORTH, btnReset);
+		sl_pnl.putConstraint(SpringLayout.WEST, btnAuto, 27, SpringLayout.EAST, btnReset);
 		btnAuto.setBackground(Color.WHITE);
 		btnAuto.setForeground(Color.BLACK);
 		pnl.add(btnAuto);
@@ -134,7 +134,6 @@ public class BuyFrame extends JFrame {
 		btnAuto.addActionListener(new ActionListener() {
 			private Random random;
 			private int numSelect;
-
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				autoSelected = true;
@@ -693,11 +692,6 @@ public class BuyFrame extends JFrame {
 			}
 		});
 
-//		JLabel lblNewLabel_1 = new JLabel("");
-//		sl_pnl.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 0, SpringLayout.NORTH, ballApnl);
-//		sl_pnl.putConstraint(SpringLayout.WEST, lblNewLabel_1, 28, SpringLayout.EAST, ballApnl);
-//		lblNewLabel_1.setIcon(new ImageIcon("D:\\young\\ball\\ball_s_1.png"));
-//		pnl.add(lblNewLabel_1);
 		setSize(1000, 600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(false);
@@ -717,13 +711,7 @@ public class BuyFrame extends JFrame {
 			String num = selectedNumbers.get(i);
 //			String path = "images/ball/ball_";
 			String imagePath = "images/ball/ball_s_" + num + ".PNG";
-
 			ImageIcon icon = new ImageIcon(imagePath);
-//			Image image = icon.getImage(); // Image 객체로 변환
-//			Image resizedImage = image.getScaledInstance(54, 40, Image.SCALE_SMOOTH); // 크기 조정
-//			ImageIcon resizedIcon = new ImageIcon(resizedImage); // 조정된 이미지로 새로운 아이콘 생성
-
-//			JLabel label = new JLabel(resizedIcon);
 			JLabel label = new JLabel(icon);
 			sl_pnl.putConstraint(SpringLayout.NORTH, label, x, SpringLayout.NORTH, lblLineA);
 			sl_pnl.putConstraint(SpringLayout.WEST, label, y + (i * 80), SpringLayout.EAST, lblStateA);
