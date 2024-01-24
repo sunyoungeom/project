@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.awt.event.ActionEvent;
 
@@ -39,6 +41,11 @@ public class ResultDialog extends JDialog {
 
 		JLabel lottoDate = new JLabel("0000-00-00");
 		lottoDate.setBounds(115, 120, 138, 17);
+		LocalDateTime nowDT = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formattedDate = nowDT.format(formatter);
+
+        lottoDate.setText(formattedDate);
 		lottoDate.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 
 		JLabel lblNewLabel_1 = new JLabel("제 1회");

@@ -4,6 +4,8 @@ import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -23,6 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 import javax.swing.SpringLayout;
 import javax.swing.border.LineBorder;
+import javax.swing.border.MatteBorder;
 
 import sun.net.www.content.image.jpeg;
 
@@ -47,6 +50,8 @@ public class HelpFrame extends JFrame {
 
 	public HelpFrame(LottoProgram lottoProgram) {
 		this.lotto = lottoProgram;
+		System.out.println("이거느?"+lotto.buyNumberCollection.get(lotto.roundNum));
+
 		Random random = new Random();
 
 		JPanel pnlImage = new JPanel();
@@ -59,36 +64,36 @@ public class HelpFrame extends JFrame {
 		JPanel pnl = new JPanel();
 		SpringLayout sl_pnl = new SpringLayout();
 		pnl.setLayout(sl_pnl);
+		  pnl.setBackground(Color.WHITE);
 		getContentPane().add(pnl);
 
 		JPanel ballApnl = new JPanel();
-		sl_pnl.putConstraint(SpringLayout.NORTH, ballApnl, 216, SpringLayout.NORTH, pnl);
-		sl_pnl.putConstraint(SpringLayout.WEST, ballApnl, 90, SpringLayout.WEST, pnl);
+		   sl_pnl.putConstraint(SpringLayout.WEST, ballApnl, 190, SpringLayout.WEST, pnl);
+	        sl_pnl.putConstraint(SpringLayout.SOUTH, ballApnl, -312, SpringLayout.SOUTH, pnl);
+	        ballApnl.setBackground(Color.WHITE);
+
 		pnl.add(ballApnl);
 
-		JPanel ballBpnl = new JPanel();
-		pnl.add(ballBpnl);
-
-		JPanel ballCpnl = new JPanel();
-		sl_pnl.putConstraint(SpringLayout.NORTH, ballCpnl, 0, SpringLayout.NORTH, ballBpnl);
-		sl_pnl.putConstraint(SpringLayout.WEST, ballCpnl, 6, SpringLayout.EAST, ballBpnl);
-		pnl.add(ballCpnl);
-
-		JPanel ballDpnl = new JPanel();
-		sl_pnl.putConstraint(SpringLayout.NORTH, ballDpnl, 0, SpringLayout.NORTH, ballBpnl);
-		sl_pnl.putConstraint(SpringLayout.WEST, ballDpnl, 6, SpringLayout.EAST, ballCpnl);
-		pnl.add(ballDpnl);
-
-		JPanel ballEpnl = new JPanel();
-		sl_pnl.putConstraint(SpringLayout.WEST, ballEpnl, 6, SpringLayout.EAST, ballDpnl);
-		sl_pnl.putConstraint(SpringLayout.SOUTH, ballEpnl, 0, SpringLayout.SOUTH, ballBpnl);
-		pnl.add(ballEpnl);
+//		JPanel ballBpnl = new JPanel();
+//		pnl.add(ballBpnl);
+//
+//		JPanel ballCpnl = new JPanel();
+//		sl_pnl.putConstraint(SpringLayout.NORTH, ballCpnl, 0, SpringLayout.NORTH, ballBpnl);
+//		sl_pnl.putConstraint(SpringLayout.WEST, ballCpnl, 6, SpringLayout.EAST, ballBpnl);
+//		pnl.add(ballCpnl);
+//
+//		JPanel ballDpnl = new JPanel();
+//		sl_pnl.putConstraint(SpringLayout.NORTH, ballDpnl, 0, SpringLayout.NORTH, ballBpnl);
+//		sl_pnl.putConstraint(SpringLayout.WEST, ballDpnl, 6, SpringLayout.EAST, ballCpnl);
+//		pnl.add(ballDpnl);
+//
+//		JPanel ballEpnl = new JPanel();
+//		sl_pnl.putConstraint(SpringLayout.WEST, ballEpnl, 6, SpringLayout.EAST, ballDpnl);
+//		sl_pnl.putConstraint(SpringLayout.SOUTH, ballEpnl, 0, SpringLayout.SOUTH, ballBpnl);
+//		pnl.add(ballEpnl);
 
 		btnreturn = new JButton("돌아가기");
-		sl_pnl.putConstraint(SpringLayout.NORTH, ballBpnl, 0, SpringLayout.NORTH, btnreturn);
-		sl_pnl.putConstraint(SpringLayout.WEST, ballBpnl, 437, SpringLayout.EAST, btnreturn);
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnreturn, 29, SpringLayout.NORTH, pnl);
-		sl_pnl.putConstraint(SpringLayout.WEST, btnreturn, 10, SpringLayout.WEST, pnl);
+		   sl_pnl.putConstraint(SpringLayout.WEST, btnreturn, 10, SpringLayout.WEST, pnl);
 		pnl.add(btnreturn);
 
 		btnreturn.addActionListener(new ActionListener() {
@@ -100,7 +105,7 @@ public class HelpFrame extends JFrame {
 //				lotto.setRoundNum(lotto.getRoundNum() + 1);
 			}
 		});
-
+int totalNum;
 		Timer timer = new Timer();
 
 		TimerTask task = new TimerTask() {
@@ -187,51 +192,92 @@ public class HelpFrame extends JFrame {
 //
 //			}
 //		}
+		
 
 //		System.out.println(ballCounts.toString());
+		JPanel panel_1 = new JPanel();
+		 JLabel lblNewLabel = new JLabel("회차 출력");
+	        panel_1.add(lblNewLabel);
+	        sl_pnl.putConstraint(SpringLayout.WEST, lblNewLabel, 335, SpringLayout.WEST, pnl);
+	        lblNewLabel.setForeground(Color.BLUE);
+	        lblNewLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+	        lblNewLabel.setText("제" + lotto.roundNum + "회");
+	        JLabel lblNewLabel_1 = new JLabel("0000-00-00 추첨");
+//	        sl_pnl.putConstraint(SpringLayout.EAST, lblNewLabel_1, -330, SpringLayout.EAST, pnl);
+//	        lblNewLabel_1.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+	        sl_pnl.putConstraint(SpringLayout.EAST, lblNewLabel_1, -350, SpringLayout.EAST, pnl);
+			lblNewLabel_1.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
+			LocalDateTime nowDT = LocalDateTime.now();
+	        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+	        String formattedDate = nowDT.format(formatter);
+
+	        lblNewLabel_1.setText(formattedDate);
+
+			pnl.add(lblNewLabel_1);
 
 		JLabel label = new JLabel("로또 6/45");
-		sl_pnl.putConstraint(SpringLayout.NORTH, label, 67, SpringLayout.NORTH, pnl);
-		sl_pnl.putConstraint(SpringLayout.WEST, label, 313, SpringLayout.WEST, pnl);
-		label.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-		pnl.add(label);
+        panel_1.add(label);
+//        sl_pnl.putConstraint(SpringLayout.NORTH, label, 0, SpringLayout.NORTH, pnl);
+        label.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+        sl_pnl.putConstraint(SpringLayout.WEST, lblNewLabel, 360, SpringLayout.WEST, pnl);
+        sl_pnl.putConstraint(SpringLayout.NORTH, lblNewLabel, 0, SpringLayout.NORTH, label);
+        sl_pnl.putConstraint(SpringLayout.EAST, lblNewLabel, -8, SpringLayout.WEST, label);
+//		pnl.add(label);
+		
+        panel_1.setBackground(Color.WHITE);
+        sl_pnl.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 6, SpringLayout.SOUTH, panel_1);
+        sl_pnl.putConstraint(SpringLayout.SOUTH, panel_1, -465, SpringLayout.SOUTH, pnl);
+        sl_pnl.putConstraint(SpringLayout.WEST, panel_1, 328, SpringLayout.WEST, pnl);
+        pnl.add(panel_1);
 
-		JLabel lblNewLabel = new JLabel("회차 출력");
-		lblNewLabel.setForeground(Color.BLUE);
-		lblNewLabel.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblNewLabel, 0, SpringLayout.NORTH, label);
-		sl_pnl.putConstraint(SpringLayout.WEST, lblNewLabel, 6, SpringLayout.EAST, label);
-		lblNewLabel.setText("제" + lotto.roundNum + "회");
-		pnl.add(lblNewLabel);
+       
+		
 
-		JLabel lblNewLabel_1 = new JLabel("0000-00-00 추첨");
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblNewLabel_1, 20, SpringLayout.SOUTH, label);
-		sl_pnl.putConstraint(SpringLayout.WEST, lblNewLabel_1, 359, SpringLayout.WEST, pnl);
-		pnl.add(lblNewLabel_1);
-
+		
 		JLabel lblNewLabel_2 = new JLabel("당첨번호");
-		sl_pnl.putConstraint(SpringLayout.NORTH, lblNewLabel_2, 27, SpringLayout.SOUTH, lblNewLabel_1);
-		sl_pnl.putConstraint(SpringLayout.EAST, lblNewLabel_2, 0, SpringLayout.EAST, lblNewLabel_1);
-		pnl.add(lblNewLabel_2);
+		  sl_pnl.putConstraint(SpringLayout.NORTH, lblNewLabel_2, 6, SpringLayout.SOUTH, lblNewLabel_1);
+	        sl_pnl.putConstraint(SpringLayout.EAST, lblNewLabel_2, -363, SpringLayout.EAST, pnl);
+	        lblNewLabel_2.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 
-		JPanel panel = new JPanel();
-		sl_pnl.putConstraint(SpringLayout.NORTH, panel, 167, SpringLayout.SOUTH, lblNewLabel_2);
-		sl_pnl.putConstraint(SpringLayout.WEST, panel, 242, SpringLayout.WEST, pnl);
-		sl_pnl.putConstraint(SpringLayout.SOUTH, panel, -25, SpringLayout.SOUTH, pnl);
-		sl_pnl.putConstraint(SpringLayout.EAST, panel, 614, SpringLayout.WEST, pnl);
-		pnl.add(panel);
-		SpringLayout sl_panel = new SpringLayout();
-		panel.setLayout(sl_panel);
+	        pnl.add(lblNewLabel_2);
 
+
+		
+		 JPanel panel_2 = new JPanel();
+	        sl_pnl.putConstraint(SpringLayout.NORTH, panel_2, 39, SpringLayout.SOUTH, ballApnl);
+	        sl_pnl.putConstraint(SpringLayout.WEST, panel_2, 102, SpringLayout.WEST, pnl);
+	        sl_pnl.putConstraint(SpringLayout.SOUTH, panel_2, -78, SpringLayout.SOUTH, pnl);
+	        sl_pnl.putConstraint(SpringLayout.EAST, panel_2, -101, SpringLayout.EAST, pnl);
+	        panel_2.setBackground(Color.WHITE);
+	        panel_2.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+	        pnl.add(panel_2);
+	        panel_2.setLayout(null);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		JLabel lblNewLabel_3 = new JLabel("축하합니다!");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_3, 5, SpringLayout.NORTH, panel);
-		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_3, 123, SpringLayout.WEST, panel);
-		panel.add(lblNewLabel_3);
+	    lblNewLabel_3.setFont(new Font("맑은 고딕", Font.BOLD, 25));
+        lblNewLabel_3.setBounds(50, 30, 100, 25);
+		 sl_pnl.putConstraint(SpringLayout.NORTH, lblNewLabel_3, 66, SpringLayout.NORTH, panel_2);
+	        sl_pnl.putConstraint(SpringLayout.WEST, lblNewLabel_3, 68, SpringLayout.WEST, panel_2);
+	        sl_pnl.putConstraint(SpringLayout.SOUTH, lblNewLabel_3, 289, SpringLayout.NORTH, panel_2);
+	        sl_pnl.putConstraint(SpringLayout.EAST, lblNewLabel_3, 701, SpringLayout.WEST, panel_2);
+	        		panel_2.add(lblNewLabel_3);
 
-		JLabel lblNewLabel_4 = new JLabel("총 100원 당첨");
-		sl_panel.putConstraint(SpringLayout.NORTH, lblNewLabel_4, 48, SpringLayout.SOUTH, lblNewLabel_3);
-		sl_panel.putConstraint(SpringLayout.WEST, lblNewLabel_4, 0, SpringLayout.WEST, lblNewLabel_3);
-		panel.add(lblNewLabel_4);
+		JLabel lblNewLabel_4 = new JLabel("1등 당첨");
+		 lblNewLabel_4.setFont(new Font("맑은 고딕", Font.BOLD, 25));
+	        lblNewLabel_4.setBounds(50, 55, 353, 25);
+	        panel_2.add(lblNewLabel_4);
+	        
+			System.out.println(lotto.buyNumberCollection.get(lotto.roundNum));
 
 		setSize(800, 600);
 		pnl.setVisible(false);
@@ -240,26 +286,27 @@ public class HelpFrame extends JFrame {
 
 	}
 
-	public void showRBall(ArrayList<String> selectedNumbers, JPanel pnl, SpringLayout sl_pnl, int x, int y) {
+	  public void showRBall(ArrayList<String> selectedNumbers, JPanel pnl, SpringLayout sl_pnl, int x, int y) {
 
-		for (int i = 0; i < selectedNumbers.size(); i++) {
-			String num = selectedNumbers.get(i);
-			String path = "images/ball/ball_";
-			String imagePath = "images/ball/ball_" + num + ".PNG";
+	        for (int i = 0; i < selectedNumbers.size(); i++) {
+	            String num = selectedNumbers.get(i);
+	            String path = "images/ball/ball_";
+	            String imagePath = "images/ball/ball_s_" + num + ".PNG";
 
-			ImageIcon icon = new ImageIcon(imagePath);
-			Image image = icon.getImage(); // Image 객체로 변환
-			Image resizedImage = image.getScaledInstance(86, 64, Image.SCALE_SMOOTH); // 크기 조정
-			ImageIcon resizedIcon = new ImageIcon(resizedImage); // 조정된 이미지로 새로운 아이콘 생성
+	            ImageIcon icon = new ImageIcon(imagePath);
+	            Image image = icon.getImage(); // Image 객체로 변환
+	            Image resizedImage = image.getScaledInstance(65, 64, Image.SCALE_SMOOTH); // 크기 조정
+	            ImageIcon resizedIcon = new ImageIcon(resizedImage); // 조정된 이미지로 새로운 아이콘 생성
 
-			JLabel label = new JLabel(resizedIcon);
-			sl_pnl.putConstraint(SpringLayout.NORTH, label, x, SpringLayout.NORTH, pnl);
-			sl_pnl.putConstraint(SpringLayout.WEST, label, y + (i * 50), SpringLayout.EAST, pnl);
-			pnl.add(label);
+	            JLabel label = new JLabel(resizedIcon);
+	            sl_pnl.putConstraint(SpringLayout.NORTH, label, x, SpringLayout.NORTH, pnl);
+	            sl_pnl.putConstraint(SpringLayout.WEST, label, y + (i * 50), SpringLayout.EAST, pnl);
+	            pnl.add(label);
 
-		}
+	        }
 
-	}
+
+	    }
 //	public Map<Integer, JLabel[]> showBall(int countNum, ArrayList<String> selectedNumbers, JPanel pnl, SpringLayout sl_pnl, int x, int y) {
 //		ballLabels = new HashMap<>();
 //		JLabel[] labels = ballLabels.get(countNum);

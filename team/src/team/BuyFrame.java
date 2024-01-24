@@ -80,10 +80,14 @@ public class BuyFrame extends JFrame {
 	private JPanel ballEpnl;
 	private JButton btnRetouchA;
 	public static int returnCount;
+	public int mapTempNum = 1;
 
 	public BuyFrame(LottoProgram lottoProgram) {
 		this.lotto = lottoProgram;
+		if (lotto.roundNum==2) {
+			System.out.println("1값"+lotto.buyNumberCollection.get(1));
 
+		}
 		JPanel pnl = new JPanel();
 		pnl.setBackground(Color.WHITE);
 		SpringLayout sl_pnl = new SpringLayout();
@@ -132,7 +136,7 @@ public class BuyFrame extends JFrame {
 			}
 		});
 
-		btnAuto = new JButton("자 동선택");
+		btnAuto = new JButton("자동선택");
 		sl_pnl.putConstraint(SpringLayout.NORTH, btnAuto, 0, SpringLayout.NORTH, btnReset);
 		sl_pnl.putConstraint(SpringLayout.WEST, btnAuto, 27, SpringLayout.EAST, btnReset);
 		btnAuto.setBackground(Color.WHITE);
@@ -242,6 +246,8 @@ public class BuyFrame extends JFrame {
 		sl_pnl.putConstraint(SpringLayout.EAST, btnPurchase, -312, SpringLayout.EAST, pnl);
 		btnPurchase.setBackground(Color.WHITE);
 		pnl.add(btnPurchase);
+		
+		
 		btnPurchase.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -256,9 +262,23 @@ public class BuyFrame extends JFrame {
 					
 						disableAllButtons(getContentPane()); // 돌아가기 제외 모든 버튼 비활성화
 						btnreturn.setEnabled(true);
-					
 					returnCount++;
 					lotto.roundNum++;
+					
+//					lotto.buyNumberCollection.put(lotto.roundNum, lotto.resultBuy);
+//					lotto.resultBuyTemp = lotto.buyNumberCollection.get(lotto.roundNum);
+//					lotto.resultBuyTemp.get(lotto.roundNum);
+//					mapTempNum++;
+					
+					// resultBuyTemp에 resultBuy 값 복사 (깊은 복사)
+					lotto.resultBuyTemp = deepCopyResultBuy(lotto.resultBuy);
+					 // buyNumberCollection에 resultBuy 넣기 (깊은 복사)
+			        lotto.buyNumberCollection.put(lotto.roundNum, deepCopyResultBuy(lotto.resultBuyTemp));
+
+			        lotto.resultBuyTitleTemp = deepCopyResultBuyTitle(lotto.resultBuyTitle);
+			        lotto.buyNumberCollectionTitle.put(lotto.roundNum, deepCopyResultBuyTitle(lotto.resultBuyTitleTemp));
+					
+					System.out.println("jj"+lotto.buyNumberCollection.get(lotto.roundNum));
 					JDialog dialog = new ResultDialog(lottoProgram);
 					dialog.setTitle("구매내역");
 					dialog.setVisible(true);
@@ -275,6 +295,10 @@ public class BuyFrame extends JFrame {
 					showDefaultBall(sl_pnl, ballCpnl);
 					showDefaultBall(sl_pnl, ballDpnl);
 					showDefaultBall(sl_pnl, ballEpnl);
+					
+					
+					
+					
 				}
 			}
 		});
@@ -750,7 +774,24 @@ public class BuyFrame extends JFrame {
 		setVisible(false);
 
 	}
+	 // resultBuy의 각 내부 리스트에 대해 깊은 복사 수행
+    private static ArrayList<String> deepCopyResultBuyTitle(ArrayList<String> original) {
+    	 ArrayList<String> copy = new ArrayList<>();
+    	    for (String element : original) {
+    	        copy.add(new String(element)); // 문자열은 불변 객체이므로 새로운 문자열 생성
+    	    }
+    	    return copy;
+    	}
 	
+	 // resultBuy의 각 내부 리스트에 대해 깊은 복사 수행
+    private static ArrayList<ArrayList<String>> deepCopyResultBuy(ArrayList<ArrayList<String>> original) {
+        ArrayList<ArrayList<String>> copy = new ArrayList<>();
+        for (ArrayList<String> innerList : original) {
+            copy.add(new ArrayList<>(innerList));
+        }
+        return copy;
+    }
+
 	// 모든 버튼을 비활성화하는 메서드
     private static void disableAllButtons(Container container) {
         Component[] components = container.getComponents();
