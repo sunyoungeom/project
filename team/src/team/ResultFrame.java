@@ -1,6 +1,8 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,7 +41,7 @@ public class ResultFrame extends JFrame {
 		backgroundImage.setLayout(null);
 
 		JLabel lblTitle = new JLabel("구매내역/결과확인");
-		lblTitle.setBounds(33, 15, 110, 19);
+		lblTitle.setBounds(33, 32, 110, 19);
 		lblTitle.setBackground(Color.WHITE);
 		lblTitle.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 		backgroundImage.add(lblTitle);
@@ -48,21 +50,26 @@ public class ResultFrame extends JFrame {
 		lottoDate.setBounds(120, 146, 138, 17);
 		lottoDate.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		backgroundImage.add(lottoDate);
+		LocalDateTime nowDT = LocalDateTime.now();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		String formattedDate = nowDT.format(formatter);
+
+		lottoDate.setText(formattedDate);
 
 		JLabel lblNewLabel_1 = new JLabel("제 1회");
-		lblNewLabel_1.setBounds(235, 81, 59, 27);
+		lblNewLabel_1.setBounds(220, 100, 70, 27);
 		lblNewLabel_1.setFont(new Font("맑은 고딕", Font.BOLD, 20));
 		lblNewLabel_1.setText("제 " + lotto.roundNum + "회");
 		backgroundImage.add(lblNewLabel_1);
 
 		JLabel titleA = new JLabel("New label");
 		titleA.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		titleA.setBounds(51, 205, 69, 15);
+		titleA.setBounds(51, 222, 69, 15);//
 		backgroundImage.add(titleA);
 
 		JLabel titleB = new JLabel("New label");
 		titleB.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		titleB.setBounds(51, 245, 69, 15);
+		titleB.setBounds(51, 262, 69, 15);
 		backgroundImage.add(titleB);
 
 		JLabel titleC = new JLabel("New label");
@@ -72,70 +79,70 @@ public class ResultFrame extends JFrame {
 
 		JLabel titleD = new JLabel("New label");
 		titleD.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		titleD.setBounds(51, 325, 69, 15);
+		titleD.setBounds(51, 342, 69, 15);
 		backgroundImage.add(titleD);
 
 		JLabel titleE = new JLabel("New label");
 		titleE.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		titleE.setBounds(51, 365, 69, 15);
+		titleE.setBounds(51, 382, 69, 15);
 		backgroundImage.add(titleE);
 
 		JLabel resultA = new JLabel("New label");
 		resultA.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		resultA.setBounds(140, 205, 177, 15);
+		resultA.setBounds(140, 222, 177, 15);
 		backgroundImage.add(resultA);
 
 		JLabel resultB = new JLabel("New label");
 		resultB.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		resultB.setBounds(140, 245, 177, 15);
+		resultB.setBounds(140, 262, 177, 15);
 		backgroundImage.add(resultB);
 
 		JLabel resultC = new JLabel("New label");
 		resultC.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		resultC.setBounds(140, 285, 177, 15);
+		resultC.setBounds(140, 302, 177, 15);
 		backgroundImage.add(resultC);
 
 		JLabel resultD = new JLabel("New label");
 		resultD.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		resultD.setBounds(140, 325, 177, 15);
+		resultD.setBounds(140, 342, 177, 15);
 		backgroundImage.add(resultD);
 
 		JLabel resultE = new JLabel("New label");
 		resultE.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		resultE.setBounds(140, 365, 177, 15);
+		resultE.setBounds(140, 382, 177, 15);
 		backgroundImage.add(resultE);
 
 		JLabel total = new JLabel("New label"); // 당첨금의 합을 알려주는 라벨
-		total.setBounds(270, 422, 57, 15);
+		total.setBounds(270, 450, 57, 15);
 		backgroundImage.add(total);
 
 		JLabel WinningresultA = new JLabel(""); // 당첨결과를 알려주기 위한 라벨
 		WinningresultA.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		WinningresultA.setBounds(300, 205, 70, 15);
+		WinningresultA.setBounds(300, 222, 70, 15);
 		backgroundImage.add(WinningresultA);
 
 		JLabel WinningresultB = new JLabel(""); // 당첨결과를 알려주기 위한 라벨
 		WinningresultB.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		WinningresultB.setBounds(300, 245, 70, 15);
+		WinningresultB.setBounds(300, 262, 70, 15);
 		backgroundImage.add(WinningresultB);
 
 		JLabel WinningresultC = new JLabel(""); // 당첨결과를 알려주기 위한 라벨
 		WinningresultC.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		WinningresultC.setBounds(300, 285, 70, 15);
+		WinningresultC.setBounds(300, 302, 70, 15);
 		backgroundImage.add(WinningresultC);
 
 		JLabel WinningresultD = new JLabel(""); // 당첨결과를 알려주기 위한 라벨
 		WinningresultD.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		WinningresultD.setBounds(300, 325, 70, 15);
+		WinningresultD.setBounds(300, 342, 70, 15);
 		backgroundImage.add(WinningresultD);
 
 		JLabel WinningresultE = new JLabel(""); // 당첨결과를 알려주기 위한 라벨
 		WinningresultE.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		WinningresultE.setBounds(300, 365, 70, 15);
+		WinningresultE.setBounds(300, 382, 70, 15);
 		backgroundImage.add(WinningresultE);
 
 		JButton btnNewButton = new JButton("확인");
-		btnNewButton.setBounds(147, 440, 69, 34);
+		btnNewButton.setBounds(147, 445, 69, 34);
 		backgroundImage.add(btnNewButton);
 		btnNewButton.addActionListener(new ActionListener() {
 			@Override
