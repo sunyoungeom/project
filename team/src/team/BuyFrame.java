@@ -263,6 +263,10 @@ public class BuyFrame extends JFrame {
 		btnPurchase.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				if (lotto.resultBuy.get(0).size() == 0) {
+					JOptionPane.showMessageDialog(BuyFrame.this, "A를 구매해주세요","경 고",JOptionPane.ERROR_MESSAGE);
+					
+				}else {
 				if (lotto.resultBuy.get(0).size() == 0 
 						&& lotto.resultBuy.get(1).size() == 0
 								&& lotto.resultBuy.get(2).size() == 0
@@ -271,9 +275,8 @@ public class BuyFrame extends JFrame {
 					JOptionPane.showMessageDialog(BuyFrame.this, "구매 수량이 없습니다");
 				} else {
 					btnPurchase.setEnabled(false); // 한번 구매시 구매버튼 비활성화
-					
-						disableAllButtons(getContentPane()); // 돌아가기 제외 모든 버튼 비활성화
-						btnreturn.setEnabled(true);
+					disableAllButtons(getContentPane()); // 돌아가기 제외 모든 버튼 비활성화
+					btnreturn.setEnabled(true);
 					returnCount++;
 					lotto.roundNum++;
 					
@@ -310,7 +313,7 @@ public class BuyFrame extends JFrame {
 					
 					
 					
-					
+				}
 				}
 			}
 		});
