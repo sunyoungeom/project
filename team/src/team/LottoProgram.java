@@ -123,6 +123,7 @@ public ArrayList<ArrayList<String>> resultBuyTemp = new ArrayList<>(5);
 				}
 
 			}
+			
 		});
 
 		btnBefore.addActionListener(new ActionListener() {

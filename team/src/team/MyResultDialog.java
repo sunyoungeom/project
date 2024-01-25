@@ -150,6 +150,7 @@ public class MyResultDialog extends JDialog {
 				ArrayList<ArrayList<String>> resultBuyTemp = lotto.buyNumberCollection.get(tempNum2);
 				JLabel[] resultLabels = { resultA, resultB, resultC, resultD, resultE };
 				for (int j = 0; j < resultLabels.length; j++) {
+					resultLabels[j].setText("");
 					if (!resultBuyTemp.isEmpty() && j < resultBuyTemp.size() && resultBuyTemp.get(j).size() > 0) {
 						StringBuilder resultText = new StringBuilder();
 //						!lotto.resultBuy.isEmpty() && j < lotto.resultBuy.size() && lotto.resultBuy.get(j).size() > 0)
@@ -157,6 +158,7 @@ public class MyResultDialog extends JDialog {
 							resultText.append(resultBuyTemp.get(j).get(i)).append("  ");
 						}
 						resultLabels[j].setText(resultText.toString());
+						
 
 					} else {
 
