@@ -23,6 +23,7 @@ public class RecordDialog extends JDialog {
 	private LottoProgram lotto;
 	private int tempNum;
 	private int winningCount = 0;
+	private HelpFrame help;
 
 	public RecordDialog(LottoProgram lottoProgram) {
 		this.lotto = lottoProgram;
@@ -214,13 +215,13 @@ public class RecordDialog extends JDialog {
 		winningNumber.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
 		winningNumber.setBounds(120, 35, 220, 20);
 
-		int index = 0;
+//		int index = 0;
 		if (resultNum != 0) {
-			index = random.nextInt(resultNum);
-			winningNumber.setText("당첨 번호 : " + lotto.resultBuy.get(index)); // 당첨 번호 출력하는 라벨
+//			index = random.nextInt(resultNum);
+//			winningNumber.setText("당첨 번호 : " + lotto.resultBuy.get(index)); // 당첨 번호 출력하는 라벨
 			winningNumber.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 
-			lotto.winningNumberCollection.put(lotto.roundNum, lotto.resultBuy.get(index));
+//			lotto.winningNumberCollection.put(lotto.roundNum, lotto.resultBuy.get(index));
 			ArrayList<String> ll = new ArrayList<>();
 			ll = lotto.winningNumberCollection.get(lotto.roundNum);
 			System.out.println("dd" + ll);
@@ -229,7 +230,7 @@ public class RecordDialog extends JDialog {
 			for (Integer numKey : lotto.winningNumberCollection.keySet()) {
 				System.out.println("제" + (numKey) + "회" + ": " + lotto.winningNumberCollection.get(numKey));
 			}
-
+			
 			// A번호 매칭하여 1,2,3,4,5,낙첨 출력
 			for (int i = 0; i < 6; i++) {
 				for (int j = 0; j < 6; j++) {

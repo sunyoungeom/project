@@ -84,7 +84,7 @@ public class BuyFrame extends JFrame {
 
 	public BuyFrame(LottoProgram lottoProgram) {
 		this.lotto = lottoProgram;
-		
+		 BuyFrame.this.setLocation(400, 250);
 		setTitle("구매 화면");
 
 		
