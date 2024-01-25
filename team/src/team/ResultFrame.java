@@ -74,7 +74,7 @@ public class ResultFrame extends JFrame {
 
 		JLabel titleC = new JLabel("New label");
 		titleC.setFont(new Font("맑은 고딕", Font.BOLD, 13));
-		titleC.setBounds(51, 285, 69, 15);
+		titleC.setBounds(51, 302, 69, 15);
 		backgroundImage.add(titleC);
 
 		JLabel titleD = new JLabel("New label");
