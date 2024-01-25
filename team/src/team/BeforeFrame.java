@@ -16,6 +16,8 @@ public class BeforeFrame extends JFrame {
 
 	public BeforeFrame(LottoProgram lottoProgram) {
 		this.lotto = lottoProgram;
+		setTitle("이전 회차");
+		
 		tempNum = lotto.roundNum;
 		JPanel pnl = new JPanel();
 		pnl.setBackground(Color.WHITE);

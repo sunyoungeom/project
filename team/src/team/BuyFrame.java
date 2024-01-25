@@ -84,6 +84,10 @@ public class BuyFrame extends JFrame {
 
 	public BuyFrame(LottoProgram lottoProgram) {
 		this.lotto = lottoProgram;
+		
+		setTitle("구매 화면");
+
+		
 		if (lotto.roundNum==2) {
 			System.out.println("1값"+lotto.buyNumberCollection.get(1));
 

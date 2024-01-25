@@ -66,10 +66,10 @@ public ArrayList<ArrayList<String>> resultBuyTemp = new ArrayList<>(5);
 		JButton btnResult = new JButton("결과확인");
 		JButton btnBefore = new JButton("이전회차");
 		JButton btnHelp = new JButton("결과확인");
-		btnBuy.setFont(new Font("맑은 고딕", Font.BOLD, 12));
-		btnResult.setFont(new Font("맑은 고딕", Font.BOLD, 12));
-		btnBefore.setFont(new Font("맑은 고딕", Font.BOLD, 12));
-		btnHelp.setFont(new Font("맑은 고딕", Font.BOLD, 12));
+		btnBuy.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		btnResult.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		btnBefore.setFont(new Font("맑은 고딕", Font.BOLD, 15));
+		btnHelp.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		btnBuy.setBounds(33, 10, 110, 19);
 		btnResult.setBounds(33, 10, 110, 19);
 		btnBefore.setBounds(33, 10, 110, 19);
@@ -78,7 +78,12 @@ public ArrayList<ArrayList<String>> resultBuyTemp = new ArrayList<>(5);
 //		backgroundImage.add(btnResult);
 		backgroundImage.add(btnBefore);
 		backgroundImage.add(btnHelp);
-		
+		btnBuy.setBounds(100, 400, 150, 70);
+		btnBuy.setBackground(Color.white);
+		btnBefore.setBounds(300, 400, 150, 70);
+		btnBefore.setBackground(Color.white);
+		btnHelp.setBounds(500, 400, 150, 70);
+		btnHelp.setBackground(Color.white);
 
 		main.add(backgroundImage);
 		
@@ -131,7 +136,7 @@ public ArrayList<ArrayList<String>> resultBuyTemp = new ArrayList<>(5);
 //					showRBall(lotto.winningNumberCollection.get(roundNum), pnl, sl_pnl, 10, 10);
 					System.out.println(winningNumberCollection.get(roundNum));
 				} else {
-					JOptionPane.showMessageDialog(null, "이전 회차가 없습니다.", "누적회차 부족", JOptionPane.WARNING_MESSAGE);
+					JOptionPane.showMessageDialog(LottoProgram.this, "이전 회차가 없습니다.", "누적회차 부족", JOptionPane.WARNING_MESSAGE);
 
 				}
 			}
@@ -144,6 +149,10 @@ public ArrayList<ArrayList<String>> resultBuyTemp = new ArrayList<>(5);
 					setVisible(false);
 					HelpFrame helpFrame = new HelpFrame(LottoProgram.this);
 					helpFrame.setVisible(true);
+				} else {
+					JOptionPane.showMessageDialog(LottoProgram.this, "구매하기를 먼저 진행해 주세요", "회차 결과 없음",
+					JOptionPane.WARNING_MESSAGE);
+					System.out.println("구매하기 먼저");
 				}
 			}
 		});

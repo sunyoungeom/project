@@ -50,6 +50,9 @@ public class HelpFrame extends JFrame {
 
 	public HelpFrame(LottoProgram lottoProgram) {
 		this.lotto = lottoProgram;
+		
+		setTitle("결과 확인");
+		
 		System.out.println("이거느?" + lotto.buyNumberCollection.get(lotto.roundNum));
 
 		Random random = new Random();
