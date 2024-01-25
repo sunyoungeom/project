@@ -31,7 +31,7 @@ public class ResultDialog extends JDialog {
 		setLocation(lotto.getX() + lotto.getWidth() + 190, lotto.getY());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-		JLabel lblTitle = new JLabel("구매내역/결과확인");
+		JLabel lblTitle = new JLabel("구매내역");
 		
 		lblTitle.setBounds(33, 10, 110, 19);
 //		lblTitle.setBounds(33, 32, 110, 19);
@@ -100,7 +100,7 @@ public class ResultDialog extends JDialog {
 
 		JButton btnNewButton = new JButton("확인");
 		btnNewButton.setBounds(147, 422, 69, 34);
-
+		btnNewButton.setBackground(Color.WHITE);
 		System.out.println(lotto.resultBuy.get(0));
 
 		btnNewButton.addActionListener(new ActionListener() {

@@ -44,7 +44,7 @@ public class MyResultDialog extends JDialog {
 
 		setModal(true);
 		setSize(380, 522);
-		setLocation(lotto.getX() + lotto.getWidth() + 190, lotto.getY());
+		setLocation(lotto.getX() + lotto.getWidth(), lotto.getY());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
 		JLabel lblTitle = new JLabel("구매내역");
@@ -112,6 +112,7 @@ public class MyResultDialog extends JDialog {
 		total.setBounds(270, 422, 57, 15);
 
 		JButton btnNewButton = new JButton("이전");
+		btnNewButton.setBackground(Color.WHITE);
 		btnNewButton.setBounds(147, 422, 69, 34);
 
 		System.out.println(lotto.resultBuy.get(0));
@@ -531,7 +532,7 @@ public class MyResultDialog extends JDialog {
 
 			}
 		});
-		backgroundImage.add(btnShowMyRecord);
+//		backgroundImage.add(btnShowMyRecord);
 //			backgroundImage.add(winningNumber);
 
 		// 윈도우 빌더 사용가능

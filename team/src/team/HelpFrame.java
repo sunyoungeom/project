@@ -46,7 +46,7 @@ public class HelpFrame extends JFrame {
 	private JButton btnreturn;
 	public int countNum = 0; // 배열의 대한 숫자 0~4까지
 	public int numSelect = 0; // 직접 내가 누르는 번호의 개수
-	private static final int DISPLAY_TIME = 3000; // 3초 딜레이 (밀리초 단위)
+	private static final int DISPLAY_TIME = 2000; // 3초 딜레이 (밀리초 단위)
 
 	public HelpFrame(LottoProgram lottoProgram) {
 		this.lotto = lottoProgram;
@@ -56,9 +56,11 @@ public class HelpFrame extends JFrame {
 
 		JPanel pnlImage = new JPanel();
 		getContentPane().add(pnlImage, BorderLayout.NORTH);
+		pnlImage.setBackground(Color.white);
+		getContentPane().setBackground(Color.white);
 
 		JLabel lblNewLabel_5 = new JLabel("");
-		lblNewLabel_5.setIcon(new ImageIcon("C:\\Users\\GGG\\Downloads\\loto-icon.gif"));
+		lblNewLabel_5.setIcon(new ImageIcon("images/loding.PNG"));
 		pnlImage.add(lblNewLabel_5);
 
 		JPanel pnl = new JPanel();
@@ -93,6 +95,8 @@ public class HelpFrame extends JFrame {
 //		pnl.add(ballEpnl);
 
 		btnreturn = new JButton("돌아가기");
+		btnreturn.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
+		btnreturn.setBackground(Color.WHITE);
 		sl_pnl.putConstraint(SpringLayout.WEST, btnreturn, 10, SpringLayout.WEST, pnl);
 		pnl.add(btnreturn);
 

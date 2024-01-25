@@ -63,12 +63,16 @@ public ArrayList<ArrayList<String>> resultBuyTemp = new ArrayList<>(5);
 		backgroundImage.setLayout(sl_main);
 
 		JButton btnBuy = new JButton("구매하기");
-		JButton btnResult = new JButton("결과확인");
+		JButton btnResult = new JButton("결과확dsf인");
 		JButton btnBefore = new JButton("이전회차");
-		JButton btnHelp = new JButton("도움말");
-
+		JButton btnHelp = new JButton("결과확인");
+		btnBuy.setFont(new Font("맑은 고딕", Font.BOLD, 12));
+		btnResult.setFont(new Font("맑은 고딕", Font.BOLD, 12));
+		btnBefore.setFont(new Font("맑은 고딕", Font.BOLD, 12));
+		btnHelp.setFont(new Font("맑은 고딕", Font.BOLD, 12));
+		
 		backgroundImage.add(btnBuy);
-		backgroundImage.add(btnResult);
+//		backgroundImage.add(btnResult);
 		backgroundImage.add(btnBefore);
 		backgroundImage.add(btnHelp);
 		sl_main.putConstraint(SpringLayout.WEST, btnBuy, 347, SpringLayout.WEST, main);

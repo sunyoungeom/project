@@ -95,6 +95,9 @@ public class BuyFrame extends JFrame {
 		getContentPane().add(pnl);
 
 		btnreturn = new JButton("돌아가기");
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnreturn, 10, SpringLayout.NORTH, pnl);
+		sl_pnl.putConstraint(SpringLayout.WEST, btnreturn, 10, SpringLayout.WEST, pnl);
+		btnreturn.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 		btnreturn.setBackground(Color.WHITE);
 		pnl.add(btnreturn);
 		btnreturn.addActionListener(new ActionListener() {
@@ -120,10 +123,9 @@ public class BuyFrame extends JFrame {
 		});
 
 		btnReset = new JButton("초기화");
+		btnReset.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 		sl_pnl.putConstraint(SpringLayout.WEST, btnReset, 10, SpringLayout.WEST, pnl);
 		sl_pnl.putConstraint(SpringLayout.EAST, btnReset, -893, SpringLayout.EAST, pnl);
-		sl_pnl.putConstraint(SpringLayout.WEST, btnreturn, 0, SpringLayout.WEST, btnReset);
-		sl_pnl.putConstraint(SpringLayout.EAST, btnreturn, 18, SpringLayout.EAST, btnReset);
 		btnReset.setBackground(Color.WHITE);
 		pnl.add(btnReset);
 		btnReset.addActionListener(new ActionListener() {
@@ -137,8 +139,9 @@ public class BuyFrame extends JFrame {
 		});
 
 		btnAuto = new JButton("자동선택");
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnAuto, 0, SpringLayout.NORTH, btnReset);
 		sl_pnl.putConstraint(SpringLayout.WEST, btnAuto, 27, SpringLayout.EAST, btnReset);
+		sl_pnl.putConstraint(SpringLayout.SOUTH, btnAuto, 0, SpringLayout.SOUTH, btnReset);
+		btnAuto.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 		btnAuto.setBackground(Color.WHITE);
 		btnAuto.setForeground(Color.BLACK);
 		pnl.add(btnAuto);
@@ -186,13 +189,17 @@ public class BuyFrame extends JFrame {
 		});
 
 		btnCheck = new JButton("번호확인");
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnCheck, 0, SpringLayout.NORTH, btnReset);
+		sl_pnl.putConstraint(SpringLayout.SOUTH, btnCheck, 0, SpringLayout.SOUTH, btnReset);
+		btnCheck.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 		pnl.add(btnCheck);
 		btnCheck.setOpaque(false);
 		btnCheck.setContentAreaFilled(false);
 
 		toggleButtonPanel = new JPanel();
-		sl_pnl.putConstraint(SpringLayout.NORTH, toggleButtonPanel, 11, SpringLayout.SOUTH, btnreturn);
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnCheck, 21, SpringLayout.SOUTH, toggleButtonPanel);
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnAuto, 21, SpringLayout.SOUTH, toggleButtonPanel);
+		sl_pnl.putConstraint(SpringLayout.NORTH, toggleButtonPanel, 65, SpringLayout.NORTH, pnl);
+		sl_pnl.putConstraint(SpringLayout.SOUTH, btnreturn, -20, SpringLayout.NORTH, toggleButtonPanel);
 		sl_pnl.putConstraint(SpringLayout.SOUTH, toggleButtonPanel, -66, SpringLayout.SOUTH, pnl);
 		sl_pnl.putConstraint(SpringLayout.EAST, btnCheck, 0, SpringLayout.EAST, toggleButtonPanel);
 		toggleButtonPanel.setBackground(Color.WHITE);
@@ -240,10 +247,11 @@ public class BuyFrame extends JFrame {
 		}
 
 		btnPurchase = new JButton("구매하기");
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnPurchase, -6, SpringLayout.NORTH, btnReset);
 		sl_pnl.putConstraint(SpringLayout.WEST, btnPurchase, 242, SpringLayout.EAST, btnCheck);
-		sl_pnl.putConstraint(SpringLayout.SOUTH, btnPurchase, 29, SpringLayout.NORTH, btnReset);
+		sl_pnl.putConstraint(SpringLayout.SOUTH, btnPurchase, -16, SpringLayout.SOUTH, pnl);
 		sl_pnl.putConstraint(SpringLayout.EAST, btnPurchase, -312, SpringLayout.EAST, pnl);
+		sl_pnl.putConstraint(SpringLayout.SOUTH, btnReset, 0, SpringLayout.SOUTH, btnPurchase);
+		btnPurchase.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 		btnPurchase.setBackground(Color.WHITE);
 		pnl.add(btnPurchase);
 		
@@ -305,10 +313,10 @@ public class BuyFrame extends JFrame {
 		
 
 		btnNumReset = new JButton("초기화");
-		sl_pnl.putConstraint(SpringLayout.WEST, btnNumReset, 707, SpringLayout.EAST, btnreturn);
-		sl_pnl.putConstraint(SpringLayout.EAST, btnNumReset, -69, SpringLayout.EAST, pnl);
-		sl_pnl.putConstraint(SpringLayout.SOUTH, btnreturn, 0, SpringLayout.SOUTH, btnNumReset);
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnNumReset, 29, SpringLayout.NORTH, pnl);
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnNumReset, 10, SpringLayout.NORTH, pnl);
+		sl_pnl.putConstraint(SpringLayout.EAST, btnreturn, -794, SpringLayout.WEST, btnNumReset);
+		sl_pnl.putConstraint(SpringLayout.WEST, btnNumReset, 893, SpringLayout.WEST, pnl);
+		btnNumReset.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 		btnNumReset.setBackground(Color.WHITE);
 		pnl.add(btnNumReset);
 		btnNumReset.addActionListener(new ActionListener() {
@@ -483,13 +491,15 @@ public class BuyFrame extends JFrame {
 		});
 
 		JLabel lblNewLabel = new JLabel("");
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnreturn, 0, SpringLayout.NORTH, lblNewLabel);
 		sl_pnl.putConstraint(SpringLayout.NORTH, lblNewLabel, 10, SpringLayout.NORTH, pnl);
 		sl_pnl.putConstraint(SpringLayout.WEST, lblNewLabel, 389, SpringLayout.WEST, pnl);
 		lblNewLabel.setIcon(new ImageIcon("images/img.jpg"));
 		pnl.add(lblNewLabel);
 
 		JPanel panel = new JPanel();
+		sl_pnl.putConstraint(SpringLayout.SOUTH, btnNumReset, -20, SpringLayout.NORTH, panel);
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnPurchase, 15, SpringLayout.SOUTH, panel);
+		sl_pnl.putConstraint(SpringLayout.EAST, btnNumReset, 0, SpringLayout.EAST, panel);
 		sl_pnl.putConstraint(SpringLayout.SOUTH, panel, 0, SpringLayout.SOUTH, toggleButtonPanel);
 		sl_pnl.putConstraint(SpringLayout.EAST, panel, -10, SpringLayout.EAST, pnl);
 		panel.setBackground(Color.WHITE);
@@ -514,8 +524,9 @@ public class BuyFrame extends JFrame {
 		panel.add(ballApnl);
 
 		btnRetouchA = new JButton("수정");
+		btnRetouchA.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 		btnRetouchA.setBackground(Color.WHITE);
-		btnRetouchA.setBounds(450, 60, 60, 25);
+		btnRetouchA.setBounds(450, 60, 60, 30);
 		panel.add(btnRetouchA);
 		btnRetouchA.addActionListener(new ActionListener() {
 			@Override
@@ -538,8 +549,9 @@ public class BuyFrame extends JFrame {
 		});
 
 		btnDeleteA = new JButton("삭제");
+		btnDeleteA.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 		btnDeleteA.setBackground(Color.WHITE);
-		btnDeleteA.setBounds(520, 60, 60, 25);
+		btnDeleteA.setBounds(520, 60, 60, 30);
 		panel.add(btnDeleteA);
 		btnDeleteA.addActionListener(new ActionListener() {
 			@Override
@@ -568,8 +580,9 @@ public class BuyFrame extends JFrame {
 		panel.add(lblStateB);
 
 		btnRetouchB = new JButton("수정");
+		btnRetouchB.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 		btnRetouchB.setBackground(Color.WHITE);
-		btnRetouchB.setBounds(450, 135, 60, 25);
+		btnRetouchB.setBounds(450, 135, 60, 30);
 		panel.add(btnRetouchB);
 		btnRetouchB.setBackground(Color.WHITE);
 		btnRetouchB.addActionListener(new ActionListener() {
@@ -591,8 +604,9 @@ public class BuyFrame extends JFrame {
 		});
 
 		btnDeleteB = new JButton("삭제");
+		btnDeleteB.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 		btnDeleteB.setBackground(Color.WHITE);
-		btnDeleteB.setBounds(520, 135, 60, 25);
+		btnDeleteB.setBounds(520, 135, 60, 30);
 		panel.add(btnDeleteB);
 		btnDeleteB.addActionListener(new ActionListener() {
 			@Override
@@ -621,8 +635,9 @@ public class BuyFrame extends JFrame {
 		panel.add(ballCpnl);
 
 		btnRetouchC = new JButton("수정");
+		btnRetouchC.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 		btnRetouchC.setBackground(Color.WHITE);
-		btnRetouchC.setBounds(450, 210, 60, 25);
+		btnRetouchC.setBounds(450, 210, 60, 30);
 		panel.add(btnRetouchC);
 		btnRetouchC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -643,8 +658,9 @@ public class BuyFrame extends JFrame {
 		});
 
 		btnDeleteC = new JButton("삭제");
+		btnDeleteC.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 		btnDeleteC.setBackground(Color.WHITE);
-		btnDeleteC.setBounds(520, 210, 60, 25);
+		btnDeleteC.setBounds(520, 210, 60, 30);
 		panel.add(btnDeleteC);
 		btnDeleteC.addActionListener(new ActionListener() {
 			@Override
@@ -673,8 +689,9 @@ public class BuyFrame extends JFrame {
 		panel.add(ballDpnl);
 
 		btnRetouchD = new JButton("수정");
+		btnRetouchD.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 		btnRetouchD.setBackground(Color.WHITE);
-		btnRetouchD.setBounds(450, 285, 60, 25);
+		btnRetouchD.setBounds(450, 285, 60, 30);
 		panel.add(btnRetouchD);
 		btnRetouchD.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -695,8 +712,9 @@ public class BuyFrame extends JFrame {
 		});
 
 		btnDeleteD = new JButton("삭제");
+		btnDeleteD.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 		btnDeleteD.setBackground(Color.WHITE);
-		btnDeleteD.setBounds(520, 285, 60, 25);
+		btnDeleteD.setBounds(520, 285, 60, 30);
 		panel.add(btnDeleteD);
 		btnDeleteD.addActionListener(new ActionListener() {
 			@Override
@@ -725,8 +743,9 @@ public class BuyFrame extends JFrame {
 		panel.add(ballEpnl);
 
 		btnRetouchE = new JButton("수정");
+		btnRetouchE.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 		btnRetouchE.setBackground(Color.WHITE);
-		btnRetouchE.setBounds(450, 360, 60, 25);
+		btnRetouchE.setBounds(450, 360, 60, 30);
 		panel.add(btnRetouchE);
 		btnRetouchE.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -747,8 +766,9 @@ public class BuyFrame extends JFrame {
 		});
 
 		btnDeleteE = new JButton("삭제");
+		btnDeleteE.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
 		btnDeleteE.setBackground(Color.WHITE);
-		btnDeleteE.setBounds(520, 360, 60, 25);
+		btnDeleteE.setBounds(520, 360, 60, 30);
 		panel.add(btnDeleteE);
 		btnDeleteE.addActionListener(new ActionListener() {
 			@Override

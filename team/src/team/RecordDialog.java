@@ -32,11 +32,11 @@ public class RecordDialog extends JDialog {
 		SpringLayout springLayout = new SpringLayout();
 		backgroundImage.setLayout(null);
 
-		setTitle("결과 확인");
+		setTitle("결과확인");
 
 		setModal(true);
 		setSize(380, 522);
-		setLocation(lotto.getX() + lotto.getWidth() + 190, lotto.getY());
+		setLocation(lotto.getX() + lotto.getWidth(), lotto.getY());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
 		JLabel lblTitle = new JLabel("결과확인");
@@ -105,7 +105,7 @@ public class RecordDialog extends JDialog {
 
 		JButton btnNewButton = new JButton("확인");
 		btnNewButton.setBounds(147, 422, 69, 34);
-
+		btnNewButton.setBackground(Color.WHITE);
 		System.out.println(lotto.resultBuy.get(0));
 
 		btnNewButton.addActionListener(new ActionListener() {

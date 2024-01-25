@@ -47,7 +47,9 @@ public class BeforeFrame extends JFrame {
 		
 		
 		JButton btnMyLotto = new JButton("구매내역");
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnMyLotto, 34, SpringLayout.NORTH, pnl);
+		btnMyLotto.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
+		btnMyLotto.setBackground(Color.WHITE);
+		sl_pnl.putConstraint(SpringLayout.SOUTH, btnMyLotto, 35, SpringLayout.NORTH, pnl);
 		sl_pnl.putConstraint(SpringLayout.EAST, btnMyLotto, -10, SpringLayout.EAST, pnl);
 		btnMyLotto.addActionListener(new ActionListener() {
 			
@@ -65,8 +67,12 @@ public class BeforeFrame extends JFrame {
 		
 		
 		JButton btnreturn = new JButton("돌아가기");
+		btnreturn.setFont(new Font("맑은 고딕", Font.PLAIN, 12));
+		btnreturn.setBackground(Color.WHITE);
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnMyLotto, 0, SpringLayout.NORTH, btnreturn);
 		sl_pnl.putConstraint(SpringLayout.NORTH, btnreturn, 6, SpringLayout.NORTH, pnl);
 		sl_pnl.putConstraint(SpringLayout.WEST, btnreturn, 10, SpringLayout.WEST, pnl);
+		sl_pnl.putConstraint(SpringLayout.SOUTH, btnreturn, 35, SpringLayout.NORTH, pnl);
 		pnl.add(btnreturn);
 //       
 		showRBall(lotto.winningNumberCollection.get(lotto.roundNum), ballApnl, sl_pnl, 10, 10);
@@ -86,7 +92,10 @@ System.out.println("dsfd");
 		getContentPane().add(pnl);
 
 		JButton btnNewButton = new JButton("<");
-		sl_pnl.putConstraint(SpringLayout.WEST, btnNewButton, 0, SpringLayout.WEST, pnl);
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnNewButton, 153, SpringLayout.SOUTH, btnreturn);
+		sl_pnl.putConstraint(SpringLayout.WEST, btnNewButton, 10, SpringLayout.WEST, pnl);
+		sl_pnl.putConstraint(SpringLayout.SOUTH, btnNewButton, -336, SpringLayout.SOUTH, pnl);
+		btnNewButton.setBackground(Color.WHITE);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 //				int tempNum = lotto.roundNum;
@@ -106,9 +115,10 @@ System.out.println("dsfd");
 		pnl.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton(">");
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnNewButton_1, 131, SpringLayout.SOUTH, btnMyLotto);
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnNewButton, 0, SpringLayout.NORTH, btnNewButton_1);
-		sl_pnl.putConstraint(SpringLayout.EAST, btnNewButton_1, 0, SpringLayout.EAST, pnl);
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnNewButton_1, 153, SpringLayout.SOUTH, btnMyLotto);
+		sl_pnl.putConstraint(SpringLayout.SOUTH, btnNewButton_1, 0, SpringLayout.SOUTH, btnNewButton);
+		sl_pnl.putConstraint(SpringLayout.EAST, btnNewButton_1, -10, SpringLayout.EAST, pnl);
+		btnNewButton_1.setBackground(Color.WHITE);
 		btnNewButton_1.addActionListener(new ActionListener() {
 			
 			@Override
