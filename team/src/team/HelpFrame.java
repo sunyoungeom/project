@@ -50,7 +50,8 @@ public class HelpFrame extends JFrame {
 
 	public HelpFrame(LottoProgram lottoProgram) {
 		this.lotto = lottoProgram;
-		
+		 HelpFrame.this.setLocation(400, 250);
+		 
 		setTitle("결과 확인");
 		
 		System.out.println("이거느?" + lotto.buyNumberCollection.get(lotto.roundNum));
@@ -76,7 +77,7 @@ public class HelpFrame extends JFrame {
 		sl_pnl.putConstraint(SpringLayout.WEST, ballApnl, 190, SpringLayout.WEST, pnl);
 		sl_pnl.putConstraint(SpringLayout.SOUTH, ballApnl, -312, SpringLayout.SOUTH, pnl);
 		ballApnl.setBackground(Color.WHITE);
-
+//		removeBalls(ballApnl);
 		pnl.add(ballApnl);
 
 //		JPanel ballBpnl = new JPanel();
@@ -120,7 +121,7 @@ public class HelpFrame extends JFrame {
 			public void run() {
 				pnlImage.setVisible(false); // 타이머 동작 후 이미지를 숨김
 				pnl.setVisible(true);
-
+//				showRBall(lotto.winningNumberCollection.get(lotto.roundNum), ballApnl, sl_pnl, 10, 10);
 				System.out.println("대화 상자를 생성합니다.");
 				JDialog dialog = new RecordDialog(lottoProgram);
 				dialog.setVisible(true);
@@ -153,19 +154,21 @@ public class HelpFrame extends JFrame {
 		if (resultNum != 0) {
 			index = random.nextInt(resultNum);
 			winningNumber.setText("당첨 번호 : " + lotto.resultBuy.get(index)); // 당첨 번호 출력하는 라벨
-
-			lotto.winningNumberCollection.put(lotto.roundNum, lotto.resultBuy.get(index));
+			int winnginTemp = lotto.roundNum;
+			lotto.winningNumberCollection.put(winnginTemp, lotto.resultBuy.get(index));
 			ArrayList<String> ll = new ArrayList<>();
 			ll = lotto.winningNumberCollection.get(lotto.roundNum);
-			System.out.println("dd" + ll);
-
-			for (Integer numKey : lotto.winningNumberCollection.keySet()) {
-				System.out.println("제" + (numKey) + "회" + ": " + lotto.winningNumberCollection.get(numKey));
-			}
+			System.out.println("ddsfsdf" + ll);
+			ArrayList<String> winningtemp = new ArrayList<String>();
+			winningtemp = lotto.winningNumberCollection.get(lotto.roundNum);
+			showRBall(winningtemp, ballApnl, sl_pnl, 10, 10);			
+//			for (Integer numKey : lotto.winningNumberCollection.keySet()) {
+//				System.out.println("제" + (numKey) + "회" + ": " + lotto.winningNumberCollection.get(numKey));
+//				
+//			}
 		}
 
-		showRBall(lotto.winningNumberCollection.get(lotto.roundNum), ballApnl, sl_pnl, 10, 10);
-
+		
 		ballApnl.setBounds(500, 300, 200, 50);
 
 		int buyLottoCount = 0; // 구매한 로또 갯수
@@ -268,6 +271,8 @@ public class HelpFrame extends JFrame {
 		panel_2.add(lblNewLabel_4);
 
 		System.out.println(lotto.buyNumberCollection.get(lotto.roundNum));
+		
+		
 
 		setSize(800, 600);
 		pnl.setVisible(false);

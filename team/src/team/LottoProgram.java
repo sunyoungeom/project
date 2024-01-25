@@ -53,7 +53,7 @@ public ArrayList<ArrayList<String>> resultBuyTemp = new ArrayList<>(5);
 		for (int i = 0; i < 5; i++) {
 			resultBuyTitle.add("");
 		}
-		
+		 LottoProgram.this.setLocation(400, 250);
 		setTitle("메인 창");
 
 		JPanel main = new JPanel();
@@ -111,7 +111,11 @@ public ArrayList<ArrayList<String>> resultBuyTemp = new ArrayList<>(5);
 		btnResult.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (resultBuy.get(0).size() != 0) {
+				if (resultBuy.get(0).size() == 0
+						&& resultBuy.get(1).size() == 0
+						&& resultBuy.get(2).size() == 0
+						&& resultBuy.get(3).size() == 0
+						&& resultBuy.get(4).size() == 0) {
 					setVisible(false);
 					ResultFrame resultFrame = new ResultFrame(LottoProgram.this);
 					resultFrame.setVisible(true);
@@ -123,6 +127,7 @@ public ArrayList<ArrayList<String>> resultBuyTemp = new ArrayList<>(5);
 				}
 
 			}
+			
 		});
 
 		btnBefore.addActionListener(new ActionListener() {
