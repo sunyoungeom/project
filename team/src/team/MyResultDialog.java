@@ -120,10 +120,12 @@ public class MyResultDialog extends JDialog {
 		btnNewButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				tempNum2--;
-//				if (tempNum2 <= 0) {
-//					lblNewLabel_1.setText("제 " + "1" + "회");
-//				} else {
+				if (tempNum2 > 1) {
+					tempNum2--;
+					lblNewLabel_1.setText("제 " + tempNum2 + "회");
+				} else {
+					JOptionPane.showMessageDialog(MyResultDialog.this, "이전회차가 없습니다.", "에러", JOptionPane.ERROR_MESSAGE);
+				}
 				lblNewLabel_1.setText("제 " + tempNum2 + "회");
 //				}
 				char ch = 'A';
