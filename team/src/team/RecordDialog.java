@@ -101,7 +101,7 @@ public class RecordDialog extends JDialog {
 		resultE.setBounds(140, 360, 177, 15);
 
 		JLabel total = new JLabel("당첨금");
-		total.setBounds(270, 422, 57, 15);
+		total.setBounds(240, 422, 200, 15);
 
 		JButton btnNewButton = new JButton("확인");
 		btnNewButton.setBounds(147, 422, 69, 34);

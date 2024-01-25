@@ -10,7 +10,6 @@ import javax.swing.border.MatteBorder;
 
 public class BeforeFrame extends JFrame {
 	private LottoProgram lotto;
-	private JTextField textField;
 	private int tempNum; // 비교를 위한 변수 
 	private JLabel lblNewLabel_;
 	private JLabel lblNewLabel;
@@ -31,7 +30,7 @@ public class BeforeFrame extends JFrame {
 		pnl.add(ballApnl);
 		
 		JLabel lblNewLabel_1 = new JLabel("0000-00-00 추첨");
-		sl_pnl.putConstraint(SpringLayout.EAST, lblNewLabel_1, -350, SpringLayout.EAST, pnl);
+		sl_pnl.putConstraint(SpringLayout.EAST, lblNewLabel_1, -345, SpringLayout.EAST, pnl);
 		lblNewLabel_1.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 		LocalDateTime nowDT = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -42,12 +41,13 @@ public class BeforeFrame extends JFrame {
 		
 		JLabel lblNewLabel_2 = new JLabel("당첨번호");
 		sl_pnl.putConstraint(SpringLayout.NORTH, lblNewLabel_2, 6, SpringLayout.SOUTH, lblNewLabel_1);
-		sl_pnl.putConstraint(SpringLayout.EAST, lblNewLabel_2, -363, SpringLayout.EAST, pnl);
+		sl_pnl.putConstraint(SpringLayout.EAST, lblNewLabel_2, -348, SpringLayout.EAST, pnl);
 		lblNewLabel_2.setFont(new Font("맑은 고딕", Font.BOLD, 17));
 		pnl.add(lblNewLabel_2);
 		
 		
 		JButton btnMyLotto = new JButton("구매내역");
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnMyLotto, 34, SpringLayout.NORTH, pnl);
 		sl_pnl.putConstraint(SpringLayout.EAST, btnMyLotto, -10, SpringLayout.EAST, pnl);
 		btnMyLotto.addActionListener(new ActionListener() {
 			
@@ -65,6 +65,7 @@ public class BeforeFrame extends JFrame {
 		
 		
 		JButton btnreturn = new JButton("돌아가기");
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnreturn, 6, SpringLayout.NORTH, pnl);
 		sl_pnl.putConstraint(SpringLayout.WEST, btnreturn, 10, SpringLayout.WEST, pnl);
 		pnl.add(btnreturn);
 //       
@@ -105,6 +106,7 @@ System.out.println("dsfd");
 		pnl.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton(">");
+		sl_pnl.putConstraint(SpringLayout.NORTH, btnNewButton_1, 131, SpringLayout.SOUTH, btnMyLotto);
 		sl_pnl.putConstraint(SpringLayout.NORTH, btnNewButton, 0, SpringLayout.NORTH, btnNewButton_1);
 		sl_pnl.putConstraint(SpringLayout.EAST, btnNewButton_1, 0, SpringLayout.EAST, pnl);
 		btnNewButton_1.addActionListener(new ActionListener() {
@@ -128,30 +130,7 @@ System.out.println("dsfd");
 		});
 		pnl.add(btnNewButton_1);
 
-		textField = new JTextField();
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnreturn, -1, SpringLayout.NORTH, textField);
-		sl_pnl.putConstraint(SpringLayout.NORTH, textField, 7, SpringLayout.NORTH, pnl);
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnMyLotto, 6, SpringLayout.SOUTH, textField);
-		sl_pnl.putConstraint(SpringLayout.EAST, textField, -44, SpringLayout.EAST, pnl);
-		pnl.add(textField);
-		textField.setColumns(10);
-		textField.setText(String.valueOf(lotto.roundNum));
-
 		lblNewLabel_ = new JLabel("당첨 회차");
-
-		JButton btnNewButton_2 = new JButton("확인");
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnNewButton_1, 92, SpringLayout.SOUTH, btnNewButton_2);
-		sl_pnl.putConstraint(SpringLayout.NORTH, btnNewButton_2, 16, SpringLayout.SOUTH, btnMyLotto);
-		sl_pnl.putConstraint(SpringLayout.EAST, btnNewButton_2, -28, SpringLayout.EAST, pnl);
-		btnNewButton_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.out.println(lotto.winningNumberCollection.get(lotto.roundNum));
-//				String roundInfo = textField.getText();
-//				int round = Integer.parseInt(roundInfo);
-//				System.out.println(lotto.winningNumberCollection.get(round));
-			}
-		});
-		pnl.add(btnNewButton_2);
 		
 		JPanel panel = new JPanel();
 		sl_pnl.putConstraint(SpringLayout.NORTH, panel, 42, SpringLayout.NORTH, pnl);
@@ -177,7 +156,6 @@ System.out.println("dsfd");
 		panel_1.add(label);
 		sl_pnl.putConstraint(SpringLayout.NORTH, label, 67, SpringLayout.NORTH, pnl);
 		label.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-		sl_pnl.putConstraint(SpringLayout.EAST, label, -234, SpringLayout.WEST, btnNewButton_2);
 		sl_pnl.putConstraint(SpringLayout.NORTH, lblNewLabel, 0, SpringLayout.NORTH, label);
 		sl_pnl.putConstraint(SpringLayout.EAST, lblNewLabel, -8, SpringLayout.WEST, label);
 		
@@ -193,7 +171,7 @@ System.out.println("dsfd");
 		
 		JLabel lblNewLabel_3 = new JLabel("1등 당첨금");
 		lblNewLabel_3.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		lblNewLabel_3.setBounds(50, 30, 85, 15);
+		lblNewLabel_3.setBounds(112, 55, 85, 15);
 		sl_pnl.putConstraint(SpringLayout.NORTH, lblNewLabel_3, 66, SpringLayout.NORTH, panel_2);
 		sl_pnl.putConstraint(SpringLayout.WEST, lblNewLabel_3, 68, SpringLayout.WEST, panel_2);
 		sl_pnl.putConstraint(SpringLayout.SOUTH, lblNewLabel_3, 289, SpringLayout.NORTH, panel_2);
@@ -202,48 +180,38 @@ System.out.println("dsfd");
 		
 		JLabel lblNewLabel_4 = new JLabel("2등 당첨금");
 		lblNewLabel_4.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		lblNewLabel_4.setBounds(50, 55, 85, 15);
+		lblNewLabel_4.setBounds(112, 80, 85, 15);
 		panel_2.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("3등 당첨금");
 		lblNewLabel_5.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		lblNewLabel_5.setBounds(50, 86, 85, 15);
+		lblNewLabel_5.setBounds(112, 105, 85, 15);
 		panel_2.add(lblNewLabel_5);
 		
 		JLabel lblNewLabel_6 = new JLabel("4등 당첨금");
 		lblNewLabel_6.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		lblNewLabel_6.setBounds(50, 111, 85, 15);
+		lblNewLabel_6.setBounds(112, 130, 85, 15);
 		panel_2.add(lblNewLabel_6);
-		
-		JLabel lblNewLabel_7 = new JLabel("5등 당첨금");
-		lblNewLabel_7.setFont(new Font("맑은 고딕", Font.BOLD, 15));
-		lblNewLabel_7.setBounds(50, 147, 85, 15);
-		panel_2.add(lblNewLabel_7);
 
 		JLabel lblNewLabel_8 = new JLabel("500,000,000");
 		lblNewLabel_8.setFont(new Font("한컴 고딕", Font.PLAIN, 15));
-		lblNewLabel_8.setBounds(409, 32, 353, 15);
+		lblNewLabel_8.setBounds(311, 57, 353, 15);
 		panel_2.add(lblNewLabel_8);
 		
 		JLabel lblNewLabel_9 = new JLabel("3,000,000");
 		lblNewLabel_9.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
-		lblNewLabel_9.setBounds(419, 55, 353, 15);
+		lblNewLabel_9.setBounds(338, 80, 353, 15);
 		panel_2.add(lblNewLabel_9);
 		
 		JLabel lblNewLabel_10 = new JLabel("100,000");
 		lblNewLabel_10.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
-		lblNewLabel_10.setBounds(429, 86, 353, 15);
+		lblNewLabel_10.setBounds(349, 105, 353, 15);
 		panel_2.add(lblNewLabel_10);
 		
 		JLabel lblNewLabel_11 = new JLabel("50,000");
 		lblNewLabel_11.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
-		lblNewLabel_11.setBounds(147, 124, 353, 15);
+		lblNewLabel_11.setBounds(355, 130, 353, 15);
 		panel_2.add(lblNewLabel_11);
-		
-		JLabel lblNewLabel_12 = new JLabel("5,000");
-		lblNewLabel_12.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
-		lblNewLabel_12.setBounds(147, 147, 353, 15);
-		panel_2.add(lblNewLabel_12);
 		setSize(800, 600);
 		setVisible(false);
 	}

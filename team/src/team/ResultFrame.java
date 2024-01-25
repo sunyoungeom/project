@@ -1,6 +1,8 @@
  
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -48,7 +50,12 @@ public class ResultFrame extends JFrame {
 		lottoDate.setBounds(120, 146, 138, 17);
 		lottoDate.setFont(new Font("맑은 고딕", Font.BOLD, 15));
 		backgroundImage.add(lottoDate);
+		LocalDateTime nowDT = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formattedDate = nowDT.format(formatter);
 
+        lottoDate.setText(formattedDate);
+        
 		JLabel lblNewLabel_1 = new JLabel("제 1회");
 		lblNewLabel_1.setBounds(220, 100, 70, 27);
 		lblNewLabel_1.setFont(new Font("맑은 고딕", Font.BOLD, 20));
