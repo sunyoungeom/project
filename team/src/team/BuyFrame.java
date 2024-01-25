@@ -549,7 +549,6 @@ public class BuyFrame extends JFrame {
 					toggleButton = numberToggleButtons.get(index);
 					toggleButton.setSelected(true);
 				}
-				lblStateA.setText("미지정");
 				lotto.resultBuy.set(0, new ArrayList<>());
 
 			}
@@ -605,7 +604,6 @@ public class BuyFrame extends JFrame {
 					toggleButton = numberToggleButtons.get(index);
 					toggleButton.setSelected(true);
 				}
-				lblStateB.setText("미지정");
 				lotto.resultBuy.set(1, new ArrayList<>());
 			}
 		});
@@ -659,7 +657,6 @@ public class BuyFrame extends JFrame {
 					toggleButton = numberToggleButtons.get(index);
 					toggleButton.setSelected(true);
 				}
-				lblStateC.setText("미지정");
 				lotto.resultBuy.set(2, new ArrayList<>());
 			}
 		});
@@ -713,7 +710,6 @@ public class BuyFrame extends JFrame {
 					toggleButton = numberToggleButtons.get(index);
 					toggleButton.setSelected(true);
 				}
-				lblStateD.setText("미지정");
 				lotto.resultBuy.set(3, new ArrayList<>());
 			}
 		});
@@ -767,7 +763,6 @@ public class BuyFrame extends JFrame {
 					toggleButton = numberToggleButtons.get(index);
 					toggleButton.setSelected(true);
 				}
-				lblStateE.setText("미지정");
 				lotto.resultBuy.set(4, new ArrayList<>());
 			}
 		});
