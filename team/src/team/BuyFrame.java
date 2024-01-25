@@ -542,7 +542,7 @@ public class BuyFrame extends JFrame {
 				ArrayList<String> selectAnumbers = lotto.resultBuy.get(0);
 				// 선택된 숫자에 해당하는 토글 버튼을 선택 상태로 설정
 				for (String number : selectAnumbers) {
-					int index = Integer.parseInt(number) - 1; // 토글 버튼은 0부터 시작하므로 1을 빼줍니다.
+					int index = Integer.parseInt(number) - 1; // 토글 버튼은 0부터 시작하므로 1을 
 					toggleButton = numberToggleButtons.get(index);
 					toggleButton.setSelected(true);
 				}
