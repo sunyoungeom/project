@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.awt.event.ActionEvent;
 
@@ -22,20 +24,28 @@ public class ResultDialog extends JDialog {
 		SpringLayout springLayout = new SpringLayout();
 		backgroundImage.setLayout(null);
 
-		setTitle("대화 상자");
+		setTitle("구매내역");
+		
 		setModal(true);
-		setSize(401, 536);
+		setSize(380, 522);
 		setLocation(lotto.getX() + lotto.getWidth() + 190, lotto.getY());
 		setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
 		JLabel lblTitle = new JLabel("구매내역/결과확인");
-		lblTitle.setBounds(33, 15, 110, 19);
+		
+		lblTitle.setBounds(33, 10, 110, 19);
+//		lblTitle.setBounds(33, 32, 110, 19);
 		lblTitle.setBackground(Color.WHITE);
 		lblTitle.setFont(new Font("맑은 고딕", Font.BOLD, 13));
 
 
 		JLabel lottoDate = new JLabel("0000-00-00");
-		lottoDate.setBounds(115, 127, 138, 17);
+		lottoDate.setBounds(115, 120, 138, 17);
+		LocalDateTime nowDT = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String formattedDate = nowDT.format(formatter);
+
+        lottoDate.setText(formattedDate);
 		lottoDate.setFont(new Font("맑은 고딕", Font.PLAIN, 15));
 
 		JLabel lblNewLabel_1 = new JLabel("제 1회");
@@ -46,43 +56,43 @@ public class ResultDialog extends JDialog {
 
 		JLabel titleA = new JLabel("");
 		titleA.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		titleA.setBounds(51, 205, 69, 15);
+		titleA.setBounds(51, 200, 69, 15);
 
 		JLabel titleB = new JLabel("");
 		titleB.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		titleB.setBounds(51, 245, 69, 15);
+		titleB.setBounds(51, 240, 69, 15);
 
 		JLabel titleC = new JLabel("");
 		titleC.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		titleC.setBounds(51, 285, 69, 15);
+		titleC.setBounds(51, 280, 69, 15);
 
 		JLabel titleD = new JLabel("");
 		titleD.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		titleD.setBounds(51, 325, 69, 15);
+		titleD.setBounds(51, 320, 69, 15);
 
 		JLabel titleE = new JLabel("");
 		titleE.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		titleE.setBounds(51, 365, 69, 15);
+		titleE.setBounds(51, 360, 69, 15);
 
 		JLabel resultA = new JLabel("");
 		resultA.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		resultA.setBounds(140, 205, 177, 15);
+		resultA.setBounds(140, 200, 177, 15);
 
 		JLabel resultB = new JLabel("");
 		resultB.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		resultB.setBounds(140, 245, 177, 15);
+		resultB.setBounds(140, 240, 177, 15);
 
 		JLabel resultC = new JLabel("");
 		resultC.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		resultC.setBounds(140, 285, 177, 15);
+		resultC.setBounds(140, 280, 177, 15);
 
 		JLabel resultD = new JLabel("");
 		resultD.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		resultD.setBounds(140, 325, 177, 15);
+		resultD.setBounds(140, 320, 177, 15);
 
 		JLabel resultE = new JLabel("");
 		resultE.setFont(new Font("맑은 고딕", Font.PLAIN, 13));
-		resultE.setBounds(140, 365, 177, 15);
+		resultE.setBounds(140, 360, 177, 15);
 
 
 		JLabel total = new JLabel("");
@@ -127,7 +137,12 @@ public class ResultDialog extends JDialog {
 					resultText.append(lotto.resultBuy.get(j).get(i)).append("  ");
 				}
 				resultLabels[j].setText(resultText.toString());
+				
 			} else {
+				
+				if (resultLabels[j].getText().isEmpty()) {
+					resultTitleLabels[j].setText("");
+				}
 				// 이 블록은 예외를 방지하기 위한 로직을 추가할 수 있습니다.
 				// 예를 들어, 메시지를 출력하거나 기본값을 설정하는 등의 작업을 수행할 수 있습니다.
 				resultLabels[j].setText("");

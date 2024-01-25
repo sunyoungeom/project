@@ -23,11 +23,14 @@ import com.sun.xml.internal.messaging.saaj.soap.JpegDataContentHandler;
 public class LottoProgram extends JFrame {
 //	private HelpFrame helpFrame = new HelpFrame(this);
 	public ArrayList<ArrayList<String>> resultBuy = new ArrayList<>(5);
+public ArrayList<ArrayList<String>> resultBuyTemp = new ArrayList<>(5);
 //    public ArrayList<ArrayList<String>> resultBuyTitles = new ArrayList<>();
 	public ArrayList<String> resultBuyTitle = new ArrayList<>(5);
+	public ArrayList<String> resultBuyTitleTemp = new ArrayList<>(5);
 	public int roundNum = 0;
 	public static Map<Integer, ArrayList<String>> winningNumberCollection = new TreeMap<>();
 	public static Map<Integer, ArrayList<ArrayList<String>>> buyNumberCollection = new TreeMap<>();
+	public static Map<Integer, ArrayList<String>> buyNumberCollectionTitle = new TreeMap<>();
 
 	public static CircleImagePanel circleImagePanel;
 	public static ImageTextPair[] imageTextPairs = new ImageTextPair[6];
@@ -50,11 +53,12 @@ public class LottoProgram extends JFrame {
 		for (int i = 0; i < 5; i++) {
 			resultBuyTitle.add("");
 		}
-
+		
 		setTitle("메인 창");
 
 		JPanel main = new JPanel();
 		JLabel backgroundImage = new JLabel(new ImageIcon("images/lottoMainimage.png"));
+		//images/lottoMain.jpeg
 		SpringLayout sl_main = new SpringLayout();
 		backgroundImage.setLayout(sl_main);
 
@@ -114,6 +118,7 @@ public class LottoProgram extends JFrame {
 					setVisible(false);
 					ResultFrame resultFrame = new ResultFrame(LottoProgram.this);
 					resultFrame.setVisible(true);
+					System.out.println(buyNumberCollection.get(roundNum));
 				} else {
 					JOptionPane.showMessageDialog(LottoProgram.this, "구매하기를 먼저 진행해 주세요", "해당 회차 종료",
 							JOptionPane.WARNING_MESSAGE);
@@ -127,6 +132,7 @@ public class LottoProgram extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				if (winningNumberCollection.get(roundNum) != null) {
+					System.out.println("여기"+buyNumberCollection.get(roundNum));
 					setVisible(false);
 					BeforeFrame beforeFrame = new BeforeFrame(LottoProgram.this);
 					beforeFrame.setVisible(true);
@@ -157,5 +163,5 @@ public class LottoProgram extends JFrame {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setVisible(true);
 	}
-
+	
 }
